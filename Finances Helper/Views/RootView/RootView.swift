@@ -10,14 +10,23 @@ import SwiftUI
 struct RootView: View {
     @EnvironmentObject var rootVM: RootViewModel    
     var body: some View {
-        VStack(spacing: 32){
-            Text(rootVM.selectedDate.formatted(date: .abbreviated, time: .omitted))
-                .font(.headline.bold())
-            
-            Spacer()
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 32){
+                StatsView(rootVM: rootVM)
+                .hCenter()
+                Spacer()
+                
+                allTransactionList
+            }
+            .padding()
+            .padding(.top)
         }
-        .padding()
-        .navigationTitle("")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(rootVM.selectedDate.formatted(date: .abbreviated, time: .omitted))
+                    .font(.headline.bold())
+            }
+        }
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -29,4 +38,23 @@ struct RootView_Previews: PreviewProvider {
                 .environmentObject(RootViewModel(context: dev.viewContext))
         }
     }
+}
+
+
+extension RootView{
+    
+    @ViewBuilder
+    private var allTransactionList: some View{
+        VStack(alignment: .leading, spacing: 16) {
+            ForEach(rootVM.transactions) { transaction in
+                HStack{
+                    Text(transaction.category?.title ?? "no category")
+                    Spacer()
+                    Text(transaction.friendlyAmount)
+                }
+                Divider()
+            }
+        }
+    }
+    
 }

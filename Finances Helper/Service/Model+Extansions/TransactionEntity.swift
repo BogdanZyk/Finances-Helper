@@ -23,6 +23,12 @@ extension TransactionEntity{
         Currency.currency(for: currencyCode ?? "USD")
     }
     
+    var sliceValue: SliceValue?{
+        if wrappedType == .income, let id = category?.id{
+            return .init(categoryId: id, amount: amount)
+        }
+        return nil
+    }
     
     static func fetchRequest(for predicate: NSPredicate) -> NSFetchRequest<TransactionEntity> {
         let request = NSFetchRequest<TransactionEntity>(entityName: "TransactionEntity")
@@ -40,6 +46,7 @@ extension TransactionEntity{
                        account: AccountEntity,
                        category: CategoryEntity,
                        subcategory: SubcategoryEntity?,
+                       note: String?,
                        context: NSManagedObjectContext){
         let entity = TransactionEntity(context: context)
         entity.id = UUID().uuidString
@@ -50,6 +57,7 @@ extension TransactionEntity{
         entity.category = category
         entity.subcategory = subcategory
         entity.forAccount = account
+        entity.note = note
         context.saveContext()
     }
     

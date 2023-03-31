@@ -11,7 +11,7 @@ import Combine
 
 class TransactionStore: NSObject {
     
-    var groups = CurrentValueSubject<[TransactionEntity], Never>([])
+    var transactions = CurrentValueSubject<[TransactionEntity], Never>([])
     let context: NSManagedObjectContext
     var frc: NSFetchedResultsController<TransactionEntity>?
     
@@ -28,7 +28,7 @@ class TransactionStore: NSObject {
         do {
             try self.frc?.performFetch()
             guard let groups = frc?.fetchedObjects else { return }
-            self.groups.value = groups
+            self.transactions.value = groups
         } catch {
             print("Failed to fetch objects: \(error)")
         }
@@ -41,7 +41,7 @@ extension TransactionStore: NSFetchedResultsControllerDelegate{
         guard let groups = controller.fetchedObjects as? [TransactionEntity] else {
             return
         }
-        self.groups.value = groups
+        self.transactions.value = groups
         
     }
     

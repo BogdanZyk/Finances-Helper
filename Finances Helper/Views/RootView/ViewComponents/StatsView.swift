@@ -10,29 +10,30 @@ import SwiftUI
 struct StatsView: View {
     @ObservedObject var rootVM: RootViewModel
     
-    var expensesTransactions: [(String, Double)]{
-        let transactions = rootVM.transactions.filter({$0.wrappedType == .income})
-        return (transactions.map({($0.category?.id ?? "", $0.amount)}))
+    var slicesValue: [SliceValue]{
+        rootVM.transactions.compactMap({$0.sliceValue})
     }
                        
-//    var categores: [(String, String)]{
-//
-//    }
+    var categores: [SliceCategory]{
+        rootVM.categories.compactMap({$0.slice})
+    }
     var body: some View {
         
-//        PieChartView(values: expensesTransactions, names: ["Rent", "Transport", "Education"], formatter: {$0.treeNumString + " $"})
+        PieChartView(values: slicesValue, names: categores, formatter: {$0.treeNumString + " $"})
+            .frame(height: 200)
         
-        ProgressCircleView(persentage: 0.7, lineWidth: 30, circleOutline: .blue, circleTrack: Color(.systemGray3)) {
-            VStack(alignment: .center){
-                Text(rootVM.transactionsStats.incomeAmontStr)
-                    .font(.title3.bold())
-                    .foregroundColor(.green)
-                Text(rootVM.transactionsStats.expenseAmountStr)
-                    .font(.title3.bold())
-                    .foregroundColor(.red)
-            }
-        }
-        .frame(width: 200, height: 200)
+        
+        //        ProgressCircleView(persentage: 0.7, lineWidth: 30, circleOutline: .blue, circleTrack: Color(.systemGray3)) {
+        //            VStack(alignment: .center){
+        //                Text(rootVM.transactionsStats.incomeAmontStr)
+        //                    .font(.title3.bold())
+        //                    .foregroundColor(.green)
+        //                Text(rootVM.transactionsStats.expenseAmountStr)
+        //                    .font(.title3.bold())
+        //                    .foregroundColor(.red)
+        //            }
+        //        }
+        //        .frame(width: 200, height: 200)
     }
 }
 

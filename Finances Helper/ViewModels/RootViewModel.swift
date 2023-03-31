@@ -14,26 +14,32 @@ final class RootViewModel: ObservableObject{
     @Published var transactions = [TransactionEntity]()
     @Published var transactionsStats = TransactionStats()
     @Published var selectedDate: Date = .now
+    @Published var categories = [CategoryEntity]()
     let coreDataManager: CoreDataManager
     let trasactionStore: TransactionStore
+    let categoriesStore: CategoriesStore
     private var cancellable = Set<AnyCancellable>()
     
     init(context: NSManagedObjectContext){
+        
         coreDataManager = CoreDataManager(mainContext: context)
         trasactionStore = TransactionStore(context: context)
+        categoriesStore = CategoriesStore(context: context)
         
         coreDataManager.createAccountIfNeeded()
         
         fetchTransactionForDate()
+        categoriesStore.fetch()
         
         startSubsTransaction()
+        startSubsCategories()
     }
     
     
    
     
     private func startSubsTransaction(){
-        trasactionStore.groups
+        trasactionStore.transactions
             .sink { transactions in
                 self.transactions = transactions
                 self.createTransactionStats()
@@ -41,7 +47,13 @@ final class RootViewModel: ObservableObject{
             .store(in: &cancellable)
     }
     
-  
+    private func startSubsCategories(){
+        categoriesStore.categories
+            .sink { categories in
+                self.categories = categories
+            }
+            .store(in: &cancellable)
+    }
     
     func fetchTransactionForDate(){
        guard let datePredicate = NSPredicate.datePredicate(before: selectedDate.noon, after: selectedDate.dayAfter) else { return }
@@ -75,5 +87,9 @@ struct TransactionStats {
     
     var expenseAmountStr: String{
         "-\(expenseAmount.treeNumString + " $")"
+    }
+    
+    var total: Double{
+      return expenseAmount - incomeAmont
     }
 }

@@ -11,9 +11,6 @@ import CoreData
 extension AccountEntity{
     
     
-
-    
-    
     static private func create(members: Set<UserEntity>, context: NSManagedObjectContext){
         let entity = AccountEntity(context: context)
         entity.id = UUID().uuidString

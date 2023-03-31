@@ -31,6 +31,9 @@
 		5ADA557929D71A13007FE8C4 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557829D71A13007FE8C4 /* StatsView.swift */; };
 		5ADA557C29D71BB9007FE8C4 /* PieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557B29D71BB9007FE8C4 /* PieChartsView.swift */; };
 		5ADA557F29D71BFE007FE8C4 /* PieSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */; };
+		5ADA558129D727D9007FE8C4 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558029D727D9007FE8C4 /* View+Ext.swift */; };
+		5ADA558329D72C31007FE8C4 /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558229D72C31007FE8C4 /* CategoryEntity.swift */; };
+		5ADA558529D72D0A007FE8C4 /* CategoriesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558429D72D0A007FE8C4 /* CategoriesStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +62,9 @@
 		5ADA557829D71A13007FE8C4 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		5ADA557B29D71BB9007FE8C4 /* PieChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartsView.swift; sourceTree = "<group>"; };
 		5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieSlice.swift; sourceTree = "<group>"; };
+		5ADA558029D727D9007FE8C4 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		5ADA558229D72C31007FE8C4 /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
+		5ADA558429D72D0A007FE8C4 /* CategoriesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,7 @@
 				5ADA554929D6E944007FE8C4 /* CoreData+Extansions.swift */,
 				5ADA554E29D6E972007FE8C4 /* CoreDataContainer.xcdatamodeld */,
 				5ADA555D29D70B75007FE8C4 /* TransactionStore.swift */,
+				5ADA558429D72D0A007FE8C4 /* CategoriesStore.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -172,6 +179,7 @@
 				5ADA555429D6F499007FE8C4 /* TransactionEntity.swift */,
 				5ADA555929D70598007FE8C4 /* AccountEntity+Ext.swift */,
 				5ADA555B29D70818007FE8C4 /* UserEntity.swift */,
+				5ADA558229D72C31007FE8C4 /* CategoryEntity.swift */,
 			);
 			path = "Model+Extansions";
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 				5ADA555729D6F5AC007FE8C4 /* Date+ext.swift */,
 				5ADA556529D70E51007FE8C4 /* Preview.swift */,
 				5ADA557029D71137007FE8C4 /* Double.swift */,
+				5ADA558029D727D9007FE8C4 /* View+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -335,11 +344,14 @@
 				5ADA557C29D71BB9007FE8C4 /* PieChartsView.swift in Sources */,
 				5ADA556F29D710BA007FE8C4 /* Currency.swift in Sources */,
 				5ADA556629D70E51007FE8C4 /* Preview.swift in Sources */,
+				5ADA558329D72C31007FE8C4 /* CategoryEntity.swift in Sources */,
 				5ADA555C29D70818007FE8C4 /* UserEntity.swift in Sources */,
 				5ADA556929D7105C007FE8C4 /* CurrencyView.swift in Sources */,
+				5ADA558129D727D9007FE8C4 /* View+Ext.swift in Sources */,
 				5ADA554A29D6E944007FE8C4 /* CoreData+Extansions.swift in Sources */,
 				5ADA555829D6F5AC007FE8C4 /* Date+ext.swift in Sources */,
 				5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */,
+				5ADA558529D72D0A007FE8C4 /* CategoriesStore.swift in Sources */,
 				5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */,
 				5ADA555529D6F499007FE8C4 /* TransactionEntity.swift in Sources */,
 				5ADA556329D70E11007FE8C4 /* RootView.swift in Sources */,

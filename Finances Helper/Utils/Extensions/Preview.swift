@@ -64,9 +64,11 @@ class DeveloperPreview {
     var category: [CategoryEntity]{
         let context = contreller.viewContext
         let category1 = CategoryEntity(context: context)
+        category1.id = UUID().uuidString
         category1.title  = "Category 1"
         
         let category2 = CategoryEntity(context: context)
+        category2.id = UUID().uuidString
         category2.title  = "Category 2"
         
         return [category1, category2]

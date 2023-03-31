@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct PieChartView: View {
-    let values: [(categoryId: String, amount: Double)]
-    let names: [(categoryId: String, title: String)]
+    let values: [SliceValue]
+    let names: [SliceCategory]
     let formatter: (Double) -> String
     
-    var colors: [Color]
     var backgroundColor: Color
     
     var widthFraction: CGFloat
@@ -26,20 +25,19 @@ struct PieChartView: View {
         var endDeg: Double = 0
         var tempSlices: [PieSliceData] = []
         
-        for (i, value) in values.enumerated() {
+        for value in values {
             let degrees: Double = value.amount * 360 / sum
-            tempSlices.append(PieSliceData(categoryId: value.categoryId, startAngle: Angle(degrees: endDeg), endAngle: Angle(degrees: endDeg + degrees), text: String(format: "%.0f%%", value.amount * 100 / sum), color: self.colors[i]))
+            tempSlices.append(PieSliceData(categoryId: value.categoryId, startAngle: Angle(degrees: endDeg), endAngle: Angle(degrees: endDeg + degrees), text: String(format: "%.0f%%", value.amount * 100 / sum), color: names.first(where: {$0.id == value.categoryId})?.color ?? .secondary))
             endDeg += degrees
         }
         return tempSlices
     }
     
-    public init(values: [(categoryId: String, amount: Double)], names: [(categoryId: String, title: String)], formatter: @escaping (Double) -> String, colors: [Color] = [Color.blue, Color.green, Color.orange], backgroundColor: Color = Color(red: 21 / 255, green: 24 / 255, blue: 30 / 255, opacity: 1.0), widthFraction: CGFloat = 0.75, innerRadiusFraction: CGFloat = 0.60){
+    public init(values: [SliceValue], names: [SliceCategory], formatter: @escaping (Double) -> String, backgroundColor: Color = Color(red: 21 / 255, green: 24 / 255, blue: 30 / 255, opacity: 1.0), widthFraction: CGFloat = 0.75, innerRadiusFraction: CGFloat = 0.60){
         self.values = values
         self.names = names
         self.formatter = formatter
         
-        self.colors = colors
         self.backgroundColor = backgroundColor
         self.widthFraction = widthFraction
         self.innerRadiusFraction = innerRadiusFraction
@@ -89,7 +87,7 @@ struct PieChartView: View {
                         .frame(width: widthFraction * geometry.size.width * innerRadiusFraction, height: widthFraction * geometry.size.width * innerRadiusFraction)
                     
                     VStack {
-                        Text(names.first(where: {$0.categoryId == categoryId})?.title ?? "Total")
+                        Text(names.first(where: {$0.id == categoryId})?.title ?? "Total")
                             .font(.title)
                             .foregroundColor(Color.gray)
                         Text(self.formatter(self.activeIndex == -1 ? values.reduce(0, {$0 + $1.amount}) : values[self.activeIndex].amount))
@@ -105,13 +103,27 @@ struct PieChartView: View {
 }
 
 
-//struct PieChartView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PieChartView(values: [1300, 500, 300], names: ["Rent", "Transport", "Education"], formatter: {value in value.treeNumString + " $"})
-//            .background(Color.black)
-//           // .frame(width: 400, height: 400)
-//    }
-//}
+struct PieChartView_Previews: PreviewProvider {
+    
+    static let values: [SliceValue] = [.init(categoryId: "2", amount: 300), .init(categoryId: "1", amount: 500)]
+    static let categories: [SliceCategory] = [.init(id: "1", title: "Category 1", color: .red), .init(id: "2", title: "Category 2", color: .green)]
+    static var previews: some View {
+        PieChartView(values: values, names: categories, formatter: {value in value.treeNumString + " $"})
+            .background(Color.black)
+           // .frame(width: 400, height: 400)
+    }
+}
 
 
 
+struct SliceCategory{
+    var id: String
+    var title: String
+    var color: Color
+}
+
+
+struct SliceValue{
+    var categoryId: String
+    var amount: Double
+}
