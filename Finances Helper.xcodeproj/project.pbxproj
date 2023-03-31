@@ -24,6 +24,13 @@
 		5ADA556329D70E11007FE8C4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA556229D70E11007FE8C4 /* RootView.swift */; };
 		5ADA556629D70E51007FE8C4 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA556529D70E51007FE8C4 /* Preview.swift */; };
 		5ADA556929D7105C007FE8C4 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA556829D7105C007FE8C4 /* CurrencyView.swift */; };
+		5ADA556F29D710BA007FE8C4 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA556E29D710BA007FE8C4 /* Currency.swift */; };
+		5ADA557129D71137007FE8C4 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557029D71137007FE8C4 /* Double.swift */; };
+		5ADA557529D7176A007FE8C4 /* LineProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557329D7176A007FE8C4 /* LineProgressView.swift */; };
+		5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557429D7176A007FE8C4 /* CircleProgressView.swift */; };
+		5ADA557929D71A13007FE8C4 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557829D71A13007FE8C4 /* StatsView.swift */; };
+		5ADA557C29D71BB9007FE8C4 /* PieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557B29D71BB9007FE8C4 /* PieChartsView.swift */; };
+		5ADA557F29D71BFE007FE8C4 /* PieSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +52,13 @@
 		5ADA556229D70E11007FE8C4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5ADA556529D70E51007FE8C4 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		5ADA556829D7105C007FE8C4 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
+		5ADA556E29D710BA007FE8C4 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		5ADA557029D71137007FE8C4 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		5ADA557329D7176A007FE8C4 /* LineProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineProgressView.swift; sourceTree = "<group>"; };
+		5ADA557429D7176A007FE8C4 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		5ADA557829D71A13007FE8C4 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		5ADA557B29D71BB9007FE8C4 /* PieChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartsView.swift; sourceTree = "<group>"; };
+		5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieSlice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +181,7 @@
 			children = (
 				5ADA555729D6F5AC007FE8C4 /* Date+ext.swift */,
 				5ADA556529D70E51007FE8C4 /* Preview.swift */,
+				5ADA557029D71137007FE8C4 /* Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,6 +189,7 @@
 		5ADA556129D70E06007FE8C4 /* RootView */ = {
 			isa = PBXGroup;
 			children = (
+				5ADA557729D719FC007FE8C4 /* ViewComponents */,
 				5ADA556229D70E11007FE8C4 /* RootView.swift */,
 			);
 			path = RootView;
@@ -182,6 +198,8 @@
 		5ADA556729D7104F007FE8C4 /* ViewComponens */ = {
 			isa = PBXGroup;
 			children = (
+				5ADA557A29D71BAC007FE8C4 /* Charts */,
+				5ADA557229D7176A007FE8C4 /* ProgressBars */,
 				5ADA556A29D71069007FE8C4 /* Currency */,
 			);
 			path = ViewComponens;
@@ -198,8 +216,43 @@
 		5ADA556D29D71085007FE8C4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5ADA556E29D710BA007FE8C4 /* Currency.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5ADA557229D7176A007FE8C4 /* ProgressBars */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA557329D7176A007FE8C4 /* LineProgressView.swift */,
+				5ADA557429D7176A007FE8C4 /* CircleProgressView.swift */,
+			);
+			path = ProgressBars;
+			sourceTree = "<group>";
+		};
+		5ADA557729D719FC007FE8C4 /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA557829D71A13007FE8C4 /* StatsView.swift */,
+			);
+			path = ViewComponents;
+			sourceTree = "<group>";
+		};
+		5ADA557A29D71BAC007FE8C4 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA557D29D71BF0007FE8C4 /* PieChart */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		5ADA557D29D71BF0007FE8C4 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA557B29D71BB9007FE8C4 /* PieChartsView.swift */,
+				5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */,
+			);
+			path = PieChart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,18 +325,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ADA557129D71137007FE8C4 /* Double.swift in Sources */,
+				5ADA557529D7176A007FE8C4 /* LineProgressView.swift in Sources */,
 				5ADA555E29D70B75007FE8C4 /* TransactionStore.swift in Sources */,
 				5ADA555229D6E995007FE8C4 /* CoreDataManager.swift in Sources */,
 				5ADA555A29D70598007FE8C4 /* AccountEntity+Ext.swift in Sources */,
 				5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */,
+				5ADA557F29D71BFE007FE8C4 /* PieSlice.swift in Sources */,
+				5ADA557C29D71BB9007FE8C4 /* PieChartsView.swift in Sources */,
+				5ADA556F29D710BA007FE8C4 /* Currency.swift in Sources */,
 				5ADA556629D70E51007FE8C4 /* Preview.swift in Sources */,
 				5ADA555C29D70818007FE8C4 /* UserEntity.swift in Sources */,
 				5ADA556929D7105C007FE8C4 /* CurrencyView.swift in Sources */,
 				5ADA554A29D6E944007FE8C4 /* CoreData+Extansions.swift in Sources */,
 				5ADA555829D6F5AC007FE8C4 /* Date+ext.swift in Sources */,
+				5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */,
 				5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */,
 				5ADA555529D6F499007FE8C4 /* TransactionEntity.swift in Sources */,
 				5ADA556329D70E11007FE8C4 /* RootView.swift in Sources */,
+				5ADA557929D71A13007FE8C4 /* StatsView.swift in Sources */,
 				5ADA555029D6E972007FE8C4 /* CoreDataContainer.xcdatamodeld in Sources */,
 				5ADA556029D70C70007FE8C4 /* RootViewModel.swift in Sources */,
 				5ADA554C29D6E961007FE8C4 /* PersistenceController.swift in Sources */,

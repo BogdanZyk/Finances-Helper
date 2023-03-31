@@ -12,6 +12,7 @@ import Combine
 final class RootViewModel: ObservableObject{
     
     @Published var transactions = [TransactionEntity]()
+    @Published var transactionsStats = TransactionStats()
     @Published var selectedDate: Date = .now
     let coreDataManager: CoreDataManager
     let trasactionStore: TransactionStore
@@ -29,10 +30,13 @@ final class RootViewModel: ObservableObject{
     }
     
     
+   
+    
     private func startSubsTransaction(){
         trasactionStore.groups
             .sink { transactions in
                 self.transactions = transactions
+                self.createTransactionStats()
             }
             .store(in: &cancellable)
     }
@@ -42,5 +46,34 @@ final class RootViewModel: ObservableObject{
     func fetchTransactionForDate(){
        guard let datePredicate = NSPredicate.datePredicate(before: selectedDate.noon, after: selectedDate.dayAfter) else { return }
         trasactionStore.fetch(for: datePredicate)
+    }
+    
+    private func createTransactionStats(){
+        let res = transactions.reduce(into: (0.0, 0.0)) { partialResult, entity in
+            guard let type = entity.type else { return }
+            switch TransactionType(rawValue: type){
+            case.expense:
+                partialResult.1 += entity.amount
+            case .income:
+                partialResult.0 += entity.amount
+            case .none: break
+            }
+        }
+        self.transactionsStats = .init(incomeAmont: res.0, expenseAmount: res.1)
+    }
+}
+
+
+struct TransactionStats {
+    
+    var incomeAmont: Double = 0
+    var expenseAmount: Double = 0
+    
+    var incomeAmontStr: String{
+        incomeAmont.treeNumString + " $"
+    }
+    
+    var expenseAmountStr: String{
+        "-\(expenseAmount.treeNumString + " $")"
     }
 }

@@ -8,20 +8,25 @@
 import SwiftUI
 
 struct RootView: View {
-    @EnvironmentObject var rootVM: RootViewModel
+    @EnvironmentObject var rootVM: RootViewModel    
     var body: some View {
-        VStack{
-            ForEach(rootVM.transactions) { transaction in
-                Text("Amount")
-                Text("\(Int(transaction.amount))")
-            }
+        VStack(spacing: 32){
+            Text(rootVM.selectedDate.formatted(date: .abbreviated, time: .omitted))
+                .font(.headline.bold())
+            
+            Spacer()
         }
+        .padding()
+        .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
-            .environmentObject(RootViewModel(context: dev.viewContext))
+        NavigationStack {
+            RootView()
+                .environmentObject(RootViewModel(context: dev.viewContext))
+        }
     }
 }

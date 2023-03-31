@@ -11,6 +11,17 @@ import CoreData
 extension TransactionEntity{
     
     
+    var wrappedType: TransactionType{
+        .init(rawValue: type ?? "INCOME") ?? .income
+    }
+    
+    var friendlyAmount: String{
+        amount.twoNumString + " \(currency?.shortestSymbol ?? "$")"
+    }
+    
+    var currency: Currency?{
+        Currency.currency(for: currencyCode ?? "USD")
+    }
     
     
     static func fetchRequest(for predicate: NSPredicate) -> NSFetchRequest<TransactionEntity> {

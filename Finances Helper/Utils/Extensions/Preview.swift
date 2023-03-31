@@ -46,6 +46,7 @@ class DeveloperPreview {
         trans1.amount = 1300
         trans1.currencyCode = "RUB"
         trans1.type = TransactionType.income.rawValue
+        trans1.category = category[1]
         
         
         let trans2 = TransactionEntity(context: context)
@@ -54,8 +55,21 @@ class DeveloperPreview {
         trans2.amount = 600
         trans2.currencyCode = "RUB"
         trans2.type = TransactionType.expense.rawValue
+        trans2.category = category[0]
         
         return [trans1, trans2]
+    }
+    
+    
+    var category: [CategoryEntity]{
+        let context = contreller.viewContext
+        let category1 = CategoryEntity(context: context)
+        category1.title  = "Category 1"
+        
+        let category2 = CategoryEntity(context: context)
+        category2.title  = "Category 2"
+        
+        return [category1, category2]
     }
 
 }
