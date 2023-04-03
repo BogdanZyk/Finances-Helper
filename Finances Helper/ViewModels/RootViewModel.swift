@@ -11,6 +11,7 @@ import Combine
 
 final class RootViewModel: ObservableObject{
     
+    @Published var account: AccountEntity?
     @Published var transactions = [TransactionEntity]()
     @Published var transactionsStats = TransactionStats()
     @Published var selectedDate: Date = .now
@@ -26,7 +27,7 @@ final class RootViewModel: ObservableObject{
         trasactionStore = TransactionStore(context: context)
         categoriesStore = CategoriesStore(context: context)
         
-        coreDataManager.createAccountIfNeeded()
+        createAndFetchAccount()
         
         fetchTransactionForDate()
         categoriesStore.fetch()
@@ -35,8 +36,6 @@ final class RootViewModel: ObservableObject{
         startSubsCategories()
     }
     
-    
-   
     
     private func startSubsTransaction(){
         trasactionStore.transactions
@@ -53,6 +52,11 @@ final class RootViewModel: ObservableObject{
                 self.categories = categories
             }
             .store(in: &cancellable)
+    }
+    
+    private func createAndFetchAccount(){
+        coreDataManager.createAccountIfNeeded()
+        account = coreDataManager.fetchAccount()
     }
     
     func fetchTransactionForDate(){

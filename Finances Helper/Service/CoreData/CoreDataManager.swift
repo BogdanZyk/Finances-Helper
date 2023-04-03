@@ -26,6 +26,17 @@ extension CoreDataManager{
     func createAccountIfNeeded(){
         AccountEntity.createAccountIfNeeded(context: mainContext)
     }
+    
+    func fetchAccount() -> AccountEntity?{
+       let request = AccountEntity.fetchRequest()
+        do {
+            let acount = try mainContext.fetch(request)
+            return acount.first
+        } catch let error {
+            print("Failed to fetch account \(error)")
+        }
+        return nil
+    }
 }
 
 ////MARK: -  Group logic

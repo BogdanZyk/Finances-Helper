@@ -73,7 +73,3 @@ extension NSPredicate{
 
 
 
-enum TransactionType: String{
-    case income = "INCOME"
-    case expense = "EXPENSE"
-}

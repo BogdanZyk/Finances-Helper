@@ -34,6 +34,11 @@
 		5ADA558129D727D9007FE8C4 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558029D727D9007FE8C4 /* View+Ext.swift */; };
 		5ADA558329D72C31007FE8C4 /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558229D72C31007FE8C4 /* CategoryEntity.swift */; };
 		5ADA558529D72D0A007FE8C4 /* CategoriesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558429D72D0A007FE8C4 /* CategoriesStore.swift */; };
+		5ADA558829D7358C007FE8C4 /* CreateTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558729D7358C007FE8C4 /* CreateTransactionView.swift */; };
+		5ADA558A29D7361E007FE8C4 /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558929D7361E007FE8C4 /* TransactionType.swift */; };
+		5ADA558C29D736EE007FE8C4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558B29D736EE007FE8C4 /* String.swift */; };
+		5ADA558F29D7378D007FE8C4 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558E29D7378D007FE8C4 /* NumberTextField.swift */; };
+		5ADA559129D737B8007FE8C4 /* CreateTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA559029D737B8007FE8C4 /* CreateTransactionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +70,11 @@
 		5ADA558029D727D9007FE8C4 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		5ADA558229D72C31007FE8C4 /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
 		5ADA558429D72D0A007FE8C4 /* CategoriesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesStore.swift; sourceTree = "<group>"; };
+		5ADA558729D7358C007FE8C4 /* CreateTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransactionView.swift; sourceTree = "<group>"; };
+		5ADA558929D7361E007FE8C4 /* TransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
+		5ADA558B29D736EE007FE8C4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		5ADA558E29D7378D007FE8C4 /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
+		5ADA559029D737B8007FE8C4 /* CreateTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTransactionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +147,7 @@
 		5ADA554529D6E902007FE8C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5ADA558629D73575007FE8C4 /* CreateTransaction */,
 				5ADA556729D7104F007FE8C4 /* ViewComponens */,
 				5ADA556129D70E06007FE8C4 /* RootView */,
 			);
@@ -147,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				5ADA555F29D70C70007FE8C4 /* RootViewModel.swift */,
+				5ADA559029D737B8007FE8C4 /* CreateTransactionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -191,6 +203,7 @@
 				5ADA556529D70E51007FE8C4 /* Preview.swift */,
 				5ADA557029D71137007FE8C4 /* Double.swift */,
 				5ADA558029D727D9007FE8C4 /* View+Ext.swift */,
+				5ADA558B29D736EE007FE8C4 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -207,6 +220,7 @@
 		5ADA556729D7104F007FE8C4 /* ViewComponens */ = {
 			isa = PBXGroup;
 			children = (
+				5ADA558D29D73772007FE8C4 /* TextFileds */,
 				5ADA557A29D71BAC007FE8C4 /* Charts */,
 				5ADA557229D7176A007FE8C4 /* ProgressBars */,
 				5ADA556A29D71069007FE8C4 /* Currency */,
@@ -226,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				5ADA556E29D710BA007FE8C4 /* Currency.swift */,
+				5ADA558929D7361E007FE8C4 /* TransactionType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -262,6 +277,22 @@
 				5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */,
 			);
 			path = PieChart;
+			sourceTree = "<group>";
+		};
+		5ADA558629D73575007FE8C4 /* CreateTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA558729D7358C007FE8C4 /* CreateTransactionView.swift */,
+			);
+			path = CreateTransaction;
+			sourceTree = "<group>";
+		};
+		5ADA558D29D73772007FE8C4 /* TextFileds */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA558E29D7378D007FE8C4 /* NumberTextField.swift */,
+			);
+			path = TextFileds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,19 +375,24 @@
 				5ADA557C29D71BB9007FE8C4 /* PieChartsView.swift in Sources */,
 				5ADA556F29D710BA007FE8C4 /* Currency.swift in Sources */,
 				5ADA556629D70E51007FE8C4 /* Preview.swift in Sources */,
+				5ADA558A29D7361E007FE8C4 /* TransactionType.swift in Sources */,
 				5ADA558329D72C31007FE8C4 /* CategoryEntity.swift in Sources */,
 				5ADA555C29D70818007FE8C4 /* UserEntity.swift in Sources */,
 				5ADA556929D7105C007FE8C4 /* CurrencyView.swift in Sources */,
 				5ADA558129D727D9007FE8C4 /* View+Ext.swift in Sources */,
 				5ADA554A29D6E944007FE8C4 /* CoreData+Extansions.swift in Sources */,
+				5ADA558F29D7378D007FE8C4 /* NumberTextField.swift in Sources */,
 				5ADA555829D6F5AC007FE8C4 /* Date+ext.swift in Sources */,
 				5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */,
+				5ADA558C29D736EE007FE8C4 /* String.swift in Sources */,
 				5ADA558529D72D0A007FE8C4 /* CategoriesStore.swift in Sources */,
 				5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */,
 				5ADA555529D6F499007FE8C4 /* TransactionEntity.swift in Sources */,
 				5ADA556329D70E11007FE8C4 /* RootView.swift in Sources */,
 				5ADA557929D71A13007FE8C4 /* StatsView.swift in Sources */,
 				5ADA555029D6E972007FE8C4 /* CoreDataContainer.xcdatamodeld in Sources */,
+				5ADA559129D737B8007FE8C4 /* CreateTransactionViewModel.swift in Sources */,
+				5ADA558829D7358C007FE8C4 /* CreateTransactionView.swift in Sources */,
 				5ADA556029D70C70007FE8C4 /* RootViewModel.swift in Sources */,
 				5ADA554C29D6E961007FE8C4 /* PersistenceController.swift in Sources */,
 			);

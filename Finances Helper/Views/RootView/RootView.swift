@@ -15,7 +15,6 @@ struct RootView: View {
                 StatsView(rootVM: rootVM)
                 .hCenter()
                 Spacer()
-                
                 allTransactionList
             }
             .padding()
@@ -23,7 +22,7 @@ struct RootView: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text(rootVM.selectedDate.formatted(date: .abbreviated, time: .omitted))
+                Text(rootVM.selectedDate.toFriedlyDate)
                     .font(.headline.bold())
             }
         }

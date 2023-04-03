@@ -24,13 +24,21 @@ extension AccountEntity{
     }
     
     
+    static func request() -> NSFetchRequest<AccountEntity>{
+        let fetchRequest = NSFetchRequest<AccountEntity>(entityName: "AccountEntity")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: true)]
+        fetchRequest.fetchLimit = 1
+        fetchRequest.propertiesToFetch = ["id", "members", "currencyCodes"]
+        return fetchRequest
+    }
+    
     
    static func createAccountIfNeeded(context: NSManagedObjectContext) {
 
         let fetchRequest = NSFetchRequest<AccountEntity>(entityName: "AccountEntity")
         fetchRequest.fetchLimit = 1
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: true)]
-
+        fetchRequest.propertiesToFetch = ["id"]
         do {
             let count = try context.count(for: fetchRequest)
             if count == 1 {
