@@ -23,8 +23,8 @@ struct CoreDataManager {
 //MARK: - Account
 extension CoreDataManager{
     
-    func createAccountIfNeeded(){
-        AccountEntity.createAccountIfNeeded(context: mainContext)
+    func createAccountIfNeeded(for user: UserEntity){
+        AccountEntity.createAccountIfNeeded(for: user, context: mainContext)
     }
     
     func fetchAccount() -> AccountEntity?{
@@ -36,6 +36,32 @@ extension CoreDataManager{
             print("Failed to fetch account \(error)")
         }
         return nil
+    }
+}
+
+
+//MARK: - User
+extension CoreDataManager{
+    
+    private func createUserDefault() -> UserEntity{
+        let user = UserEntity(context: mainContext)
+        user.id = UUID().uuidString
+        user.name = "No name"
+        mainContext.saveContext()
+        return user
+    }
+    
+    func getCurrentUser(id: String) -> UserEntity{
+        let request = UserEntity.request(for: id)
+        do {
+            let result = try mainContext.fetch(request)
+            if let user = result.first {
+                return user
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        return createUserDefault()
     }
 }
 

@@ -15,7 +15,7 @@ extension AccountEntity{
         let entity = AccountEntity(context: context)
         entity.id = UUID().uuidString
         entity.createAt = Date.now
-        entity.currencyCodes = "USD RUB"
+        entity.currencyCodes = "USD"
         entity.members = members as NSSet
         entity.categories = []
         entity.transactions = []
@@ -28,12 +28,12 @@ extension AccountEntity{
         let fetchRequest = NSFetchRequest<AccountEntity>(entityName: "AccountEntity")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: true)]
         fetchRequest.fetchLimit = 1
-        fetchRequest.propertiesToFetch = ["id", "members", "currencyCodes"]
+        fetchRequest.propertiesToFetch = ["id", "currencyCodes"]
         return fetchRequest
     }
     
     
-   static func createAccountIfNeeded(context: NSManagedObjectContext) {
+    static func createAccountIfNeeded(for user: UserEntity, context: NSManagedObjectContext) {
 
         let fetchRequest = NSFetchRequest<AccountEntity>(entityName: "AccountEntity")
         fetchRequest.fetchLimit = 1
@@ -44,7 +44,6 @@ extension AccountEntity{
             if count == 1 {
                 return
             }else {
-                let user = UserEntity.create(name: "Admin", context: context)
                 AccountEntity.create(members: Set([user]), context: context)
             }
         }catch let error as NSError {

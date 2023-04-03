@@ -11,6 +11,8 @@
 		5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E229DAC0520035E1D3 /* ChartData.swift */; };
 		5AD358E529DAC8A10035E1D3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E429DAC8A10035E1D3 /* Color.swift */; };
 		5AD358E829DACB0B0035E1D3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E729DACB0B0035E1D3 /* Helper.swift */; };
+		5AD358EA29DAD3A30035E1D3 /* TagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E929DAD3A30035E1D3 /* TagLayout.swift */; };
+		5AD358ED29DADAB70035E1D3 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358EC29DADAB70035E1D3 /* UserService.swift */; };
 		5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */; };
 		5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553729D6E8F2007FE8C4 /* ContentView.swift */; };
 		5ADA553A29D6E8F4007FE8C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA553929D6E8F4007FE8C4 /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		5AD358E229DAC0520035E1D3 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		5AD358E429DAC8A10035E1D3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5AD358E729DACB0B0035E1D3 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		5AD358E929DAD3A30035E1D3 /* TagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLayout.swift; sourceTree = "<group>"; };
+		5AD358EC29DADAB70035E1D3 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		5ADA553229D6E8F2007FE8C4 /* Finances Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finances Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finances_HelperApp.swift; sourceTree = "<group>"; };
 		5ADA553729D6E8F2007FE8C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +108,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		5AD358EB29DADA9A0035E1D3 /* UserService */ = {
+			isa = PBXGroup;
+			children = (
+				5AD358EC29DADAB70035E1D3 /* UserService.swift */,
+			);
+			path = UserService;
+			sourceTree = "<group>";
+		};
 		5ADA552929D6E8F2007FE8C4 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +158,7 @@
 		5ADA554329D6E8F7007FE8C4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5AD358EB29DADA9A0035E1D3 /* UserService */,
 				5ADA555329D6F486007FE8C4 /* Model+Extansions */,
 				5ADA554829D6E919007FE8C4 /* CoreData */,
 			);
@@ -242,6 +255,7 @@
 				5ADA557A29D71BAC007FE8C4 /* Charts */,
 				5ADA557229D7176A007FE8C4 /* ProgressBars */,
 				5ADA556A29D71069007FE8C4 /* Currency */,
+				5AD358E929DAD3A30035E1D3 /* TagLayout.swift */,
 			);
 			path = ViewComponens;
 			sourceTree = "<group>";
@@ -388,6 +402,7 @@
 				5ADA557129D71137007FE8C4 /* Double.swift in Sources */,
 				5AD358E129DAC00F0035E1D3 /* DonutChart.swift in Sources */,
 				5AD358E529DAC8A10035E1D3 /* Color.swift in Sources */,
+				5AD358EA29DAD3A30035E1D3 /* TagLayout.swift in Sources */,
 				5ADA557529D7176A007FE8C4 /* LineProgressView.swift in Sources */,
 				5ADA555E29D70B75007FE8C4 /* TransactionStore.swift in Sources */,
 				5ADA555229D6E995007FE8C4 /* CoreDataManager.swift in Sources */,
@@ -404,6 +419,7 @@
 				5ADA558129D727D9007FE8C4 /* View+Ext.swift in Sources */,
 				5ADA554A29D6E944007FE8C4 /* CoreData+Extansions.swift in Sources */,
 				5ADA558F29D7378D007FE8C4 /* NumberTextField.swift in Sources */,
+				5AD358ED29DADAB70035E1D3 /* UserService.swift in Sources */,
 				5ADA555829D6F5AC007FE8C4 /* Date+ext.swift in Sources */,
 				5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */,
 				5ADA558C29D736EE007FE8C4 /* String.swift in Sources */,

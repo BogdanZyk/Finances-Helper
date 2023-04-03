@@ -7,10 +7,11 @@
 
 import Foundation
 
-enum TransactionType: String{
+enum TransactionType: String, Identifiable{
     case income = "INCOME"
     case expense = "EXPENSE"
     
+    var id: String{ rawValue }
     
     var title: String{
         switch self {

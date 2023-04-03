@@ -19,4 +19,12 @@ extension UserEntity{
         return user
     }
     
+    static func request(for id: String) -> NSFetchRequest<UserEntity>{
+        let fetchRequest = NSFetchRequest<UserEntity>(entityName: "UserEntity")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.fetchLimit = 1
+        fetchRequest.propertiesToFetch = ["id", "name"]
+        return fetchRequest
+    }
+    
 }

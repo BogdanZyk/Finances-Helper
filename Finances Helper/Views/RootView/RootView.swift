@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RootView: View {
+    @State var transactionFullScreen: TransactionType?
     @EnvironmentObject var rootVM: RootViewModel    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -27,6 +28,12 @@ struct RootView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .overlay(alignment: .bottom) {
+            transactionButtons
+        }
+        .fullScreenCover(item: $transactionFullScreen) { type in
+            CreateTransactionView(type: type, rootVM: rootVM)
+        }
     }
 }
 
@@ -56,4 +63,27 @@ extension RootView{
         }
     }
     
+    private var transactionButtons: some View{
+        HStack(spacing: 30){
+            Button {
+                transactionFullScreen = .expense
+            } label: {
+                Image(systemName: "minus")
+                    .imageScale(.large)
+                    .frame(width: 60, height: 60)
+                    .background(Color.blue, in: Circle())
+            }
+            Button {
+                transactionFullScreen = .income
+            } label: {
+                Image(systemName: "plus")
+                    .imageScale(.large)
+                    .frame(width: 60, height: 60)
+                    .background(Color.blue, in: Circle())
+                    
+            }
+        }
+        .foregroundColor(.white)
+        .padding()
+    }
 }

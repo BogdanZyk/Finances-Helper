@@ -19,10 +19,12 @@ final class RootViewModel: ObservableObject{
     let coreDataManager: CoreDataManager
     let trasactionStore: TransactionStore
     let categoriesStore: CategoriesStore
+    let userService: UserService
     private var cancellable = Set<AnyCancellable>()
     
     init(context: NSManagedObjectContext){
         
+        userService = UserService(context: context)
         coreDataManager = CoreDataManager(mainContext: context)
         trasactionStore = TransactionStore(context: context)
         categoriesStore = CategoriesStore(context: context)
@@ -55,7 +57,8 @@ final class RootViewModel: ObservableObject{
     }
     
     private func createAndFetchAccount(){
-        coreDataManager.createAccountIfNeeded()
+        guard let user = userService.currentUser else { return }
+        coreDataManager.createAccountIfNeeded(for: user)
         account = coreDataManager.fetchAccount()
     }
     
