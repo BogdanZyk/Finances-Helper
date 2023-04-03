@@ -50,6 +50,9 @@ struct CreateTransactionView: View {
                     .disabled(viewModel.disabledSave)
                 }
             }
+            .overlay {
+                createCategoryView
+            }
         }
     }
 }
@@ -90,5 +93,19 @@ extension CreateTransactionView{
                 .font(.title3.weight(.medium))
             Divider()
         }
+    }
+    
+    private var createCategoryView: some View{
+        Group{
+            if let type = viewModel.createCategoryViewType{
+                Color.secondary.opacity(0.5).ignoresSafeArea()
+                    .onTapGesture {
+                        viewModel.createCategoryViewType = nil
+                    }
+                CreateCategoryView(viewType: type, rootVM: rootVM, createVM: viewModel)
+                    .padding()
+            }
+        }
+        .animation(.easeInOut, value: viewModel.createCategoryViewType)
     }
 }

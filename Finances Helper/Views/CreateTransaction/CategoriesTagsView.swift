@@ -43,6 +43,7 @@ extension CategoriesTagsView{
             .padding(.vertical, 5)
             .padding(.horizontal, 10)
             .background(category.wrappedColor, in: Capsule())
+            .opacity(isSubcategory ? (category.id == createVM.selectedSubCategoryId ? 1 : 0.5) : 1)
             .onTapGesture {
                 if isSubcategory{
                     createVM.toogleSelectSubcategory(category.id ?? "")
@@ -57,6 +58,15 @@ extension CategoriesTagsView{
         TagLayout(alignment: .leading) {
             ForEach(categories) { category in
                 tagView(category, isSubcategory: isSubcategory)
+            }
+            Button {
+                createVM.createCategoryViewType = .new(isSub: isSubcategory)
+            } label: {
+                Label("New", systemImage: "plus")
+                    .foregroundColor(.white)
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, 10)
+                    .background(Color.secondary, in: Capsule())
             }
         }
     }

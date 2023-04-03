@@ -34,21 +34,26 @@ extension CategoryEntity{
         return fetchRequest
     }
     
+    @discardableResult
     static func create(
         context: NSManagedObjectContext,
         forAccount: AccountEntity,
         title: String,
-        color: String,
+        color: String?,
         subcategories: Set<CategoryEntity>?
-    ){
+    ) -> CategoryEntity{
         let category = CategoryEntity(context: context)
         category.id = UUID().uuidString
+        category.createAt = Date.now
         category.forAccount = forAccount
         category.color = color
         category.title = title
         if let subcategories{
             category.wrappedSubcategories = subcategories
         }
+        
+        return category
     }
+
     
 }

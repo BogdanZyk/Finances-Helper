@@ -12,6 +12,7 @@ import SwiftUI
 
 class CreateTransactionViewModel: ObservableObject{
     
+   
     
     @Published var note: String = ""
     @Published var amount: Double = 0
@@ -19,7 +20,10 @@ class CreateTransactionViewModel: ObservableObject{
     @Published var selectedSubCategoryId: String?
     @Published var selectedCategory: CategoryEntity?
     @Published var categories = [CategoryEntity]()
+
+    @Published var createCategoryViewType: CreateCategoryViewType?
     @Published var categoryColor: Color = .blue
+    @Published var categoryTitle: String = ""
     
     private let categoriesStore: CategoriesStore
     private var cancellable = Set<AnyCancellable>()
@@ -60,5 +64,24 @@ class CreateTransactionViewModel: ObservableObject{
     func create(type: TransactionType, date: Date, forAccount: AccountEntity?, created: UserEntity?){
         guard let selectedCategory, let forAccount, let created else { return }
         TransactionEntity.create(amount: amount, createAt: date, type: type, created: created, account: forAccount, category: selectedCategory, subcategoryId: selectedSubCategoryId, note: note, context: context)
+    }
+
+    func addCategory(forAccount: AccountEntity){
+       let category = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil)
+        context.saveContext()
+        createCategoryViewType = nil
+        categoryTitle = ""
+        selectedCategory = category
+    }
+    
+    func addSubcategory(forAccount: AccountEntity){
+        if let selectedCategory{
+            let subcategory = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil)
+            selectedCategory.wrappedSubcategories = [subcategory]
+            context.saveContext()
+            createCategoryViewType = nil
+            categoryTitle = ""
+            selectedSubCategoryId = subcategory.id
+        }
     }
 }

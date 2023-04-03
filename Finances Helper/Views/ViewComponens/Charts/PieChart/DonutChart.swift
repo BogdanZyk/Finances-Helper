@@ -12,14 +12,11 @@ struct DonutChart : View {
     @Binding var chartData: [ChartData]
     @State private var selectedSlice = -1
     
-    
-//    init(chartData: [ChartData]){
-//        self._chartData = State(wrappedValue: chartData)
-//    }
-    
     var body: some View {
         GeometryReader { proxy in
             ZStack {
+                Circle()
+                    .stroke(Color(.systemGray6), lineWidth: 50)
                 ForEach(chartData.indices, id:\.self) { index in
                     Circle()
                         .trim(from: index == 0 ? 0.0 : chartData[index-1].slicePercent,
@@ -39,12 +36,6 @@ struct DonutChart : View {
                 }
                 centerLabel
             }
-//            .onAppear {
-//                //setupChartData()
-//            }
-//            .onChange(of: chartData) { _ in
-//                //setupChartData()
-//            }
             .frame(width: proxy.size.width, height: proxy.size.height)
             .animation(.spring().speed(0.5), value: chartData)
         }
@@ -54,24 +45,14 @@ struct DonutChart : View {
 struct DonutChart_Previews: PreviewProvider {
     @State static var data = ChartData.sample
     static var previews: some View {
-        DonutChart(chartData: .constant(data))
+        DonutChart(chartData: $data)
             .frame(width: 200, height: 200)
     }
 }
 
 
 extension DonutChart{
-    
-//    private func setupChartData() {
-//        
-//        let total : CGFloat = chartData.reduce(0.0) { $0 + $1.value }
-//        
-//        for i in 0..<chartData.count {
-//            let percentage = (chartData[i].value / total)
-//            chartData[i].slicePercent =  (i == 0 ? 0.0 : chartData[i - 1].slicePercent) + percentage
-//        }
-//    }
-    
+        
     private var centerLabel: some View{
         VStack{
             if selectedSlice != -1 {
