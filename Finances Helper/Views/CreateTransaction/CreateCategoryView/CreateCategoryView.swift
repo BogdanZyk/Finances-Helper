@@ -12,11 +12,13 @@ struct CreateCategoryView: View {
     @ObservedObject var rootVM: RootViewModel
     @ObservedObject var createVM: CreateTransactionViewModel
     @State var colors = (1...10).map({_ in Color.random})
+    @FocusState private var isFocused: Bool
     var body: some View {
         VStack(spacing: 32){
             headerView
             VStack {
                 TextField("Title", text: $createVM.categoryTitle)
+                    .focused($isFocused)
                 Divider()
             }
             ScrollView(.horizontal, showsIndicators: false) {
@@ -40,18 +42,25 @@ struct CreateCategoryView: View {
                 if let color = colors.first{
                     createVM.categoryColor = color
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.02){
+                    isFocused = true
+                }
             }
         }
         .padding()
-        .background(Color(.systemGray5))
+        .background(Color.white)
         .cornerRadius(12)
+        .shadow(color: Color.black.opacity(0.1), radius: 5)
     }
 }
 
 struct CreateCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateCategoryView(viewType: .new(isSub: true), rootVM: RootViewModel(context: dev.viewContext), createVM: CreateTransactionViewModel(context: dev.viewContext))
-            .padding()
+        ZStack {
+            Color.secondary
+            CreateCategoryView(viewType: .new(isSub: true), rootVM: RootViewModel(context: dev.viewContext), createVM: CreateTransactionViewModel(context: dev.viewContext))
+                .padding()
+        }
     }
 }
 
@@ -61,6 +70,7 @@ extension CreateCategoryView{
     private var headerView: some View{
         HStack{
             Button {
+                isFocused = false
                 createVM.createCategoryViewType = nil
             } label: {
                 Image(systemName: "xmark")
@@ -71,6 +81,7 @@ extension CreateCategoryView{
             Spacer()
             
             Button {
+                isFocused = false
                 if let account = rootVM.account{
                     switch viewType{
                     case .new(let isSubcategory):

@@ -98,7 +98,7 @@ extension CreateTransactionView{
     private var createCategoryView: some View{
         Group{
             if let type = viewModel.createCategoryViewType{
-                Color.secondary.opacity(0.5).ignoresSafeArea()
+                Color.secondary.opacity(0.3).ignoresSafeArea()
                     .onTapGesture {
                         viewModel.createCategoryViewType = nil
                     }

@@ -18,9 +18,9 @@ struct ChartData: Identifiable, Equatable {
 
 extension ChartData {
     static var sample: [ChartData] {
-        [ ChartData(color: .orange, value: 350, title: "Udemy"),
-        ChartData(color: .mint, value: 154, title: "Kindle"),
-          ChartData(color: .teal, value: 356, title: "Medium"),
-          ChartData(color: .pink, value: 554, title: "DevTechie")]
+        [ ChartData(color: .orange, slicePercent: 0.24, value: 350, title: "Udemy"),
+          ChartData(color: .mint, value: 0.1, title: "Kindle"),
+          ChartData(color: .teal, value: 0.25, title: "Medium"),
+          ChartData(color: .pink, value: 0.39, title: "DevTechie")]
     }
 }
