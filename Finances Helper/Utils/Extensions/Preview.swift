@@ -66,10 +66,12 @@ class DeveloperPreview {
         let category1 = CategoryEntity(context: context)
         category1.id = UUID().uuidString
         category1.title  = "Category 1"
+        category1.color = "#E5B95A"
         
         let category2 = CategoryEntity(context: context)
         category2.id = UUID().uuidString
         category2.title  = "Category 2"
+        category2.color = "#549BD0"
         
         return [category1, category2]
     }

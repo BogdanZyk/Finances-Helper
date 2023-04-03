@@ -8,19 +8,48 @@
 import SwiftUI
 
 struct CreateTransactionView: View {
-    @StateObject private var viewModel = CreateTransactionViewModel()
+    @Environment(\.dismiss) private var dismiss
     let type: TransactionType
     @ObservedObject var rootVM: RootViewModel
+    @StateObject private var viewModel:  CreateTransactionViewModel
+    
+    init(type: TransactionType, rootVM: RootViewModel){
+        self.type = type
+        self._rootVM = ObservedObject(wrappedValue: rootVM)
+        self._viewModel = StateObject(wrappedValue: CreateTransactionViewModel(context: rootVM.coreDataManager.mainContext))
+    }
     var body: some View {
         NavigationStack {
-            VStack(spacing: 32){
-                dateButton
-                amountTextFiled
-                Spacer()
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 32){
+                    dateButton
+                    amountTextFiled
+                    noteTextField
+                    CategoriesTagsView(createVM: viewModel)
+                }
+                .padding()
             }
-            .padding()
             .navigationTitle("New "+type.title)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        viewModel.create(type: type, date: rootVM.selectedDate, forAccount: rootVM.account, created: rootVM.userService.currentUser)
+                        dismiss()
+                    } label: {
+                        Text("Save")
+                    }
+                    .disabled(viewModel.disabledSave)
+                }
+            }
         }
     }
 }
@@ -33,16 +62,33 @@ struct CreateTransactionView_Previews: PreviewProvider {
 
 extension CreateTransactionView{
     private var dateButton: some View{
-        Button {
-            
-        } label: {
-            Label(rootVM.selectedDate.toFriedlyDate, systemImage: "calendar")
-                .font(.headline.bold())
-                .foregroundColor(.black)
-        }
+        
+        DatePicker(selection: $viewModel.date, displayedComponents: .date) {}
+            .labelsHidden()
+            .hLeading()
+        
+//        Button {
+//
+//        } label: {
+//            Label(rootVM.selectedDate.toFriedlyDate, systemImage: "calendar")
+//                .font(.headline.bold())
+//                .foregroundColor(.black)
+//        }
     }
     
     private var amountTextFiled: some View{
-        NumberTextField(value: $viewModel.amount, promt: "", label: nil)
+        HStack {
+            NumberTextField(value: $viewModel.amount, promt: "", label: nil)
+            Text(rootVM.account?.currency?.code ?? "USD")
+                .font(.title3)
+        }
+    }
+    
+    private var noteTextField: some View{
+        VStack {
+            TextField("Note", text: $viewModel.note)
+                .font(.title3.weight(.medium))
+            Divider()
+        }
     }
 }

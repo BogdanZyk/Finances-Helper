@@ -15,10 +15,8 @@ final class RootViewModel: ObservableObject{
     @Published var transactions = [TransactionEntity]()
     @Published var chartData = [ChartData]()
     @Published var selectedDate: Date = .now
-    @Published var categories = [CategoryEntity]()
     let coreDataManager: CoreDataManager
     let trasactionStore: TransactionStore
-    let categoriesStore: CategoriesStore
     let userService: UserService
     private var cancellable = Set<AnyCancellable>()
     
@@ -27,15 +25,12 @@ final class RootViewModel: ObservableObject{
         userService = UserService(context: context)
         coreDataManager = CoreDataManager(mainContext: context)
         trasactionStore = TransactionStore(context: context)
-        categoriesStore = CategoriesStore(context: context)
         
         createAndFetchAccount()
         
         fetchTransactionForDate()
-        categoriesStore.fetch()
         
         startSubsTransaction()
-        startSubsCategories()
     }
     
     
@@ -48,13 +43,7 @@ final class RootViewModel: ObservableObject{
             .store(in: &cancellable)
     }
     
-    private func startSubsCategories(){
-        categoriesStore.categories
-            .sink { categories in
-                self.categories = categories
-            }
-            .store(in: &cancellable)
-    }
+
     
     private func createAndFetchAccount(){
         guard let user = userService.currentUser else { return }

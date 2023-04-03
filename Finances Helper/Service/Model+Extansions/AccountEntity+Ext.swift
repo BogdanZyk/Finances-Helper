@@ -11,11 +11,20 @@ import CoreData
 extension AccountEntity{
     
     
+    var currency: Currency?{
+        Currency.currency(for: currencyCode ?? "USD")
+    }
+    
+    var currencySymbol: String{
+        currency?.shortestSymbol ?? "$"
+    }
+    
+    
     static private func create(members: Set<UserEntity>, context: NSManagedObjectContext){
         let entity = AccountEntity(context: context)
         entity.id = UUID().uuidString
         entity.createAt = Date.now
-        entity.currencyCodes = "USD"
+        entity.currencyCode = "USD"
         entity.members = members as NSSet
         entity.categories = []
         entity.transactions = []

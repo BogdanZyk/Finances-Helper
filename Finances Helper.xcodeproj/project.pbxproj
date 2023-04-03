@@ -13,6 +13,8 @@
 		5AD358E829DACB0B0035E1D3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E729DACB0B0035E1D3 /* Helper.swift */; };
 		5AD358EA29DAD3A30035E1D3 /* TagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E929DAD3A30035E1D3 /* TagLayout.swift */; };
 		5AD358ED29DADAB70035E1D3 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358EC29DADAB70035E1D3 /* UserService.swift */; };
+		5AD358EF29DAE30C0035E1D3 /* CategoriesTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358EE29DAE30C0035E1D3 /* CategoriesTagsView.swift */; };
+		5AD358F229DAF29A0035E1D3 /* CreateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358F129DAF29A0035E1D3 /* CreateCategoryView.swift */; };
 		5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */; };
 		5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553729D6E8F2007FE8C4 /* ContentView.swift */; };
 		5ADA553A29D6E8F4007FE8C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA553929D6E8F4007FE8C4 /* Assets.xcassets */; };
@@ -54,6 +56,8 @@
 		5AD358E729DACB0B0035E1D3 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		5AD358E929DAD3A30035E1D3 /* TagLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagLayout.swift; sourceTree = "<group>"; };
 		5AD358EC29DADAB70035E1D3 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		5AD358EE29DAE30C0035E1D3 /* CategoriesTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTagsView.swift; sourceTree = "<group>"; };
+		5AD358F129DAF29A0035E1D3 /* CreateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryView.swift; sourceTree = "<group>"; };
 		5ADA553229D6E8F2007FE8C4 /* Finances Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finances Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finances_HelperApp.swift; sourceTree = "<group>"; };
 		5ADA553729D6E8F2007FE8C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +118,14 @@
 				5AD358EC29DADAB70035E1D3 /* UserService.swift */,
 			);
 			path = UserService;
+			sourceTree = "<group>";
+		};
+		5AD358F029DAF2870035E1D3 /* CreateCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				5AD358F129DAF29A0035E1D3 /* CreateCategoryView.swift */,
+			);
+			path = CreateCategoryView;
 			sourceTree = "<group>";
 		};
 		5ADA552929D6E8F2007FE8C4 = {
@@ -316,7 +328,9 @@
 		5ADA558629D73575007FE8C4 /* CreateTransaction */ = {
 			isa = PBXGroup;
 			children = (
+				5AD358F029DAF2870035E1D3 /* CreateCategoryView */,
 				5ADA558729D7358C007FE8C4 /* CreateTransactionView.swift */,
+				5AD358EE29DAE30C0035E1D3 /* CategoriesTagsView.swift */,
 			);
 			path = CreateTransaction;
 			sourceTree = "<group>";
@@ -429,12 +443,14 @@
 				5AD358E829DACB0B0035E1D3 /* Helper.swift in Sources */,
 				5ADA555529D6F499007FE8C4 /* TransactionEntity.swift in Sources */,
 				5ADA556329D70E11007FE8C4 /* RootView.swift in Sources */,
+				5AD358F229DAF29A0035E1D3 /* CreateCategoryView.swift in Sources */,
 				5ADA557929D71A13007FE8C4 /* StatsView.swift in Sources */,
 				5ADA555029D6E972007FE8C4 /* CoreDataContainer.xcdatamodeld in Sources */,
 				5ADA559129D737B8007FE8C4 /* CreateTransactionViewModel.swift in Sources */,
 				5ADA558829D7358C007FE8C4 /* CreateTransactionView.swift in Sources */,
 				5ADA556029D70C70007FE8C4 /* RootViewModel.swift in Sources */,
 				5ADA554C29D6E961007FE8C4 /* PersistenceController.swift in Sources */,
+				5AD358EF29DAE30C0035E1D3 /* CategoriesTagsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

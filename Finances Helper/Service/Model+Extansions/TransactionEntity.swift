@@ -24,9 +24,13 @@ extension TransactionEntity{
         Currency.currency(for: currencyCode ?? "USD")
     }
     
+    var wrappedSubcategory: CategoryEntity?{
+        category?.wrappedSubcategories.first(where: {$0.id == subcategoryId})
+    }
+    
     var chartData: ChartData?{
-        if wrappedType == .income, let id = category?.id, let categoryTitle = category?.title{
-          return ChartData(id: id, color: Color.random, value: amount, title: categoryTitle)
+        if wrappedType == .income, let id = category?.id, let categoryTitle = category?.title, let color = category?.wrappedColor{
+          return ChartData(id: id, color: color, value: amount, title: categoryTitle)
         }
         return nil
     }
@@ -53,7 +57,7 @@ extension TransactionEntity{
                        created: UserEntity,
                        account: AccountEntity,
                        category: CategoryEntity,
-                       subcategory: SubcategoryEntity?,
+                       subcategoryId: String?,
                        note: String?,
                        context: NSManagedObjectContext){
         let entity = TransactionEntity(context: context)
@@ -63,13 +67,12 @@ extension TransactionEntity{
         entity.type = type.rawValue
         entity.created = created
         entity.category = category
-        entity.subcategory = subcategory
+        entity.subcategoryId = subcategoryId
         entity.forAccount = account
         entity.note = note
         context.saveContext()
     }
     
-    //NSPredicate.datePredicate(before: date.noon, after: date.dayAfter)
 }
 
 
