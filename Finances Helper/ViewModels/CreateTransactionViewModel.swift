@@ -67,7 +67,7 @@ class CreateTransactionViewModel: ObservableObject{
     }
 
     func addCategory(forAccount: AccountEntity){
-       let category = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil)
+        let category = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil, isParent: true)
         context.saveContext()
         createCategoryViewType = nil
         categoryTitle = ""
@@ -76,7 +76,7 @@ class CreateTransactionViewModel: ObservableObject{
     
     func addSubcategory(forAccount: AccountEntity){
         if let selectedCategory{
-            let subcategory = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil)
+            let subcategory = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil, isParent: false)
             selectedCategory.wrappedSubcategories = [subcategory]
             context.saveContext()
             createCategoryViewType = nil

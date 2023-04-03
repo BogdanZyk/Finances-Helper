@@ -58,11 +58,15 @@ final class RootViewModel: ObservableObject{
     private func startCategorySubs(){
         $selectedCategory
             .sink { category in
-                guard let id = category?.id else {
+                guard let category, let id = category.id else {
                     self.setTransactions()
                     return
                 }
-                self.transactions = self.transactions.filter({$0.category?.id == id})
+                if category.isParent{
+                    self.transactions = self.transactions.filter({$0.category?.id == id})
+                }else{
+                    self.transactions = self.transactions.filter({$0.subcategoryId == id})
+                }
                 self.createChartData()
             }
             .store(in: &cancellable)

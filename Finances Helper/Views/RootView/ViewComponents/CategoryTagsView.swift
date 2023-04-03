@@ -18,12 +18,13 @@ struct CategoryTagsView: View {
             if let selectCategory = rootVM.selectedCategory{
                 categorySingleTagView(selectCategory, isSelected: true)
                 
-                TagLayout(alignment: .leading, spacing: 10){
-                    ForEach(Array(selectCategory.wrappedSubcategories)) { category in
-                        categorySingleTagView(category, isSelected: false)
+                if selectCategory.isParent{
+                    TagLayout(alignment: .leading, spacing: 10){
+                        ForEach(Array(selectCategory.wrappedSubcategories)) { category in
+                            categorySingleTagView(category, isSelected: false, isSubcategory: true)
+                        }
                     }
                 }
-                
             }else{
                 TagLayout(alignment: .leading, spacing: 10){
                     ForEach(Array(allTransactionCategories)) { category in
@@ -32,7 +33,6 @@ struct CategoryTagsView: View {
                 }
             }
         }
-        
         .hLeading()
     }
 }
@@ -46,7 +46,7 @@ struct CategoryTagsView_Previews: PreviewProvider {
 
 extension CategoryTagsView{
     
-    private func categorySingleTagView(_ category: CategoryEntity, isSelected: Bool) -> some View{
+    private func categorySingleTagView(_ category: CategoryEntity, isSelected: Bool, isSubcategory: Bool = false) -> some View{
         HStack {
             Text(category.title ?? "")
             if isSelected{
@@ -62,9 +62,7 @@ extension CategoryTagsView{
         .padding(.horizontal, 10)
         .background(category.wrappedColor, in: Capsule())
         .onTapGesture {
-            if isSelected{
-                
-            }else{
+            if !isSelected{
                 rootVM.selectCategory(category)
             }
         }

@@ -26,6 +26,7 @@ extension CategoryEntity{
     
     static func request() -> NSFetchRequest<CategoryEntity>{
         let fetchRequest = NSFetchRequest<CategoryEntity>(entityName: "CategoryEntity")
+        fetchRequest.predicate = NSPredicate(format: "isParent == YES")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: true)]
         return fetchRequest
     }
@@ -36,7 +37,8 @@ extension CategoryEntity{
         forAccount: AccountEntity,
         title: String,
         color: String?,
-        subcategories: Set<CategoryEntity>?
+        subcategories: Set<CategoryEntity>?,
+        isParent: Bool
     ) -> CategoryEntity{
         let category = CategoryEntity(context: context)
         category.id = UUID().uuidString
@@ -44,6 +46,7 @@ extension CategoryEntity{
         category.forAccount = forAccount
         category.color = color
         category.title = title
+        category.isParent = isParent
         if let subcategories{
             category.wrappedSubcategories = subcategories
         }
