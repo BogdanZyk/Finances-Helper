@@ -29,11 +29,12 @@ extension TransactionEntity{
     }
     
     var chartData: ChartData?{
-        if wrappedType == .income, let id = category?.id, let categoryTitle = category?.title, let color = category?.wrappedColor{
-          return ChartData(id: id, color: color, value: amount, title: categoryTitle)
+        if let id = category?.id, let categoryTitle = category?.title, let color = category?.wrappedColor{
+          return ChartData(id: id, color: color, value: amount, title: categoryTitle, type: wrappedType)
         }
         return nil
     }
+    
     
     var sliceValue: SliceValue?{
         if wrappedType == .income, let id = category?.id{
@@ -73,6 +74,11 @@ extension TransactionEntity{
         context.saveContext()
     }
     
+    static func remove(_ item: TransactionEntity){
+        guard let context = item.managedObjectContext else { return }
+        context.delete(item)
+        context.saveContext()
+    }
 }
 
 

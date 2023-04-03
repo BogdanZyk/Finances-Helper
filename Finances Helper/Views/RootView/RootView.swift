@@ -11,38 +11,39 @@ struct RootView: View {
     @State var transactionFullScreen: TransactionType?
     @EnvironmentObject var rootVM: RootViewModel    
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 32){
-                StatsView(rootVM: rootVM)
-                .hCenter()
-                Spacer()
-                allTransactionList
+        NavigationStack {
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 32){
+                    StatsView(rootVM: rootVM)
+                        .hCenter()
+                    Spacer()
+                    transactionList
+                }
+                .padding()
+                .padding(.top)
             }
-            .padding()
-            .padding(.top)
-        }
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text(rootVM.selectedDate.toFriedlyDate)
-                    .font(.headline.bold())
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(rootVM.selectedDate.toFriedlyDate)
+                        .font(.headline.bold())
+                }
             }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .overlay(alignment: .bottom) {
-            transactionButtons
-        }
-        .fullScreenCover(item: $transactionFullScreen) { type in
-            CreateTransactionView(type: type, rootVM: rootVM)
+            .navigationBarTitleDisplayMode(.inline)
+            .overlay(alignment: .bottom) {
+                transactionButtons
+            }
+            .fullScreenCover(item: $transactionFullScreen) { type in
+                CreateTransactionView(type: type, rootVM: rootVM)
+            }
         }
     }
 }
 
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            RootView()
-                .environmentObject(RootViewModel(context: dev.viewContext))
-        }
+        RootView()
+            .environmentObject(RootViewModel(context: dev.viewContext))
+        
     }
 }
 
@@ -50,15 +51,28 @@ struct RootView_Previews: PreviewProvider {
 extension RootView{
     
     @ViewBuilder
-    private var allTransactionList: some View{
-        VStack(alignment: .leading, spacing: 16) {
-            ForEach(rootVM.transactions) { transaction in
-                HStack{
-                    Text(transaction.category?.title ?? "no category")
-                    Spacer()
-                    Text(transaction.friendlyAmount)
+    private var transactionList: some View{
+        CategoryTagsView(rootVM: rootVM)
+        LazyVStack(alignment: .leading, spacing: 16) {
+            let chankedTransactions = Helper.groupTransactionsByDate(rootVM.transactions)
+            ForEach(chankedTransactions.indices, id: \.self) { index in
+                if let date = chankedTransactions[index].first?.createAt?.toFriedlyDate{
+                    Text(date)
+                        .font(.headline.bold())
+                    ForEach(chankedTransactions[index]) { transaction in
+                        VStack {
+                            HStack{
+                                Text(transaction.category?.title ?? "no category")
+                                Spacer()
+                                Text(transaction.friendlyAmount)
+                            }
+                            Divider()
+                        }
+                        .onLongPressGesture {
+                            TransactionEntity.remove(transaction)
+                        }
+                    }
                 }
-                Divider()
             }
         }
     }

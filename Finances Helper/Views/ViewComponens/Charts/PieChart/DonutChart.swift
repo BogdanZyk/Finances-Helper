@@ -35,6 +35,7 @@ struct DonutChart : View {
                         .animation(.spring(), value: selectedSlice)
                 }
                 centerLabel
+                    .withoutAnimation()
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
             .animation(.spring().speed(0.5), value: chartData)

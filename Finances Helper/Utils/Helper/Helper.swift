@@ -21,4 +21,33 @@ final class Helper{
         }
         return mergedDataArray
     }
+    
+    
+    
+    static func groupTransactionsByDate(_ transactions: [TransactionEntity]) -> [[TransactionEntity]] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        var groupedTransactions: [[TransactionEntity]] = []
+        var currentDateTransactions: [TransactionEntity] = []
+        var prevDate: String? = nil
+        
+        for transaction in transactions {
+            let dateString = dateFormatter.string(from: transaction.createAt ?? .now)
+            
+            if dateString != prevDate {
+                if !currentDateTransactions.isEmpty {
+                    groupedTransactions.append(currentDateTransactions)
+                }
+                currentDateTransactions.removeAll()
+            }
+            
+            currentDateTransactions.append(transaction)
+            prevDate = dateString
+        }
+        if !currentDateTransactions.isEmpty {
+            groupedTransactions.append(currentDateTransactions)
+        }
+        return groupedTransactions
+    }
 }

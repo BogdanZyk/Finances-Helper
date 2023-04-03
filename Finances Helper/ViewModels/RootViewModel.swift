@@ -13,6 +13,7 @@ final class RootViewModel: ObservableObject{
     
     @Published var account: AccountEntity?
     @Published var transactions = [TransactionEntity]()
+    @Published var selectedCategory: CategoryEntity?
     @Published var chartData = [ChartData]()
     @Published var selectedDate: Date = .now
     let coreDataManager: CoreDataManager
@@ -31,8 +32,19 @@ final class RootViewModel: ObservableObject{
         fetchTransactionForDate()
         
         startSubsTransaction()
+        
+        startCategorySubs()
     }
     
+    
+    func selectCategory(_ category: CategoryEntity){
+        selectedCategory = category
+    }
+    
+    func fetchTransactionForDate(){
+       guard let datePredicate = NSPredicate.datePredicate(before: selectedDate.noon, after: selectedDate.dayAfter) else { return }
+        trasactionStore.fetch(for: datePredicate)
+    }
     
     private func startSubsTransaction(){
         trasactionStore.transactions
@@ -43,7 +55,23 @@ final class RootViewModel: ObservableObject{
             .store(in: &cancellable)
     }
     
+    private func startCategorySubs(){
+        $selectedCategory
+            .sink { category in
+                guard let id = category?.id else {
+                    self.setTransactions()
+                    return
+                }
+                self.transactions = self.transactions.filter({$0.category?.id == id})
+                self.createChartData()
+            }
+            .store(in: &cancellable)
+    }
 
+    private func setTransactions(){
+        self.transactions = trasactionStore.transactions.value
+        self.createChartData()
+    }
     
     private func createAndFetchAccount(){
         guard let user = userService.currentUser else { return }
@@ -51,16 +79,11 @@ final class RootViewModel: ObservableObject{
         account = coreDataManager.fetchAccount()
     }
     
-    func fetchTransactionForDate(){
-       guard let datePredicate = NSPredicate.datePredicate(before: selectedDate.noon, after: selectedDate.dayAfter) else { return }
-        trasactionStore.fetch(for: datePredicate)
-    }
-    
     private func createChartData(){
         
-        let chartData = transactions.compactMap({$0.chartData})
+        let chartData = transactions.compactMap({$0.chartData}).filter({$0.type == .expense})
         var mergeData = Helper.mergeChartDataValues(chartData)
-        let total : CGFloat = mergeData.reduce(0.0) { $0 + $1.value }
+        let total: CGFloat = mergeData.reduce(0.0) { $0 + $1.value }
         for i in mergeData.indices {
             let percentage = (mergeData[i].value / total)
             mergeData[i].slicePercent =  (i == 0 ? 0.0 : mergeData[i - 1].slicePercent) + percentage
@@ -68,37 +91,7 @@ final class RootViewModel: ObservableObject{
         
         self.chartData = mergeData
     }
-    
-//    private func createTransactionStats(){
-//        let res = transactions.reduce(into: (0.0, 0.0)) { partialResult, entity in
-//            guard let type = entity.type else { return }
-//            switch TransactionType(rawValue: type){
-//            case.expense:
-//                partialResult.1 += entity.amount
-//            case .income:
-//                partialResult.0 += entity.amount
-//            case .none: break
-//            }
-//        }
-//        self.transactionsStats = .init(incomeAmont: res.0, expenseAmount: res.1)
-//    }
 }
 
 
-struct TransactionStats {
-    
-    var incomeAmont: Double = 0
-    var expenseAmount: Double = 0
-    
-    var incomeAmontStr: String{
-        incomeAmont.treeNumString + " $"
-    }
-    
-    var expenseAmountStr: String{
-        "-\(expenseAmount.treeNumString + " $")"
-    }
-    
-    var total: Double{
-      return expenseAmount - incomeAmont
-    }
-}
+

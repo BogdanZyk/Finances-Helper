@@ -14,6 +14,7 @@ struct ChartData: Identifiable, Equatable {
     var slicePercent : CGFloat = 0.0
     var value : Double
     var title: String
+    var type: TransactionType = .income
 }
 
 extension ChartData {

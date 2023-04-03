@@ -12,7 +12,7 @@ import SwiftUI
 extension CategoryEntity{
     
   
-    
+
     var wrappedSubcategories: Set<CategoryEntity> {
         get { (subcategories as? Set<CategoryEntity>) ?? [] }
         set { subcategories = newValue as NSSet }
@@ -23,10 +23,6 @@ extension CategoryEntity{
         return Color(hex: color)
     }
     
-    var slice: SliceCategory?{
-        guard let id = id else { return nil}
-        return .init(id: id, title: title ?? "no name", color: wrappedColor)
-    }
     
     static func request() -> NSFetchRequest<CategoryEntity>{
         let fetchRequest = NSFetchRequest<CategoryEntity>(entityName: "CategoryEntity")
