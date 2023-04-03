@@ -10,17 +10,16 @@ import SwiftUI
 struct StatsView: View {
     @ObservedObject var rootVM: RootViewModel
     
-    var slicesValue: [SliceValue]{
-        rootVM.transactions.compactMap({$0.sliceValue})
-    }
                        
-    var categores: [SliceCategory]{
-        rootVM.categories.compactMap({$0.slice})
-    }
+//    var categores: [SliceCategory]{
+//        rootVM.categories.compactMap({$0.slice})
+//    }
     var body: some View {
         
-        PieChartView(values: slicesValue, names: categores, formatter: {$0.treeNumString + " $"})
-            .frame(height: 200)
+//        PieChartView(values: slicesValue, names: categores, formatter: {$0.treeNumString + " $"})
+        
+        DonutChart(chartData: $rootVM.chartData)
+            .frame(width: 200, height: 200)
         
         
         //        ProgressCircleView(persentage: 0.7, lineWidth: 30, circleOutline: .blue, circleTrack: Color(.systemGray3)) {

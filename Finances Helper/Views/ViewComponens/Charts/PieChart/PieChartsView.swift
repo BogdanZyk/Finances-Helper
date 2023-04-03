@@ -105,7 +105,7 @@ struct PieChartView: View {
 
 struct PieChartView_Previews: PreviewProvider {
     
-    static let values: [SliceValue] = [.init(categoryId: "2", amount: 300), .init(categoryId: "1", amount: 500)]
+    static let values: [SliceValue] = [.init(categoryId: "2", amount: 300), .init(categoryId: "1", amount: 500), .init(categoryId: "1", amount: 600)]
     static let categories: [SliceCategory] = [.init(id: "1", title: "Category 1", color: .red), .init(id: "2", title: "Category 2", color: .green)]
     static var previews: some View {
         PieChartView(values: values, names: categories, formatter: {value in value.treeNumString + " $"})

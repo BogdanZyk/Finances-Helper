@@ -13,7 +13,7 @@ final class RootViewModel: ObservableObject{
     
     @Published var account: AccountEntity?
     @Published var transactions = [TransactionEntity]()
-    @Published var transactionsStats = TransactionStats()
+    @Published var chartData = [ChartData]()
     @Published var selectedDate: Date = .now
     @Published var categories = [CategoryEntity]()
     let coreDataManager: CoreDataManager
@@ -41,7 +41,7 @@ final class RootViewModel: ObservableObject{
         trasactionStore.transactions
             .sink { transactions in
                 self.transactions = transactions
-                self.createTransactionStats()
+                self.createChartData()
             }
             .store(in: &cancellable)
     }
@@ -64,19 +64,32 @@ final class RootViewModel: ObservableObject{
         trasactionStore.fetch(for: datePredicate)
     }
     
-    private func createTransactionStats(){
-        let res = transactions.reduce(into: (0.0, 0.0)) { partialResult, entity in
-            guard let type = entity.type else { return }
-            switch TransactionType(rawValue: type){
-            case.expense:
-                partialResult.1 += entity.amount
-            case .income:
-                partialResult.0 += entity.amount
-            case .none: break
-            }
+    private func createChartData(){
+        
+        let chartData = transactions.compactMap({$0.chartData})
+        var mergeData = Helper.mergeChartDataValues(chartData)
+        let total : CGFloat = mergeData.reduce(0.0) { $0 + $1.value }
+        for i in mergeData.indices {
+            let percentage = (mergeData[i].value / total)
+            mergeData[i].slicePercent =  (i == 0 ? 0.0 : mergeData[i - 1].slicePercent) + percentage
         }
-        self.transactionsStats = .init(incomeAmont: res.0, expenseAmount: res.1)
+        
+        self.chartData = mergeData
     }
+    
+//    private func createTransactionStats(){
+//        let res = transactions.reduce(into: (0.0, 0.0)) { partialResult, entity in
+//            guard let type = entity.type else { return }
+//            switch TransactionType(rawValue: type){
+//            case.expense:
+//                partialResult.1 += entity.amount
+//            case .income:
+//                partialResult.0 += entity.amount
+//            case .none: break
+//            }
+//        }
+//        self.transactionsStats = .init(incomeAmont: res.0, expenseAmount: res.1)
+//    }
 }
 
 

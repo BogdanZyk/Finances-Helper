@@ -26,4 +26,7 @@ extension Double{
         return self / total
     }
     
+    func toCurrency(symbol: String?) -> String{
+        twoNumString + (symbol ?? "$")
+    }
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5AD358E129DAC00F0035E1D3 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E029DAC00F0035E1D3 /* DonutChart.swift */; };
+		5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E229DAC0520035E1D3 /* ChartData.swift */; };
+		5AD358E529DAC8A10035E1D3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E429DAC8A10035E1D3 /* Color.swift */; };
+		5AD358E829DACB0B0035E1D3 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E729DACB0B0035E1D3 /* Helper.swift */; };
 		5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */; };
 		5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553729D6E8F2007FE8C4 /* ContentView.swift */; };
 		5ADA553A29D6E8F4007FE8C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA553929D6E8F4007FE8C4 /* Assets.xcassets */; };
@@ -42,6 +46,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5AD358E029DAC00F0035E1D3 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
+		5AD358E229DAC0520035E1D3 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		5AD358E429DAC8A10035E1D3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		5AD358E729DACB0B0035E1D3 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		5ADA553229D6E8F2007FE8C4 /* Finances Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finances Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finances_HelperApp.swift; sourceTree = "<group>"; };
 		5ADA553729D6E8F2007FE8C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -88,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AD358E629DACB000035E1D3 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				5AD358E729DACB0B0035E1D3 /* Helper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		5ADA552929D6E8F2007FE8C4 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +155,7 @@
 		5ADA554429D6E8FF007FE8C4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5AD358E629DACB000035E1D3 /* Helper */,
 				5ADA555629D6F59B007FE8C4 /* Extensions */,
 			);
 			path = Utils;
@@ -204,6 +221,7 @@
 				5ADA557029D71137007FE8C4 /* Double.swift */,
 				5ADA558029D727D9007FE8C4 /* View+Ext.swift */,
 				5ADA558B29D736EE007FE8C4 /* String.swift */,
+				5AD358E429DAC8A10035E1D3 /* Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -241,6 +259,7 @@
 			children = (
 				5ADA556E29D710BA007FE8C4 /* Currency.swift */,
 				5ADA558929D7361E007FE8C4 /* TransactionType.swift */,
+				5AD358E229DAC0520035E1D3 /* ChartData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,6 +294,7 @@
 			children = (
 				5ADA557B29D71BB9007FE8C4 /* PieChartsView.swift */,
 				5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */,
+				5AD358E029DAC00F0035E1D3 /* DonutChart.swift */,
 			);
 			path = PieChart;
 			sourceTree = "<group>";
@@ -366,6 +386,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ADA557129D71137007FE8C4 /* Double.swift in Sources */,
+				5AD358E129DAC00F0035E1D3 /* DonutChart.swift in Sources */,
+				5AD358E529DAC8A10035E1D3 /* Color.swift in Sources */,
 				5ADA557529D7176A007FE8C4 /* LineProgressView.swift in Sources */,
 				5ADA555E29D70B75007FE8C4 /* TransactionStore.swift in Sources */,
 				5ADA555229D6E995007FE8C4 /* CoreDataManager.swift in Sources */,
@@ -386,7 +408,9 @@
 				5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */,
 				5ADA558C29D736EE007FE8C4 /* String.swift in Sources */,
 				5ADA558529D72D0A007FE8C4 /* CategoriesStore.swift in Sources */,
+				5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */,
 				5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */,
+				5AD358E829DACB0B0035E1D3 /* Helper.swift in Sources */,
 				5ADA555529D6F499007FE8C4 /* TransactionEntity.swift in Sources */,
 				5ADA556329D70E11007FE8C4 /* RootView.swift in Sources */,
 				5ADA557929D71A13007FE8C4 /* StatsView.swift in Sources */,

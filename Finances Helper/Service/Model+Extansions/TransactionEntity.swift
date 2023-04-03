@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 extension TransactionEntity{
     
@@ -21,6 +22,13 @@ extension TransactionEntity{
     
     var currency: Currency?{
         Currency.currency(for: currencyCode ?? "USD")
+    }
+    
+    var chartData: ChartData?{
+        if wrappedType == .income, let id = category?.id, let categoryTitle = category?.title{
+          return ChartData(id: id, color: Color.random, value: amount, title: categoryTitle)
+        }
+        return nil
     }
     
     var sliceValue: SliceValue?{
