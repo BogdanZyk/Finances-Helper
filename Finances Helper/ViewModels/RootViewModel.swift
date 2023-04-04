@@ -17,6 +17,7 @@ final class RootViewModel: ObservableObject{
     @Published var currentTab: TransactionType = .expense
     @Published var timeFilter: TransactionTimeFilter = .day
     @Published var transactionFullScreen: TransactionType?
+    @Published var showDatePicker: Bool = false
     let coreDataManager: CoreDataManager
     let trasactionStore: TransactionStore
     let userService: UserService
@@ -92,7 +93,7 @@ extension RootViewModel{
     private func startDateSubsTransaction(){
         $timeFilter
             .receive(on: DispatchQueue.main)
-            .sink { _ in
+            .sink { filter in
                 self.fetchTransactionForDate()
             }
             .store(in: &cancellable)

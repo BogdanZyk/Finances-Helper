@@ -59,28 +59,31 @@ extension StatsView{
     private var datePickerButtons: some View{
         HStack(spacing: 15) {
             ForEach(TransactionTimeFilter.allCases) { type in
-                Text(type.title)
-                    .font(.headline)
-                    .foregroundColor(rootVM.timeFilter == type ? Color.black : .secondary)
-                    .padding(.bottom, 5)
-                    .overlay(alignment: .bottom) {
-                        if rootVM.timeFilter == type {
-                            RoundedRectangle(cornerRadius: 2)
-                                .frame(height: 2)
-                                .matchedGeometryEffect(id: "DATE_TAB", in: animation)
-                        }
-                    }
-                    .padding(.vertical, 5)
+                labelView(type)
                     .onTapGesture {
                         rootVM.timeFilter = type
                     }
             }
-            Text("Period")
-                .font(.headline)
-                .foregroundColor(.secondary)
-                .padding(.bottom, 5)
-                .padding(.vertical, 5)
+            labelView(TransactionTimeFilter.select(nil))
+                .onTapGesture {
+                    rootVM.showDatePicker.toggle()
+                }
         }
         .animation(.spring(), value: rootVM.timeFilter)
+    }
+    
+    private func labelView(_ type: TransactionTimeFilter) -> some View{
+        Text(type.title)
+            .font(.headline)
+            .foregroundColor(rootVM.timeFilter.id == type.id ? Color.black : .secondary)
+            .padding(.bottom, 5)
+            .overlay(alignment: .bottom) {
+                if rootVM.timeFilter.id == type.id {
+                    RoundedRectangle(cornerRadius: 2)
+                        .frame(height: 2)
+                        .matchedGeometryEffect(id: "DATE_TAB", in: animation)
+                }
+            }
+            .padding(.vertical, 5)
     }
 }

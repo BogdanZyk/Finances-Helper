@@ -27,6 +27,9 @@ struct RootView: View {
             .fullScreenCover(item: $rootVM.transactionFullScreen) { type in
                 CreateTransactionView(type: type, rootVM: rootVM)
             }
+            .sheet(isPresented: $rootVM.showDatePicker) {
+                SheetDatePicker(rootVM: rootVM)
+            }
         }
     }
 }
@@ -43,6 +46,14 @@ extension RootView{
     
     private var navigationView: some View{
         VStack(spacing: 16){
+            VStack(alignment: .center, spacing: 6) {
+                Text("Balance")
+                    .font(.callout)
+                    .foregroundColor(.secondary)
+                Text(rootVM.statsData.balance.toCurrency(symbol: rootVM.account?.currencySymbol ?? "$"))
+                    .foregroundColor(rootVM.statsData.balanceColor)
+                    .font(.title2.bold())
+            }
             TransactionNavigationTabView(rootVM: rootVM)
         }
         .padding(.horizontal)

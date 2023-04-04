@@ -29,9 +29,6 @@ struct TransactionsListView: View {
                 .cornerRadius(12)
                 .shadow(color: .black.opacity(0.1), radius: 5)
             }
-            .onAppear{
-                print(chartData.map({$0.slicePercent}))
-            }
         }
     }
 }

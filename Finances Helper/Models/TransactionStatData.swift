@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 struct TransactionStatData{
     
@@ -27,4 +27,11 @@ struct TransactionStatData{
         
     }
     
+    var balance: Double{
+        incomeTotal - expenseTotal
+    }
+    
+    var balanceColor: Color{
+        balance > 0 ? .green : .red
+    }
 }

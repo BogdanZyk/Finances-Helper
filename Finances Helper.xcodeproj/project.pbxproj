@@ -20,6 +20,8 @@
 		5AD358FB29DC33AD0035E1D3 /* TransactionNavigationTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358FA29DC33AD0035E1D3 /* TransactionNavigationTabView.swift */; };
 		5AD358FD29DC38B90035E1D3 /* TransactionStatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358FC29DC38B90035E1D3 /* TransactionStatData.swift */; };
 		5AD358FF29DC3E9C0035E1D3 /* TransactionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358FE29DC3E9C0035E1D3 /* TransactionsListView.swift */; };
+		5AD3590229DC595B0035E1D3 /* CustomDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3590129DC595B0035E1D3 /* CustomDatePickerView.swift */; };
+		5AD3590529DC5ADB0035E1D3 /* SheetDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3590429DC5ADB0035E1D3 /* SheetDatePicker.swift */; };
 		5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */; };
 		5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553729D6E8F2007FE8C4 /* ContentView.swift */; };
 		5ADA553A29D6E8F4007FE8C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA553929D6E8F4007FE8C4 /* Assets.xcassets */; };
@@ -67,6 +69,8 @@
 		5AD358FA29DC33AD0035E1D3 /* TransactionNavigationTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionNavigationTabView.swift; sourceTree = "<group>"; };
 		5AD358FC29DC38B90035E1D3 /* TransactionStatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatData.swift; sourceTree = "<group>"; };
 		5AD358FE29DC3E9C0035E1D3 /* TransactionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsListView.swift; sourceTree = "<group>"; };
+		5AD3590129DC595B0035E1D3 /* CustomDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerView.swift; sourceTree = "<group>"; };
+		5AD3590429DC5ADB0035E1D3 /* SheetDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetDatePicker.swift; sourceTree = "<group>"; };
 		5ADA553229D6E8F2007FE8C4 /* Finances Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finances Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finances_HelperApp.swift; sourceTree = "<group>"; };
 		5ADA553729D6E8F2007FE8C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,6 +140,14 @@
 				5AD358F129DAF29A0035E1D3 /* CreateCategoryView.swift */,
 			);
 			path = CreateCategoryView;
+			sourceTree = "<group>";
+		};
+		5AD3590029DC594F0035E1D3 /* Datepicker */ = {
+			isa = PBXGroup;
+			children = (
+				5AD3590129DC595B0035E1D3 /* CustomDatePickerView.swift */,
+			);
+			path = Datepicker;
 			sourceTree = "<group>";
 		};
 		5ADA552929D6E8F2007FE8C4 = {
@@ -273,6 +285,7 @@
 		5ADA556729D7104F007FE8C4 /* ViewComponens */ = {
 			isa = PBXGroup;
 			children = (
+				5AD3590029DC594F0035E1D3 /* Datepicker */,
 				5ADA558D29D73772007FE8C4 /* TextFileds */,
 				5ADA557A29D71BAC007FE8C4 /* Charts */,
 				5ADA557229D7176A007FE8C4 /* ProgressBars */,
@@ -317,6 +330,7 @@
 				5AD358F529DB0CA00035E1D3 /* CategoryTagsView.swift */,
 				5AD358FA29DC33AD0035E1D3 /* TransactionNavigationTabView.swift */,
 				5AD358FE29DC3E9C0035E1D3 /* TransactionsListView.swift */,
+				5AD3590429DC5ADB0035E1D3 /* SheetDatePicker.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -458,6 +472,7 @@
 				5AD358ED29DADAB70035E1D3 /* UserService.swift in Sources */,
 				5ADA555829D6F5AC007FE8C4 /* Date+ext.swift in Sources */,
 				5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */,
+				5AD3590529DC5ADB0035E1D3 /* SheetDatePicker.swift in Sources */,
 				5ADA558C29D736EE007FE8C4 /* String.swift in Sources */,
 				5ADA558529D72D0A007FE8C4 /* CategoriesStore.swift in Sources */,
 				5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */,
@@ -471,6 +486,7 @@
 				5AD358FF29DC3E9C0035E1D3 /* TransactionsListView.swift in Sources */,
 				5ADA555029D6E972007FE8C4 /* CoreDataContainer.xcdatamodeld in Sources */,
 				5ADA559129D737B8007FE8C4 /* CreateTransactionViewModel.swift in Sources */,
+				5AD3590229DC595B0035E1D3 /* CustomDatePickerView.swift in Sources */,
 				5ADA558829D7358C007FE8C4 /* CreateTransactionView.swift in Sources */,
 				5ADA556029D70C70007FE8C4 /* RootViewModel.swift in Sources */,
 				5ADA554C29D6E961007FE8C4 /* PersistenceController.swift in Sources */,
