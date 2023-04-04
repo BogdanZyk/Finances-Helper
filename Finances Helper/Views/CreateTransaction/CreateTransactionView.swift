@@ -16,7 +16,7 @@ struct CreateTransactionView: View {
     init(type: TransactionType, rootVM: RootViewModel){
         self.type = type
         self._rootVM = ObservedObject(wrappedValue: rootVM)
-        self._viewModel = StateObject(wrappedValue: CreateTransactionViewModel(context: rootVM.coreDataManager.mainContext))
+        self._viewModel = StateObject(wrappedValue: CreateTransactionViewModel(context: rootVM.coreDataManager.mainContext, transactionType: rootVM.currentTab))
     }
     var body: some View {
         NavigationStack {

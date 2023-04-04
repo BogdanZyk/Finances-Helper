@@ -11,7 +11,7 @@ import Combine
 
 final class RootViewModel: ObservableObject{
     
-    @Published var account: AccountEntity?
+    @Published private(set) var account: AccountEntity?
     @Published var statsData = TransactionStatData()
     @Published var selectedCategory: CategoryEntity?
     @Published var currentTab: TransactionType = .expense
@@ -19,7 +19,7 @@ final class RootViewModel: ObservableObject{
     @Published var transactionFullScreen: TransactionType?
     @Published var showDatePicker: Bool = false
     let coreDataManager: CoreDataManager
-    let trasactionStore: TransactionStore
+    let transactionStore: TransactionStore
     let userService: UserService
     private var cancellable = Set<AnyCancellable>()
     
@@ -27,7 +27,7 @@ final class RootViewModel: ObservableObject{
         
         userService = UserService(context: context)
         coreDataManager = CoreDataManager(mainContext: context)
-        trasactionStore = TransactionStore(context: context)
+        transactionStore = TransactionStore(context: context)
         
         createAndFetchAccount()
         
@@ -78,11 +78,11 @@ extension RootViewModel{
     
     func fetchTransactionForDate(){
         guard let start = timeFilter.date.start, let end = timeFilter.date.end, let datePredicate = NSPredicate.datePredicate(startDate: start, endDate: end) else { return }
-        trasactionStore.fetch(for: datePredicate)
+        transactionStore.fetch(for: datePredicate)
     }
     
     private func startSubsTransaction(){
-        trasactionStore.transactions
+        transactionStore.transactions
             .receive(on: DispatchQueue.main)
             .sink { transactions in
                 self.statsData = .init(transactions)
@@ -100,6 +100,6 @@ extension RootViewModel{
     }
     
     private func setTransactions(){
-        self.statsData = .init(trasactionStore.transactions.value)
+        self.statsData = .init(transactionStore.transactions.value)
     }
 }

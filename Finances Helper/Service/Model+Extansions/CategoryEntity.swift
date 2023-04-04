@@ -12,6 +12,10 @@ import SwiftUI
 extension CategoryEntity{
     
   
+    var wrappedCategoryType: TransactionType{
+        get { TransactionType(rawValue: type ?? "") ?? .expense }
+        set { type = newValue.rawValue }
+    }
 
     var wrappedSubcategories: Set<CategoryEntity> {
         get { (subcategories as? Set<CategoryEntity>) ?? [] }
@@ -38,7 +42,8 @@ extension CategoryEntity{
         title: String,
         color: String?,
         subcategories: Set<CategoryEntity>?,
-        isParent: Bool
+        isParent: Bool,
+        type: TransactionType
     ) -> CategoryEntity{
         let category = CategoryEntity(context: context)
         category.id = UUID().uuidString
@@ -47,6 +52,7 @@ extension CategoryEntity{
         category.color = color
         category.title = title
         category.isParent = isParent
+        category.wrappedCategoryType = type
         if let subcategories{
             category.wrappedSubcategories = subcategories
         }

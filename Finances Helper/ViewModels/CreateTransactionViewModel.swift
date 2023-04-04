@@ -13,7 +13,7 @@ import SwiftUI
 class CreateTransactionViewModel: ObservableObject{
     
    
-    
+    @Published var transactionType: TransactionType = .expense
     @Published var note: String = ""
     @Published var amount: Double = 0
     @Published var date: Date = Date.now
@@ -29,8 +29,9 @@ class CreateTransactionViewModel: ObservableObject{
     private var cancellable = Set<AnyCancellable>()
     private let context: NSManagedObjectContext
     
-    init(context: NSManagedObjectContext){
+    init(context: NSManagedObjectContext, transactionType: TransactionType){
         self.context = context
+        self.transactionType = transactionType
         categoriesStore = CategoriesStore(context: context)
         
         startSubsCategories()
@@ -67,7 +68,7 @@ class CreateTransactionViewModel: ObservableObject{
     }
 
     func addCategory(forAccount: AccountEntity){
-        let category = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil, isParent: true)
+        let category = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil, isParent: true, type: transactionType)
         context.saveContext()
         createCategoryViewType = nil
         categoryTitle = ""
@@ -76,7 +77,7 @@ class CreateTransactionViewModel: ObservableObject{
     
     func addSubcategory(forAccount: AccountEntity){
         if let selectedCategory{
-            let subcategory = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil, isParent: false)
+            let subcategory = CategoryEntity.create(context: context, forAccount: forAccount, title: categoryTitle, color: categoryColor.toHex(), subcategories: nil, isParent: false, type: transactionType)
             selectedCategory.wrappedSubcategories = [subcategory]
             context.saveContext()
             createCategoryViewType = nil

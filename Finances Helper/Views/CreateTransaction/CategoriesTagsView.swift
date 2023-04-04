@@ -20,7 +20,7 @@ struct CategoriesTagsView: View {
                     .font(.title3.bold())
                 tagsList(Array(selectedCategory.wrappedSubcategories), isSubcategory: true)
             }else{
-                tagsList(createVM.categories, isSubcategory: false)
+                tagsList(createVM.categories.filter({$0.wrappedCategoryType == createVM.transactionType}), isSubcategory: false)
             }
         }
         .hLeading()
@@ -29,7 +29,7 @@ struct CategoriesTagsView: View {
 
 struct CategoryTagView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesTagsView(createVM: CreateTransactionViewModel(context: dev.viewContext))
+        CategoriesTagsView(createVM: CreateTransactionViewModel(context: dev.viewContext, transactionType: .expense))
             .padding()
     }
 }

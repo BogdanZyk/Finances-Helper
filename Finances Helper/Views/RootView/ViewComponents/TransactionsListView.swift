@@ -14,6 +14,8 @@ struct TransactionsListView: View {
             ForEach(chartData) { group in
                 HStack(spacing: 20){
                     Text(group.title)
+                        .font(.subheadline.weight(.medium))
+                        .lineLimit(1)
                         .foregroundColor(.white)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)

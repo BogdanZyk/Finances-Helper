@@ -58,7 +58,7 @@ struct CreateCategoryView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.secondary
-            CreateCategoryView(viewType: .new(isSub: true), rootVM: RootViewModel(context: dev.viewContext), createVM: CreateTransactionViewModel(context: dev.viewContext))
+            CreateCategoryView(viewType: .new(isSub: true), rootVM: RootViewModel(context: dev.viewContext), createVM: CreateTransactionViewModel(context: dev.viewContext, transactionType: .expense))
                 .padding()
         }
     }
