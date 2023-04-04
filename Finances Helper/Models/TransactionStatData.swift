@@ -24,6 +24,7 @@ struct TransactionStatData{
         self.expenseTotal = expenseTransactions.reduce(0.0) { $0 + $1.amount }
         self.expenseChartData = Helper.getChartData(total: expenseTotal, transactions: expenseTransactions)
         self.incomeChartData = Helper.getChartData(total: incomeTotal, transactions: incomeTransactions)
+        
     }
     
 }

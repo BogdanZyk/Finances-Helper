@@ -22,6 +22,7 @@ struct RootView: View {
                 .tabViewStyle(.page(indexDisplayMode: .never))
             }
             .background(Color(.systemGray6))
+            .edgesIgnoringSafeArea(.bottom)
             .navigationBarHidden(true)
             .fullScreenCover(item: $rootVM.transactionFullScreen) { type in
                 CreateTransactionView(type: type, rootVM: rootVM)
@@ -57,7 +58,7 @@ extension RootView{
                 .padding(.horizontal)
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 32){
-                    TransactionsListView(transactions: rootVM.statsData.expenseTransactions)
+                    TransactionsListView(chartData: rootVM.statsData.expenseChartData)
                 }
                 .padding()
                 .padding(.top)
@@ -71,7 +72,7 @@ extension RootView{
                 .padding(.horizontal)
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 32){
-                    TransactionsListView(transactions: rootVM.statsData.incomeTransactions)
+                    TransactionsListView(chartData: rootVM.statsData.incomeChartData)
                 }
                 .padding()
                 .padding(.top)

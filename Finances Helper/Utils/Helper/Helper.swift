@@ -58,6 +58,7 @@ final class Helper{
         
         for i in mergeData.indices {
             let percentage = (mergeData[i].value / total)
+            mergeData[i].persentage = percentage
             mergeData[i].slicePercent =  (i == 0 ? 0.0 : mergeData[i - 1].slicePercent) + percentage
         }
         return mergeData
@@ -85,7 +86,7 @@ extension Array where Element == TransactionEntity{
         
         for (categoryId, transactionArray) in transactionDict {
             let totalAmount = transactionArray.reduce(0.0) { $0 + $1.amount }
-            let transactionListObj = TransactionList(date: transactionArray[0].createAt, categoryId: categoryId, categoryTitle: transactionArray[0].category?.title ?? "", totalAmount: totalAmount)
+            let transactionListObj = TransactionList(categoryId: categoryId, categoryTitle: transactionArray[0].category?.title ?? "", totalAmount: totalAmount)
             transactionList.append(transactionListObj)
         }
         
@@ -94,7 +95,6 @@ extension Array where Element == TransactionEntity{
 }
 
 struct TransactionList: Identifiable{
-    var date: Date?
     var categoryId: String
     var categoryTitle: String
     var totalAmount: Double

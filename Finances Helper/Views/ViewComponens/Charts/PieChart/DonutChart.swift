@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct DonutChart : View {
-    var currencySymbol: String = "$"
+    var currencySymbol: String{
+        chartData.first?.cyrrencySymbol ?? "$"
+    }
     @Binding var chartData: [ChartData]
     @State private var selectedSlice = -1
     

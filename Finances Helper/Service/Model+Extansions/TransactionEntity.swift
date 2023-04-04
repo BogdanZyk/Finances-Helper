@@ -30,7 +30,7 @@ extension TransactionEntity{
     
     var chartData: ChartData?{
         if let id = category?.id, let categoryTitle = category?.title, let color = category?.wrappedColor{
-          return ChartData(id: id, color: color, value: amount, title: categoryTitle, type: wrappedType)
+            return ChartData(id: id, color: color, value: amount, title: categoryTitle, type: wrappedType, cyrrencySymbol: currency?.shortestSymbol ?? "$")
         }
         return nil
     }

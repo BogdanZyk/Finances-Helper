@@ -8,28 +8,29 @@
 import SwiftUI
 
 struct TransactionsListView: View {
-    var transactions: [TransactionEntity]
+    var chartData: [ChartData]
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 16) {
-            let chankedTransactions = Helper.groupTransactionsByDate(transactions)
-            ForEach(chankedTransactions.indices, id: \.self) { index in
-                if let date = chankedTransactions[index].first?.createAt?.toFriedlyDate{
-                    Text(date)
-                        .font(.headline.bold())
-                    ForEach(chankedTransactions[index]) { transaction in
-                        VStack {
-                            HStack{
-                                Text(transaction.category?.title ?? "no category")
-                                Spacer()
-                                Text(transaction.friendlyAmount)
-                            }
-                            Divider()
-                        }
-                        .onLongPressGesture {
-                            TransactionEntity.remove(transaction)
-                        }
-                    }
+        LazyVStack(alignment: .leading, spacing: 10) {
+            ForEach(chartData) { group in
+                HStack(spacing: 20){
+                    Text(group.title)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(group.color, in: Capsule())
+                    Spacer()
+                    Text("\(Int(group.persentage * 100))%")
+                        .foregroundColor(.secondary)
+                    Text(group.value.toCurrency(symbol: group.cyrrencySymbol))
+                        .font(.headline)
                 }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(12)
+                .shadow(color: .black.opacity(0.1), radius: 5)
+            }
+            .onAppear{
+                print(chartData.map({$0.slicePercent}))
             }
         }
     }
@@ -37,6 +38,6 @@ struct TransactionsListView: View {
 
 struct TarnsactionListView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionsListView(transactions: dev.transactions)
+        TransactionsListView(chartData: ChartData.sample)
     }
 }

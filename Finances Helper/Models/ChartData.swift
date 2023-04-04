@@ -12,9 +12,11 @@ struct ChartData: Identifiable, Equatable {
     var id: String = UUID().uuidString
     var color : Color
     var slicePercent : CGFloat = 0.0
+    var persentage: Double = 0.0
     var value : Double
     var title: String
     var type: TransactionType = .income
+    var cyrrencySymbol: String = "$"
 }
 
 extension ChartData {

@@ -13,6 +13,7 @@ extension Double{
         String(format: "%.1f", self)
     }
     
+    
     var treeNumString: String{
         if self.truncatingRemainder(dividingBy: 1) == 0{
             return String(format: "%.0f", self)
