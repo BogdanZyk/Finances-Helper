@@ -29,7 +29,7 @@ final class RootViewModel: ObservableObject{
         
         createAndFetchAccount()
         
-        fetchTransactionForDate()
+        startDateSubsTransaction()
         
         startSubsTransaction()
         
@@ -41,20 +41,7 @@ final class RootViewModel: ObservableObject{
         selectedCategory = category
     }
     
-    func fetchTransactionForDate(){
-        guard let start = timeFilter.date.start, let end = timeFilter.date.end, let datePredicate = NSPredicate.datePredicate(startDate: start, endDate: end) else { return }
-        trasactionStore.fetch(for: datePredicate)
-    }
-    
-    private func startSubsTransaction(){
-        trasactionStore.transactions
-            .receive(on: DispatchQueue.main)
-            .sink { transactions in
-                self.transactions = transactions
-                self.createChartData()
-            }
-            .store(in: &cancellable)
-    }
+
     
     private func startCategorySubs(){
         $selectedCategory
@@ -73,11 +60,6 @@ final class RootViewModel: ObservableObject{
             .store(in: &cancellable)
     }
 
-    private func setTransactions(){
-        self.transactions = trasactionStore.transactions.value
-        self.createChartData()
-    }
-    
     private func createAndFetchAccount(){
         guard let user = userService.currentUser else { return }
         coreDataManager.createAccountIfNeeded(for: user)
@@ -99,4 +81,35 @@ final class RootViewModel: ObservableObject{
 }
 
 
-
+//MARK: - Transaction logic
+extension RootViewModel{
+    
+    func fetchTransactionForDate(){
+        guard let start = timeFilter.date.start, let end = timeFilter.date.end, let datePredicate = NSPredicate.datePredicate(startDate: start, endDate: end) else { return }
+        trasactionStore.fetch(for: datePredicate)
+    }
+    
+    private func startSubsTransaction(){
+        trasactionStore.transactions
+            .receive(on: DispatchQueue.main)
+            .sink { transactions in
+                self.transactions = transactions
+                self.createChartData()
+            }
+            .store(in: &cancellable)
+    }
+    
+    private func startDateSubsTransaction(){
+        $timeFilter
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.fetchTransactionForDate()
+            }
+            .store(in: &cancellable)
+    }
+    
+    private func setTransactions(){
+        self.transactions = trasactionStore.transactions.value
+        self.createChartData()
+    }
+}

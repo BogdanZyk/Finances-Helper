@@ -9,6 +9,18 @@
 import Foundation
 
 extension Date {
+    
+    
+    var toFriedlyDate: String{
+        self.formatted(date: .abbreviated, time: .omitted)
+    }
+    
+    func toStrDate(format: String) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+    
     static var yesterday: Date { return Date().dayBefore }
     static var tomorrow:  Date { return Date().dayAfter }
     
@@ -29,20 +41,33 @@ extension Date {
     }
     
     var month: Int {
-        return Calendar.current.component(.month,  from: self)
+        Calendar.current.component(.month,  from: self)
     }
     var isLastDayOfMonth: Bool {
         return dayAfter.month != month
     }
     
-    func startOfMonth() -> Date{
-        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.startOfDay(for: self)))!
+    var startOfMonth: Date{
+        Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: Calendar.current.startOfDay(for: self)))!
     }
     
-    func endOfMonth() -> Date{
-        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
+    var endOfMonth: Date{
+        Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth)!
     }
     
+    var startOfWeek: Date {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)
+        return calendar.date(from: components)!
+    }
+    
+    var endOfWeek: Date {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = DateComponents(day: 6, hour: 23, minute: 59, second: 59)
+        let endOfWeek = calendar.date(byAdding: components, to: startOfWeek)!
+        return endOfWeek
+    }
+
     
     var dayDifferenceStr: String
     {
@@ -92,34 +117,36 @@ extension Date {
         return Calendar.current.date(byAdding: .month, value: -1, to: self)
     }
     
-    // This Month Start
-    func getThisMonthStart() -> Date? {
-        let components = Calendar.current.dateComponents([.year, .month], from: self)
-        return Calendar.current.date(from: components)!
-    }
+
     
-    func getThisMonthEnd() -> Date? {
-        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: self) as NSDateComponents
-        components.month += 1
-        components.day = 1
-        components.day -= 1
-        return Calendar.current.date(from: components as DateComponents)!
-    }
-    
-    // Last Month Start
-    func getLastMonthStart() -> Date? {
-        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: self) as NSDateComponents
-        components.month -= 1
-        return Calendar.current.date(from: components as DateComponents)!
-    }
-    
-    // Last Month End
-    func getLastMonthEnd() -> Date? {
-        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: self) as NSDateComponents
-        components.day = 1
-        components.day -= 1
-        return Calendar.current.date(from: components as DateComponents)!
-    }
+//    // This Month Start
+//    func getThisMonthStart() -> Date? {
+//        let components = Calendar.current.dateComponents([.year, .month], from: self)
+//        return Calendar.current.date(from: components)!
+//    }
+//
+//    func getThisMonthEnd() -> Date? {
+//        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: self) as NSDateComponents
+//        components.month += 1
+//        components.day = 1
+//        components.day -= 1
+//        return Calendar.current.date(from: components as DateComponents)!
+//    }
+//
+//    // Last Month Start
+//    func getLastMonthStart() -> Date? {
+//        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: self) as NSDateComponents
+//        components.month -= 1
+//        return Calendar.current.date(from: components as DateComponents)!
+//    }
+//
+//    // Last Month End
+//    func getLastMonthEnd() -> Date? {
+//        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: self) as NSDateComponents
+//        components.day = 1
+//        components.day -= 1
+//        return Calendar.current.date(from: components as DateComponents)!
+//    }
     
     var startOfYear: Date? {
         let calendar = Calendar.current

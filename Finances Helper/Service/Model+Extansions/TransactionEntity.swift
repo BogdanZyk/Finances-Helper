@@ -90,7 +90,7 @@ extension NSPredicate{
     }
 }
 
-enum TransactionTimeFilter: CaseIterable, Identifiable{
+enum TransactionTimeFilter: CaseIterable, Identifiable, Equatable{
     
     
     static var allCases: [TransactionTimeFilter] = [.day, .week, .month, .year]
@@ -113,20 +113,26 @@ enum TransactionTimeFilter: CaseIterable, Identifiable{
     var date: (start: Date?, end: Date?){
         switch self {
         case .day: return (.now.noon, Date().dayAfter)
-        case .week: return (Date().getLast7Day(), .now)
-        case .month: return (Date().getLast30Day(), .now)
+        case .week: return (Date().startOfWeek, Date().endOfWeek)
+        case .month: return (Date().startOfMonth, Date().endOfMonth)
         case .year: return (Date().startOfYear, Date().endOfYear)
         case .select(let date): return (date.noon, date.dayAfter)
         }
     }
     
-    var navTitle: String{
+    var navTitle: String?{
+        let dates = date
         switch self {
-        case .day: return Date.now.toFriedlyDate
-        case .week: return "Last week"
-        case .month: return "Last month"
-        case .year: return "Year"
-        case .select(let date): return date.toFriedlyDate
+        case .day:
+            return dates.start?.toStrDate(format: "MMM d")
+        case .week:
+            return "\(dates.start?.toStrDate(format: "MMM d") ?? "") - \(date.end?.toStrDate(format: "MMM d") ?? "")"
+        case .month:
+            return dates.start?.toStrDate(format: "MMMM yyyy")
+        case .year:
+            return dates.start?.toStrDate(format: "yyyy")
+        case .select(let date):
+            return date.toStrDate(format: "MMM d")
         }
     }
 }

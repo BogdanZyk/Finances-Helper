@@ -16,12 +16,12 @@ struct DonutChart : View {
         GeometryReader { proxy in
             ZStack {
                 Circle()
-                    .stroke(Color(.systemGray6), lineWidth: 50)
+                    .stroke(Color(.systemGray6), lineWidth: 45)
                 ForEach(chartData.indices, id:\.self) { index in
                     Circle()
                         .trim(from: index == 0 ? 0.0 : chartData[index-1].slicePercent,
                               to: chartData[index].slicePercent)
-                        .stroke(chartData[index].color,lineWidth: 50)
+                        .stroke(chartData[index].color,lineWidth: 40)
                         .gesture(
                             DragGesture(minimumDistance: 1)
                                 .onChanged { value in

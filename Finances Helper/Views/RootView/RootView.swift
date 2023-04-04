@@ -12,27 +12,17 @@ struct RootView: View {
     @EnvironmentObject var rootVM: RootViewModel    
     var body: some View {
         NavigationStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 32){
-                    StatsView(rootVM: rootVM)
-                        .hCenter()
-                    Spacer()
-                    transactionList
-                }
-                .padding()
-                .padding(.top)
-            }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text(rootVM.timeFilter.navTitle)
-                        .font(.headline.bold())
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    dateMenuPicker
+            VStack(spacing: 0) {
+                statsDonatView
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 32){
+                        transactionList
+                    }
+                    .padding()
+                    .padding(.top)
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarHidden(true)
             .overlay(alignment: .bottom) {
                 transactionButtons
             }
@@ -53,6 +43,12 @@ struct RootView_Previews: PreviewProvider {
 
 
 extension RootView{
+    
+    
+    private var statsDonatView: some View{
+        StatsView(rootVM: rootVM)
+            .padding(.horizontal)
+    }
     
     @ViewBuilder
     private var transactionList: some View{

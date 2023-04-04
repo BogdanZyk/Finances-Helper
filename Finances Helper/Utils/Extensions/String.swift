@@ -14,8 +14,4 @@ extension String{
     
 }
 
-extension Date{
-    var toFriedlyDate: String{
-        self.formatted(date: .abbreviated, time: .omitted)
-    }
-}
+
