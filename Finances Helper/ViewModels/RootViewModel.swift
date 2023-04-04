@@ -12,10 +12,11 @@ import Combine
 final class RootViewModel: ObservableObject{
     
     @Published var account: AccountEntity?
-    @Published var transactions = [TransactionEntity]()
+    @Published var statsData = TransactionStatData()
     @Published var selectedCategory: CategoryEntity?
-    @Published var chartData = [ChartData]()
+    @Published var currentTab: TransactionType = .expense
     @Published var timeFilter: TransactionTimeFilter = .day
+    @Published var transactionFullScreen: TransactionType?
     let coreDataManager: CoreDataManager
     let trasactionStore: TransactionStore
     let userService: UserService
@@ -33,7 +34,7 @@ final class RootViewModel: ObservableObject{
         
         startSubsTransaction()
         
-        startCategorySubs()
+        //startCategorySubs()
     }
     
     
@@ -42,41 +43,31 @@ final class RootViewModel: ObservableObject{
     }
     
 
-    
-    private func startCategorySubs(){
-        $selectedCategory
-            .sink { category in
-                guard let category, let id = category.id else {
-                    self.setTransactions()
-                    return
-                }
-                if category.isParent{
-                    self.transactions = self.transactions.filter({$0.category?.id == id})
-                }else{
-                    self.transactions = self.transactions.filter({$0.subcategoryId == id})
-                }
-                self.createChartData()
-            }
-            .store(in: &cancellable)
+    func addTransaction(){
+        self.transactionFullScreen = currentTab
     }
+    
+//    private func startCategorySubs(){
+//        $selectedCategory
+//            .sink { category in
+//                guard let category, let id = category.id else {
+//                    self.setTransactions()
+//                    return
+//                }
+//                if category.isParent{
+//                    self.transactions = self.transactions.filter({$0.category?.id == id})
+//                }else{
+//                    self.transactions = self.transactions.filter({$0.subcategoryId == id})
+//                }
+//                self.createChartData()
+//            }
+//            .store(in: &cancellable)
+//    }
 
     private func createAndFetchAccount(){
         guard let user = userService.currentUser else { return }
         coreDataManager.createAccountIfNeeded(for: user)
         account = coreDataManager.fetchAccount()
-    }
-    
-    private func createChartData(){
-        
-        let chartData = transactions.compactMap({$0.chartData}).filter({$0.type == .expense})
-        var mergeData = Helper.mergeChartDataValues(chartData)
-        let total: CGFloat = mergeData.reduce(0.0) { $0 + $1.value }
-        for i in mergeData.indices {
-            let percentage = (mergeData[i].value / total)
-            mergeData[i].slicePercent =  (i == 0 ? 0.0 : mergeData[i - 1].slicePercent) + percentage
-        }
-        
-        self.chartData = mergeData
     }
 }
 
@@ -93,8 +84,7 @@ extension RootViewModel{
         trasactionStore.transactions
             .receive(on: DispatchQueue.main)
             .sink { transactions in
-                self.transactions = transactions
-                self.createChartData()
+                self.statsData = .init(transactions)
             }
             .store(in: &cancellable)
     }
@@ -109,7 +99,6 @@ extension RootViewModel{
     }
     
     private func setTransactions(){
-        self.transactions = trasactionStore.transactions.value
-        self.createChartData()
+        self.statsData = .init(trasactionStore.transactions.value)
     }
 }

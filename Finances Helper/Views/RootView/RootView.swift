@@ -8,25 +8,22 @@
 import SwiftUI
 
 struct RootView: View {
-    @State var transactionFullScreen: TransactionType?
     @EnvironmentObject var rootVM: RootViewModel    
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                statsDonatView
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 32){
-                        transactionList
-                    }
-                    .padding()
-                    .padding(.top)
+            VStack(spacing: 16) {
+                navigationView
+                TabView(selection: $rootVM.currentTab) {
+                    expenseSection
+                        .tag(TransactionType.expense)
+                    incomeSection
+                        .tag(TransactionType.income)
                 }
+                .tabViewStyle(.page(indexDisplayMode: .never))
             }
+            .background(Color(.systemGray6))
             .navigationBarHidden(true)
-            .overlay(alignment: .bottom) {
-                transactionButtons
-            }
-            .fullScreenCover(item: $transactionFullScreen) { type in
+            .fullScreenCover(item: $rootVM.transactionFullScreen) { type in
                 CreateTransactionView(type: type, rootVM: rootVM)
             }
         }
@@ -41,65 +38,50 @@ struct RootView_Previews: PreviewProvider {
     }
 }
 
+extension RootView{
+    
+    private var navigationView: some View{
+        VStack(spacing: 16){
+            TransactionNavigationTabView(rootVM: rootVM)
+        }
+        .padding(.horizontal)
+    }
+}
+
 
 extension RootView{
     
-    
-    private var statsDonatView: some View{
-        StatsView(rootVM: rootVM)
-            .padding(.horizontal)
-    }
-    
-    @ViewBuilder
-    private var transactionList: some View{
-        CategoryTagsView(rootVM: rootVM)
-        LazyVStack(alignment: .leading, spacing: 16) {
-            let chankedTransactions = Helper.groupTransactionsByDate(rootVM.transactions)
-            ForEach(chankedTransactions.indices, id: \.self) { index in
-                if let date = chankedTransactions[index].first?.createAt?.toFriedlyDate{
-                    Text(date)
-                        .font(.headline.bold())
-                    ForEach(chankedTransactions[index]) { transaction in
-                        VStack {
-                            HStack{
-                                Text(transaction.category?.title ?? "no category")
-                                Spacer()
-                                Text(transaction.friendlyAmount)
-                            }
-                            Divider()
-                        }
-                        .onLongPressGesture {
-                            TransactionEntity.remove(transaction)
-                        }
-                    }
+    private var expenseSection: some View{
+        VStack(spacing: 0) {
+            StatsView(rootVM: rootVM, chartData: $rootVM.statsData.expenseChartData)
+                .padding(.horizontal)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 32){
+                    TransactionsListView(transactions: rootVM.statsData.expenseTransactions)
                 }
+                .padding()
+                .padding(.top)
             }
         }
     }
     
-    private var transactionButtons: some View{
-        HStack(spacing: 30){
-            Button {
-                transactionFullScreen = .expense
-            } label: {
-                Image(systemName: "minus")
-                    .imageScale(.large)
-                    .frame(width: 60, height: 60)
-                    .background(Color.blue, in: Circle())
-            }
-            Button {
-                transactionFullScreen = .income
-            } label: {
-                Image(systemName: "plus")
-                    .imageScale(.large)
-                    .frame(width: 60, height: 60)
-                    .background(Color.blue, in: Circle())
-                    
+    private var incomeSection: some View{
+        VStack(spacing: 0) {
+            StatsView(rootVM: rootVM, chartData: $rootVM.statsData.incomeChartData)
+                .padding(.horizontal)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 32){
+                    TransactionsListView(transactions: rootVM.statsData.incomeTransactions)
+                }
+                .padding()
+                .padding(.top)
             }
         }
-        .foregroundColor(.white)
-        .padding()
     }
+    
+}
+
+extension RootView{
     
     private var dateMenuPicker: some View{
         Menu {

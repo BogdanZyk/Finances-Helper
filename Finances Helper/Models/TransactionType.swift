@@ -15,8 +15,8 @@ enum TransactionType: String, Identifiable{
     
     var title: String{
         switch self {
-        case .income: return "income"
-        case .expense: return "expense"
+        case .income: return "Income"
+        case .expense: return "Expense"
         }
     }
 }

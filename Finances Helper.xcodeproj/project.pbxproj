@@ -17,6 +17,9 @@
 		5AD358F229DAF29A0035E1D3 /* CreateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358F129DAF29A0035E1D3 /* CreateCategoryView.swift */; };
 		5AD358F629DB0CA00035E1D3 /* CategoryTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358F529DB0CA00035E1D3 /* CategoryTagsView.swift */; };
 		5AD358F929DB19800035E1D3 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5AD358F829DB19800035E1D3 /* Algorithms */; };
+		5AD358FB29DC33AD0035E1D3 /* TransactionNavigationTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358FA29DC33AD0035E1D3 /* TransactionNavigationTabView.swift */; };
+		5AD358FD29DC38B90035E1D3 /* TransactionStatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358FC29DC38B90035E1D3 /* TransactionStatData.swift */; };
+		5AD358FF29DC3E9C0035E1D3 /* TransactionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358FE29DC3E9C0035E1D3 /* TransactionsListView.swift */; };
 		5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */; };
 		5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553729D6E8F2007FE8C4 /* ContentView.swift */; };
 		5ADA553A29D6E8F4007FE8C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA553929D6E8F4007FE8C4 /* Assets.xcassets */; };
@@ -61,6 +64,9 @@
 		5AD358EE29DAE30C0035E1D3 /* CategoriesTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTagsView.swift; sourceTree = "<group>"; };
 		5AD358F129DAF29A0035E1D3 /* CreateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryView.swift; sourceTree = "<group>"; };
 		5AD358F529DB0CA00035E1D3 /* CategoryTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTagsView.swift; sourceTree = "<group>"; };
+		5AD358FA29DC33AD0035E1D3 /* TransactionNavigationTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionNavigationTabView.swift; sourceTree = "<group>"; };
+		5AD358FC29DC38B90035E1D3 /* TransactionStatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatData.swift; sourceTree = "<group>"; };
+		5AD358FE29DC3E9C0035E1D3 /* TransactionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsListView.swift; sourceTree = "<group>"; };
 		5ADA553229D6E8F2007FE8C4 /* Finances Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finances Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finances_HelperApp.swift; sourceTree = "<group>"; };
 		5ADA553729D6E8F2007FE8C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -290,6 +296,7 @@
 				5ADA556E29D710BA007FE8C4 /* Currency.swift */,
 				5ADA558929D7361E007FE8C4 /* TransactionType.swift */,
 				5AD358E229DAC0520035E1D3 /* ChartData.swift */,
+				5AD358FC29DC38B90035E1D3 /* TransactionStatData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -308,6 +315,8 @@
 			children = (
 				5ADA557829D71A13007FE8C4 /* StatsView.swift */,
 				5AD358F529DB0CA00035E1D3 /* CategoryTagsView.swift */,
+				5AD358FA29DC33AD0035E1D3 /* TransactionNavigationTabView.swift */,
+				5AD358FE29DC3E9C0035E1D3 /* TransactionsListView.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -433,6 +442,7 @@
 				5ADA555E29D70B75007FE8C4 /* TransactionStore.swift in Sources */,
 				5ADA555229D6E995007FE8C4 /* CoreDataManager.swift in Sources */,
 				5ADA555A29D70598007FE8C4 /* AccountEntity+Ext.swift in Sources */,
+				5AD358FD29DC38B90035E1D3 /* TransactionStatData.swift in Sources */,
 				5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */,
 				5ADA557F29D71BFE007FE8C4 /* PieSlice.swift in Sources */,
 				5ADA557C29D71BB9007FE8C4 /* PieChartsView.swift in Sources */,
@@ -457,6 +467,8 @@
 				5ADA556329D70E11007FE8C4 /* RootView.swift in Sources */,
 				5AD358F229DAF29A0035E1D3 /* CreateCategoryView.swift in Sources */,
 				5ADA557929D71A13007FE8C4 /* StatsView.swift in Sources */,
+				5AD358FB29DC33AD0035E1D3 /* TransactionNavigationTabView.swift in Sources */,
+				5AD358FF29DC3E9C0035E1D3 /* TransactionsListView.swift in Sources */,
 				5ADA555029D6E972007FE8C4 /* CoreDataContainer.xcdatamodeld in Sources */,
 				5ADA559129D737B8007FE8C4 /* CreateTransactionViewModel.swift in Sources */,
 				5ADA558829D7358C007FE8C4 /* CreateTransactionView.swift in Sources */,
