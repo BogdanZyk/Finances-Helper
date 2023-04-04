@@ -24,8 +24,12 @@ struct RootView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text(rootVM.selectedDate.toFriedlyDate)
+                    Text(rootVM.timeFilter.navTitle)
                         .font(.headline.bold())
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    dateMenuPicker
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -99,5 +103,19 @@ extension RootView{
         }
         .foregroundColor(.white)
         .padding()
+    }
+    
+    private var dateMenuPicker: some View{
+        Menu {
+            ForEach(TransactionTimeFilter.allCases) { type in
+                Button(type.title) {
+                    rootVM.timeFilter = type
+                    rootVM.fetchTransactionForDate()
+                }
+            }
+        } label: {
+            Text(rootVM.timeFilter.title)
+        }
+
     }
 }

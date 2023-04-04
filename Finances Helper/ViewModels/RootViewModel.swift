@@ -15,7 +15,7 @@ final class RootViewModel: ObservableObject{
     @Published var transactions = [TransactionEntity]()
     @Published var selectedCategory: CategoryEntity?
     @Published var chartData = [ChartData]()
-    @Published var selectedDate: Date = .now
+    @Published var timeFilter: TransactionTimeFilter = .day
     let coreDataManager: CoreDataManager
     let trasactionStore: TransactionStore
     let userService: UserService
@@ -42,12 +42,13 @@ final class RootViewModel: ObservableObject{
     }
     
     func fetchTransactionForDate(){
-       guard let datePredicate = NSPredicate.datePredicate(before: selectedDate.noon, after: selectedDate.dayAfter) else { return }
+        guard let start = timeFilter.date.start, let end = timeFilter.date.end, let datePredicate = NSPredicate.datePredicate(startDate: start, endDate: end) else { return }
         trasactionStore.fetch(for: datePredicate)
     }
     
     private func startSubsTransaction(){
         trasactionStore.transactions
+            .receive(on: DispatchQueue.main)
             .sink { transactions in
                 self.transactions = transactions
                 self.createChartData()

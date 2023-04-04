@@ -45,7 +45,8 @@ extension TransactionEntity{
     
     static func fetchRequest(for predicate: NSPredicate) -> NSFetchRequest<TransactionEntity> {
         let request = NSFetchRequest<TransactionEntity>(entityName: "TransactionEntity")
-        request.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: false),
+                                   NSSortDescriptor(key: "amount", ascending: false)]
         let datePredicate = predicate
         request.predicate = datePredicate
         return request
@@ -61,6 +62,7 @@ extension TransactionEntity{
                        subcategoryId: String?,
                        note: String?,
                        context: NSManagedObjectContext){
+        
         let entity = TransactionEntity(context: context)
         entity.id = UUID().uuidString
         entity.amount = amount
@@ -83,10 +85,50 @@ extension TransactionEntity{
 
 
 extension NSPredicate{
-  static func datePredicate(before: Date, after: Date)-> Self? {
-      NSPredicate(format: "createAt >= %@ AND createAt < %@", before as NSDate, after as NSDate) as? Self
+  static func datePredicate(startDate: Date, endDate: Date)-> Self? {
+      NSPredicate(format: "createAt >= %@ AND createAt < %@", startDate as NSDate, endDate as NSDate) as? Self
     }
 }
 
+enum TransactionTimeFilter: CaseIterable, Identifiable{
+    
+    
+    static var allCases: [TransactionTimeFilter] = [.day, .week, .month, .year]
+    
+    var id: String{ title }
+    
+    case day, week, month, year
+    case select(Date)
+    
+    var title: String{
+        switch self {
+        case .day: return "Day"
+        case .week: return "Week"
+        case .month: return "Month"
+        case .year: return "Year"
+        case .select: return "Select day"
+        }
+    }
+    
+    var date: (start: Date?, end: Date?){
+        switch self {
+        case .day: return (.now.noon, Date().dayAfter)
+        case .week: return (Date().getLast7Day(), .now)
+        case .month: return (Date().getLast30Day(), .now)
+        case .year: return (Date().startOfYear, Date().endOfYear)
+        case .select(let date): return (date.noon, date.dayAfter)
+        }
+    }
+    
+    var navTitle: String{
+        switch self {
+        case .day: return Date.now.toFriedlyDate
+        case .week: return "Last week"
+        case .month: return "Last month"
+        case .year: return "Year"
+        case .select(let date): return date.toFriedlyDate
+        }
+    }
+}
 
 

@@ -42,7 +42,7 @@ struct CreateTransactionView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.create(type: type, date: rootVM.selectedDate, forAccount: rootVM.account, created: rootVM.userService.currentUser)
+                        viewModel.create(type: type, date: viewModel.date, forAccount: rootVM.account, created: rootVM.userService.currentUser)
                         dismiss()
                     } label: {
                         Text("Save")
