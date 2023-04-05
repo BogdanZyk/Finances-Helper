@@ -61,10 +61,10 @@ extension DonutChart{
             if selectedSlice != -1 {
                 Text(chartData[selectedSlice].title)
                     .foregroundColor(.secondary)
-                Text(chartData[selectedSlice].value.toCurrency(symbol: currencySymbol))
+                Text(chartData[selectedSlice].value.formattedWithAbbreviations(symbol: currencySymbol))
             }else{
                 Text("Total")
-                Text(chartData.reduce(0.0) { $0 + $1.value }.toCurrency(symbol: currencySymbol))
+                Text(chartData.reduce(0.0) { $0 + $1.value }.formattedWithAbbreviations(symbol: currencySymbol))
             }
         }
         .font(.title3.bold())

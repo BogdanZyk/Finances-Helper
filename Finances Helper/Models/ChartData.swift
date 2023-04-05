@@ -19,7 +19,7 @@ struct ChartData: Identifiable, Equatable {
     var cyrrencySymbol: String = "$"
     
     var friendlyTotal: String{
-        value.toCurrency(symbol: cyrrencySymbol)
+        value.formattedWithAbbreviations(symbol: cyrrencySymbol)
     }
 }
 

@@ -51,7 +51,7 @@ extension RootView{
                 Text("Balance")
                     .font(.callout)
                     .foregroundColor(.secondary)
-                Text(rootVM.statsData.balance.toCurrency(symbol: rootVM.account?.currencySymbol ?? "$"))
+                Text(rootVM.statsData.balance.formattedWithAbbreviations(symbol: rootVM.account?.currencySymbol ?? "$"))
                     .foregroundColor(rootVM.statsData.balanceColor)
                     .font(.title2.bold())
             }
