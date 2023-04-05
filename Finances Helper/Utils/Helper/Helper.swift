@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class Helper{
     
@@ -24,32 +25,7 @@ final class Helper{
     
     
     
-    static func groupTransactionsByDate(_ transactions: [TransactionEntity]) -> [[TransactionEntity]] {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        var groupedTransactions: [[TransactionEntity]] = []
-        var currentDateTransactions: [TransactionEntity] = []
-        var prevDate: String? = nil
-        
-        for transaction in transactions {
-            let dateString = dateFormatter.string(from: transaction.createAt ?? .now)
-            
-            if dateString != prevDate {
-                if !currentDateTransactions.isEmpty {
-                    groupedTransactions.append(currentDateTransactions)
-                }
-                currentDateTransactions.removeAll()
-            }
-            
-            currentDateTransactions.append(transaction)
-            prevDate = dateString
-        }
-        if !currentDateTransactions.isEmpty {
-            groupedTransactions.append(currentDateTransactions)
-        }
-        return groupedTransactions
-    }
+
     
 
    static func getChartData(total: Double, transactions: [TransactionEntity]) -> [ChartData]{
@@ -62,6 +38,31 @@ final class Helper{
             mergeData[i].slicePercent =  (i == 0 ? 0.0 : mergeData[i - 1].slicePercent) + percentage
         }
         return mergeData
+    }
+    
+    static func showShareSheet(data: Any){
+        UIActivityViewController(activityItems: [data], applicationActivities: nil).presentInKeyWindow()
+    }
+    
+    static func generateCSV(_ transactions: [TransactionEntity]){
+        guard let first = transactions.first else { return }
+        
+        let fileName = "\(Date.now.formatted(date: .complete, time: .omitted))" + "_\(first.wrappedType.title)" + ".csv"
+        var csvText = "Date,Category,Amount,Currency,Note,Created\n"
+        
+        for csvModel in transactions {
+            let row = "\"\(csvModel.createAt?.formatted(date: .numeric, time: .omitted) ?? "")\",\"\(csvModel.category?.title ?? "No Category")\",\"\(csvModel.amount.treeNumString)\",\"\(csvModel.currency?.code ?? "")\",\"\(csvModel.note ?? "")\",\"\(csvModel.created?.name ?? "No name")\"\n"
+            csvText.append(row)
+        }
+        let path = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+        
+        do {
+            try csvText.write(to: path, atomically: true, encoding: String.Encoding.utf8)
+            
+            DispatchQueue.main.async{
+                showShareSheet(data: path)
+            }
+        } catch { print(error.localizedDescription)}
     }
 }
 
@@ -92,6 +93,33 @@ extension Array where Element == TransactionEntity{
         
         return transactionList
     }
+    
+     func groupTransactionsByDate() -> [[TransactionEntity]] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        var groupedTransactions: [[TransactionEntity]] = []
+        var currentDateTransactions: [TransactionEntity] = []
+        var prevDate: String? = nil
+        
+        for transaction in self {
+            let dateString = dateFormatter.string(from: transaction.createAt ?? .now)
+            
+            if dateString != prevDate {
+                if !currentDateTransactions.isEmpty {
+                    groupedTransactions.append(currentDateTransactions)
+                }
+                currentDateTransactions.removeAll()
+            }
+            
+            currentDateTransactions.append(transaction)
+            prevDate = dateString
+        }
+        if !currentDateTransactions.isEmpty {
+            groupedTransactions.append(currentDateTransactions)
+        }
+        return groupedTransactions
+    }
 }
 
 struct TransactionList: Identifiable{
@@ -100,4 +128,16 @@ struct TransactionList: Identifiable{
     var totalAmount: Double
     
     var id: String { categoryId }
+}
+
+
+extension UIViewController {
+    
+    func presentInKeyWindow(animated: Bool = true, completion: (() -> Void)? = nil) {
+        UIApplication
+            .shared
+            .connectedScenes
+            .compactMap { ($0 as? UIWindowScene)?.keyWindow }
+            .first?.rootViewController?.present(self, animated: animated, completion: completion)
+    }
 }

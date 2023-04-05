@@ -54,6 +54,7 @@ struct CreateTransactionView: View {
                 createCategoryView
             }
         }
+        .preferredColorScheme(.light)
     }
 }
 

@@ -46,7 +46,7 @@ extension CoreDataManager{
     private func createUserDefault() -> UserEntity{
         let user = UserEntity(context: mainContext)
         user.id = UUID().uuidString
-        user.name = "No name"
+        user.name = "Admin"
         mainContext.saveContext()
         return user
     }

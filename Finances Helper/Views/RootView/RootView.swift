@@ -30,6 +30,7 @@ struct RootView: View {
             .sheet(isPresented: $rootVM.showDatePicker) {
                 SheetDatePicker(rootVM: rootVM)
             }
+            
         }
     }
 }
@@ -53,6 +54,15 @@ extension RootView{
                 Text(rootVM.statsData.balance.toCurrency(symbol: rootVM.account?.currencySymbol ?? "$"))
                     .foregroundColor(rootVM.statsData.balanceColor)
                     .font(.title2.bold())
+            }
+            .hCenter()
+            .overlay(alignment: .trailing) {
+                Button {
+                    Helper.generateCSV(rootVM.statsData.expenseTransactions)
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                }
+
             }
             TransactionNavigationTabView(rootVM: rootVM)
         }
