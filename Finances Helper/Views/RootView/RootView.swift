@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RootView: View {
+    @State var showAccountsList: Bool = false
     @EnvironmentObject var rootVM: RootViewModel    
     var body: some View {
         NavigationStack {
@@ -34,6 +35,9 @@ struct RootView: View {
             .sheet(isPresented: $rootVM.showDatePicker) {
                 SheetDatePicker(rootVM: rootVM)
             }
+            .sheet(isPresented: $showAccountsList) {
+                AccountsListView(rootVM: rootVM)
+            }
         }
     }
 }
@@ -50,13 +54,21 @@ extension RootView{
     
     private var navigationView: some View{
         VStack(spacing: 16){
-            VStack(alignment: .center, spacing: 6) {
-                Text("Balance")
+            Button {
+                showAccountsList.toggle()
+            } label: {
+                VStack(alignment: .center, spacing: 2) {
+                    HStack {
+                        Text(rootVM.activeAccount?.title ?? "")
+                        Image(systemName: "arrowtriangle.down.fill")
+                            .imageScale(.small)
+                    }
                     .font(.callout)
                     .foregroundColor(.secondary)
-                Text(rootVM.activeAccount?.friedlyBalance ?? "")
-                    .foregroundColor(rootVM.activeAccount?.balanceColor ?? .black)
-                    .font(.title2.bold())
+                    Text(rootVM.activeAccount?.friedlyBalance ?? "")
+                        .foregroundColor(rootVM.activeAccount?.balanceColor ?? .black)
+                        .font(.title2.bold())
+                }
             }
             .hCenter()
             .overlay(alignment: .trailing) {
@@ -65,7 +77,6 @@ extension RootView{
                 } label: {
                     Image(systemName: "square.and.arrow.up")
                 }
-
             }
             TransactionNavigationTabView(rootVM: rootVM)
         }

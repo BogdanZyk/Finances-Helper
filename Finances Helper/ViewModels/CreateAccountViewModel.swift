@@ -45,6 +45,11 @@ final class CreateAccountViewModel: ObservableObject{
         }
     }
     
+    func removeAccount(){
+        guard let editedAccount else {return}
+        AccountEntity.remove(editedAccount)
+    }
+    
     private func createAccount(_ onCreate: @escaping (String) -> Void){
         guard let user = userService.currentUser else { return }
         let newAccount = coreDataManager.createAccount(title: title, currencyCode: currencyCode, balance: balance, members: Set([user]))

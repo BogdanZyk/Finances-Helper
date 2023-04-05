@@ -34,6 +34,7 @@ class DeveloperPreview {
          
         _ = transactions
         
+        _ = accounts
         
         return contreller.viewContext
      }
@@ -74,6 +75,27 @@ class DeveloperPreview {
         category2.color = "#549BD0"
         
         return [category1, category2]
+    }
+    
+    var accounts: [AccountEntity]{
+        let context = contreller.viewContext
+        let account1 = AccountEntity(context: context)
+        account1.id = UUID().uuidString
+        account1.title = "Test account"
+        account1.balance = 1200
+        account1.color = "#549BD0"
+        account1.currencyCode = "USD"
+        
+        
+        let account2 = AccountEntity(context: context)
+        account2.id = UUID().uuidString
+        account2.title = "Test account 2"
+        account2.balance = 50000
+        account2.color = "#E5B95A"
+        account2.currencyCode = "RUB"
+        
+        
+        return [account1, account2]
     }
 
 }

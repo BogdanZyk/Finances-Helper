@@ -37,8 +37,8 @@ extension AccountEntity{
         let entity = AccountEntity(context: context)
         entity.id = UUID().uuidString
         entity.createAt = Date.now
-        entity.title = "Primary"
-        entity.currencyCode = "USD"
+        entity.title = title
+        entity.currencyCode = currencyCode
         entity.balance = balance
         entity.members = members as NSSet
         entity.creatorId = members.first?.id ?? ""
@@ -58,7 +58,6 @@ extension AccountEntity{
         let fetchRequest = NSFetchRequest<AccountEntity>(entityName: "AccountEntity")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: true)]
         fetchRequest.propertiesToFetch = ["id", "currencyCode", "title", "balance"]
-        fetchRequest.fetchLimit = 1
         return fetchRequest
     }
     
@@ -68,6 +67,12 @@ extension AccountEntity{
         fetchRequest.predicate = NSPredicate(format: "id == %@", id)
         fetchRequest.propertiesToFetch = ["id", "currencyCode", "title", "balance"]
         return fetchRequest
+    }
+    
+    static func remove(_ item: AccountEntity){
+        guard let context = item.managedObjectContext else { return }
+        context.delete(item)
+        context.saveContext()
     }
     
 }

@@ -15,7 +15,7 @@ struct ContentView: View {
             .preferredColorScheme(.light)
             .fullScreenCover(isPresented: $rootVM.showCreateAccoutView) {
                 NavigationStack{
-                    CreateAccountView(rootVM: rootVM)
+                    CreateAccountView(rootVM: rootVM, hiddenClose: true)
                 }
             }
     }
