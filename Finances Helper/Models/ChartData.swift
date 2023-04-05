@@ -17,6 +17,10 @@ struct ChartData: Identifiable, Equatable {
     var title: String
     var type: TransactionType = .income
     var cyrrencySymbol: String = "$"
+    
+    var friendlyTotal: String{
+        value.toCurrency(symbol: cyrrencySymbol)
+    }
 }
 
 extension ChartData {

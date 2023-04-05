@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct CategoryGroupView: View {
-    let chartData: ChartData
+    var chartData: ChartData
     @ObservedObject var rootVM: RootViewModel
     var groupedTransactions: [[TransactionEntity]]{
         rootVM.statsData.getTransactions(for: rootVM.currentTab, categoryId: chartData.id)
             .groupTransactionsByDate()
     }
+    
+    private var total: String{
+        groupedTransactions.flatMap({$0}).reduce(0.0, {$0 + $1.amount}).toCurrency(symbol: chartData.cyrrencySymbol)
+    }
+    
     var body: some View {
         VStack(spacing: 16) {
             ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(alignment: .leading, spacing: 16, pinnedViews: .sectionHeaders) {
+                LazyVStack(alignment: .leading, spacing: 16) {
                     
                     ForEach(groupedTransactions.indices, id: \.self) { index in
                         if let date = groupedTransactions[index].first?.createAt?.toFriedlyDate{
@@ -26,19 +31,16 @@ struct CategoryGroupView: View {
                                 .foregroundColor(.secondary)
                             
                             ForEach(groupedTransactions[index]) { transaction in
-                                rowView(transaction)
-                                    .contextMenu {
-                                        Button(role: .destructive) {
-                                            TransactionEntity.remove(transaction)
-                                        } label: {
-                                            Label("Remove", systemImage: "trash")
-                                        }
-                                    }
+                                NavigationLink {
+                                    TransactionDetailsView(transaction: transaction)
+                                } label: {
+                                    rowView(transaction)
+                                }
                             }
                         }
                     }
                 }
-                .padding()
+                .padding(.horizontal)
             }
         }
         .toolbar {
@@ -46,7 +48,7 @@ struct CategoryGroupView: View {
                 VStack {
                     Text(chartData.title)
                         .font(.subheadline.bold())
-                    Text(chartData.value.toCurrency(symbol: chartData.cyrrencySymbol))
+                    Text(total)
                         .font(.title3.bold())
                 }
             }
@@ -78,9 +80,8 @@ extension CategoryGroupView{
             }
             Divider()
         }
-        .padding(.vertical, 10)
+        .foregroundColor(.black)
         .background(Color.white)
-        .contentShape(Rectangle())
     }
     
 }

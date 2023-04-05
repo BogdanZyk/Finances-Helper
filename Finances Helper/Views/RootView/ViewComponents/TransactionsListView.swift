@@ -28,7 +28,7 @@ struct TransactionsListView: View {
                         Spacer()
                         Text("\(Int(group.persentage * 100))%")
                             .foregroundColor(.secondary)
-                        Text(group.value.toCurrency(symbol: group.cyrrencySymbol))
+                        Text(group.friendlyTotal)
                             .foregroundColor(.black)
                             .font(.headline)
                     }
