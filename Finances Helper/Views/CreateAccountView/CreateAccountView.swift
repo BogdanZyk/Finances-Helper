@@ -83,6 +83,7 @@ extension CreateAccountView{
             } label: {
                 Text(viewModel.currencyCode)
             }
+            .disabled(isEditMode)
         }
         .frame(width: 200)
         .font(.title3)

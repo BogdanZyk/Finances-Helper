@@ -33,13 +33,14 @@ extension AccountEntity{
         return Color(hex: color)
     }
     
-    static func create(title: String, currencyCode: String, balance: Double, members: Set<UserEntity>, context: NSManagedObjectContext) -> AccountEntity{
+    static func create(title: String, currencyCode: String, balance: Double, color: String, members: Set<UserEntity>, context: NSManagedObjectContext) -> AccountEntity{
         let entity = AccountEntity(context: context)
         entity.id = UUID().uuidString
         entity.createAt = Date.now
         entity.title = title
         entity.currencyCode = currencyCode
         entity.balance = balance
+        entity.color = color
         entity.members = members as NSSet
         entity.creatorId = members.first?.id ?? ""
         entity.transactions = []

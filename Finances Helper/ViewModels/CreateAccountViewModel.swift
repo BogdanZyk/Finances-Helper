@@ -52,7 +52,7 @@ final class CreateAccountViewModel: ObservableObject{
     
     private func createAccount(_ onCreate: @escaping (String) -> Void){
         guard let user = userService.currentUser else { return }
-        let newAccount = coreDataManager.createAccount(title: title, currencyCode: currencyCode, balance: balance, members: Set([user]))
+        let newAccount = coreDataManager.createAccount(title: title, currencyCode: currencyCode, color: color.toHex() ?? "", balance: balance, members: Set([user]))
         onCreate(newAccount.id ?? "")
     }
     

@@ -28,8 +28,8 @@ extension CoreDataManager{
         AccountEntity.updateAccount(for: account)
     }
     
-    func createAccount(title: String, currencyCode: String, balance: Double, members: Set<UserEntity>) -> AccountEntity{
-        AccountEntity.create(title: title, currencyCode: currencyCode, balance: balance, members: members, context: mainContext)
+    func createAccount(title: String, currencyCode: String, color: String, balance: Double, members: Set<UserEntity>) -> AccountEntity{
+        AccountEntity.create(title: title, currencyCode: currencyCode, balance: balance, color: color, members: members, context: mainContext)
     }
 
 }
