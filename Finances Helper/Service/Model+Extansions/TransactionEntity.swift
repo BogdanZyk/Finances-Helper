@@ -73,6 +73,7 @@ extension TransactionEntity{
         entity.subcategoryId = subcategoryId
         entity.forAccount = account
         entity.note = note
+        entity.currencyCode = account.currencyCode ?? "USD"
         
         account.balance = type == .expense ? account.balance - amount :
         account.balance + amount

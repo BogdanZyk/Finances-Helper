@@ -14,6 +14,9 @@ struct DonutChart : View {
     @Binding var chartData: [ChartData]
     @State private var selectedSlice = -1
     
+    var total: Double{
+        chartData.reduce(0.0) { $0 + $1.value }
+    }
     var body: some View {
         GeometryReader { proxy in
             ZStack {
@@ -63,8 +66,14 @@ extension DonutChart{
                     .foregroundColor(.secondary)
                 Text(chartData[selectedSlice].value.formattedWithAbbreviations(symbol: currencySymbol))
             }else{
+                
                 Text("Total")
-                Text(chartData.reduce(0.0) { $0 + $1.value }.formattedWithAbbreviations(symbol: currencySymbol))
+                
+                if chartData.isEmpty{
+                    Text("0")
+                }else{
+                    Text(chartData.reduce(0.0) { $0 + $1.value }.formattedWithAbbreviations(symbol: currencySymbol))
+                }
             }
         }
         .font(.title3.bold())

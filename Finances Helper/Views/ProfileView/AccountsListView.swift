@@ -59,6 +59,8 @@ struct AccountsListView: View {
             addButton
                 .padding()
         }
+        .navigationTitle("Accounts")
+        .navigationBarTitleDisplayMode(.inline)
         .fullScreenCover(item: $createType) { type in
             Group{
                 NavigationStack{

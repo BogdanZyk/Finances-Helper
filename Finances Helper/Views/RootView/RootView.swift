@@ -36,7 +36,9 @@ struct RootView: View {
                 SheetDatePicker(rootVM: rootVM)
             }
             .sheet(isPresented: $showAccountsList) {
-                AccountsListView(rootVM: rootVM)
+                NavigationStack{
+                    AccountsListView(rootVM: rootVM)
+                }
             }
         }
     }
