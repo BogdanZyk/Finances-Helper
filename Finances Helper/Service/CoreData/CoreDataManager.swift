@@ -23,20 +23,15 @@ struct CoreDataManager {
 //MARK: - Account
 extension CoreDataManager{
     
-    func createAccountIfNeeded(for user: UserEntity){
-        AccountEntity.createAccountIfNeeded(for: user, context: mainContext)
+    
+    func updateAccount(account: AccountEntity){
+        AccountEntity.updateAccount(for: account)
     }
     
-    func fetchAccount() -> AccountEntity?{
-       let request = AccountEntity.fetchRequest()
-        do {
-            let acount = try mainContext.fetch(request)
-            return acount.first
-        } catch let error {
-            print("Failed to fetch account \(error)")
-        }
-        return nil
+    func createAccount(title: String, currencyCode: String, balance: Double, members: Set<UserEntity>) -> AccountEntity{
+        AccountEntity.create(title: title, currencyCode: currencyCode, balance: balance, members: members, context: mainContext)
     }
+
 }
 
 

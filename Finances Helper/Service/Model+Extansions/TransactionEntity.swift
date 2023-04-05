@@ -73,11 +73,19 @@ extension TransactionEntity{
         entity.subcategoryId = subcategoryId
         entity.forAccount = account
         entity.note = note
+        
+        account.balance = type == .expense ? account.balance - amount :
+        account.balance + amount
+        
         context.saveContext()
     }
     
     static func remove(_ item: TransactionEntity){
         guard let context = item.managedObjectContext else { return }
+        if let account = item.forAccount{
+            account.balance = item.wrappedType == .expense ?
+            account.balance + item.amount : account.balance - item.amount
+        }
         context.delete(item)
         context.saveContext()
     }
@@ -85,8 +93,8 @@ extension TransactionEntity{
 
 
 extension NSPredicate{
-  static func datePredicate(startDate: Date, endDate: Date)-> Self? {
-      NSPredicate(format: "createAt >= %@ AND createAt < %@", startDate as NSDate, endDate as NSDate) as? Self
+    static func transactionPredicate(startDate: Date, endDate: Date, accountId: String)-> Self? {
+      NSPredicate(format: "createAt >= %@ AND createAt < %@ AND forAccount.id CONTAINS[c] %@", startDate as NSDate, endDate as NSDate, accountId) as? Self
     }
 }
 

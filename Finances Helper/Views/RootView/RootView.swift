@@ -12,14 +12,18 @@ struct RootView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
-                navigationView
-                TabView(selection: $rootVM.currentTab) {
-                    expenseSection
-                        .tag(TransactionType.expense)
-                    incomeSection
-                        .tag(TransactionType.income)
+                if let _ = rootVM.activeAccount{
+                    navigationView
+                    TabView(selection: $rootVM.currentTab) {
+                        expenseSection
+                            .tag(TransactionType.expense)
+                        incomeSection
+                            .tag(TransactionType.income)
+                    }
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+                }else{
+                    ProgressView()
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
             }
             .background(Color(.systemGray6))
             .edgesIgnoringSafeArea(.bottom)
@@ -30,7 +34,6 @@ struct RootView: View {
             .sheet(isPresented: $rootVM.showDatePicker) {
                 SheetDatePicker(rootVM: rootVM)
             }
-            
         }
     }
 }
@@ -51,8 +54,8 @@ extension RootView{
                 Text("Balance")
                     .font(.callout)
                     .foregroundColor(.secondary)
-                Text(rootVM.statsData.balance.formattedWithAbbreviations(symbol: rootVM.account?.currencySymbol ?? "$"))
-                    .foregroundColor(rootVM.statsData.balanceColor)
+                Text(rootVM.activeAccount?.friedlyBalance ?? "")
+                    .foregroundColor(rootVM.activeAccount?.balanceColor ?? .black)
                     .font(.title2.bold())
             }
             .hCenter()
@@ -103,19 +106,4 @@ extension RootView{
     
 }
 
-extension RootView{
-    
-    private var dateMenuPicker: some View{
-        Menu {
-            ForEach(TransactionTimeFilter.allCases) { type in
-                Button(type.title) {
-                    rootVM.timeFilter = type
-                    rootVM.fetchTransactionForDate()
-                }
-            }
-        } label: {
-            Text(rootVM.timeFilter.title)
-        }
 
-    }
-}

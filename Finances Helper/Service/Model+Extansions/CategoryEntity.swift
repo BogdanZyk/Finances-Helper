@@ -38,7 +38,6 @@ extension CategoryEntity{
     @discardableResult
     static func create(
         context: NSManagedObjectContext,
-        forAccount: AccountEntity,
         title: String,
         color: String?,
         subcategories: Set<CategoryEntity>?,
@@ -48,7 +47,6 @@ extension CategoryEntity{
         let category = CategoryEntity(context: context)
         category.id = UUID().uuidString
         category.createAt = Date.now
-        category.forAccount = forAccount
         category.color = color
         category.title = title
         category.isParent = isParent

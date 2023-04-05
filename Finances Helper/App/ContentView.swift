@@ -13,6 +13,11 @@ struct ContentView: View {
         RootView()
             .environmentObject(rootVM)
             .preferredColorScheme(.light)
+            .fullScreenCover(isPresented: $rootVM.showCreateAccoutView) {
+                NavigationStack{
+                    CreateAccountView(rootVM: rootVM)
+                }
+            }
     }
 }
 

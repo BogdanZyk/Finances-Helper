@@ -82,17 +82,15 @@ extension CreateCategoryView{
             
             Button {
                 isFocused = false
-                if let account = rootVM.account{
-                    switch viewType{
-                    case .new(let isSubcategory):
-                        if isSubcategory{
-                            createVM.addSubcategory(forAccount: account)
-                        }else{
-                            createVM.addCategory(forAccount: account)
-                        }
-                    case .edit:
-                        break
+                switch viewType{
+                case .new(let isSubcategory):
+                    if isSubcategory{
+                        createVM.addSubcategory()
+                    }else{
+                        createVM.addCategory()
                     }
+                case .edit:
+                    break
                 }
             } label: {
                 Image(systemName: "checkmark")

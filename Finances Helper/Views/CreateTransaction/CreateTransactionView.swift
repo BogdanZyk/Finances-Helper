@@ -42,7 +42,10 @@ struct CreateTransactionView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.create(type: type, date: viewModel.date, forAccount: rootVM.account, created: rootVM.userService.currentUser)
+                        if let account = rootVM.activeAccount{
+                            viewModel.create(type: type, date: viewModel.date, forAccount: account, created: rootVM.userService.currentUser)
+                        }
+                       
                         dismiss()
                     } label: {
                         Text("Save")
@@ -83,7 +86,7 @@ extension CreateTransactionView{
     private var amountTextFiled: some View{
         HStack {
             NumberTextField(value: $viewModel.amount, promt: "", label: nil)
-            Text(rootVM.account?.currency?.code ?? "USD")
+            Text(rootVM.activeAccount?.currencyCode ?? "USD")
                 .font(.title3)
         }
     }

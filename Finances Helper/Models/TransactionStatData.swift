@@ -26,15 +26,7 @@ struct TransactionStatData{
         self.incomeChartData = Helper.getChartData(total: incomeTotal, transactions: incomeTransactions)
         
     }
-    
-    var balance: Double{
-        incomeTotal - expenseTotal
-    }
-    
-    var balanceColor: Color{
-        balance > 0 ? .green : .red
-    }
-    
+
     func getTransactions(for type: TransactionType, categoryId: String) -> [TransactionEntity]{
         if type == .expense{
             return expenseTransactions.filter({$0.category?.id == categoryId})
