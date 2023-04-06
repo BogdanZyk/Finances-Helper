@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Finances_HelperApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appDelegate.appEnvironment.rootVM)
         }
     }
 }

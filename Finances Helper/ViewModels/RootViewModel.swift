@@ -13,11 +13,12 @@ import SwiftUI
 final class RootViewModel: ObservableObject{
     
     @AppStorage("activeAccountId") var activeAccountId: String = ""
+    @AppStorage("savedTimeFilter") var savedTimeFilter: String = ""
     
     @Published private(set) var activeAccount: AccountEntity?
+    @Published private(set) var statsData = TransactionStatData()
     @Published var showSettingsView: Bool = false
     @Published var showCreateAccoutView: Bool = false
-    @Published var statsData = TransactionStatData()
     @Published var selectedCategory: CategoryEntity?
     @Published var currentTab: TransactionType = .expense
     @Published var timeFilter: TransactionTimeFilter = .day
@@ -44,7 +45,7 @@ final class RootViewModel: ObservableObject{
         
         startDateSubsTransaction()
         
-        fetchTransactions()
+        setTimeFilter()
         
     }
     
@@ -110,8 +111,13 @@ extension RootViewModel{
             .receive(on: DispatchQueue.main)
             .sink { filter in
                 self.fetchTransactions()
+                self.savedTimeFilter = filter.title
             }
             .store(in: cancelBag)
+    }
+    
+    private func setTimeFilter(){
+        timeFilter = TransactionTimeFilter.allCases.first(where: {$0.title == savedTimeFilter}) ?? .day
     }
 }
 

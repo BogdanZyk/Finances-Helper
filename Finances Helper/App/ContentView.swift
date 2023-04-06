@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var rootVM = RootViewModel(context: PersistenceController.shared.viewContext)
+    @EnvironmentObject var rootVM: RootViewModel
     var body: some View {
         RootView()
             .environmentObject(rootVM)
@@ -24,5 +24,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(RootViewModel(context: dev.viewContext))
     }
 }

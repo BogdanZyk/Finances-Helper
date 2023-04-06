@@ -11,6 +11,11 @@
 		5AC0AC0529DEB57F008008AF /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC0429DEB57F008008AF /* CancelBag.swift */; };
 		5AC0AC0829DEBE33008008AF /* HorizontalLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC0729DEBE33008008AF /* HorizontalLineChart.swift */; };
 		5AC0AC0A29DEDB11008008AF /* MainSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC0929DEDB11008008AF /* MainSectionView.swift */; };
+		5AC0AC0C29DF015B008008AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC0B29DF015B008008AF /* AppDelegate.swift */; };
+		5AC0AC0F29DF01AA008008AF /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC0E29DF01AA008008AF /* AppEnvironment.swift */; };
+		5AC0AC1129DF0279008008AF /* PushNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1029DF0279008008AF /* PushNotificationsHandler.swift */; };
+		5AC0AC1429DF02B7008008AF /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1329DF02B7008008AF /* DeepLink.swift */; };
+		5AC0AC1629DF02ED008008AF /* DeepLinksHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1529DF02ED008008AF /* DeepLinksHandler.swift */; };
 		5AD358E129DAC00F0035E1D3 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E029DAC00F0035E1D3 /* DonutChart.swift */; };
 		5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E229DAC0520035E1D3 /* ChartData.swift */; };
 		5AD358E529DAC8A10035E1D3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E429DAC8A10035E1D3 /* Color.swift */; };
@@ -69,6 +74,11 @@
 		5AC0AC0429DEB57F008008AF /* CancelBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
 		5AC0AC0729DEBE33008008AF /* HorizontalLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLineChart.swift; sourceTree = "<group>"; };
 		5AC0AC0929DEDB11008008AF /* MainSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionView.swift; sourceTree = "<group>"; };
+		5AC0AC0B29DF015B008008AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5AC0AC0E29DF01AA008008AF /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		5AC0AC1029DF0279008008AF /* PushNotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsHandler.swift; sourceTree = "<group>"; };
+		5AC0AC1329DF02B7008008AF /* DeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
+		5AC0AC1529DF02ED008008AF /* DeepLinksHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinksHandler.swift; sourceTree = "<group>"; };
 		5AD358E029DAC00F0035E1D3 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		5AD358E229DAC0520035E1D3 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		5AD358E429DAC8A10035E1D3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -140,6 +150,25 @@
 				5AC0AC0729DEBE33008008AF /* HorizontalLineChart.swift */,
 			);
 			path = LineChart;
+			sourceTree = "<group>";
+		};
+		5AC0AC0D29DF0197008008AF /* AppEnvironment */ = {
+			isa = PBXGroup;
+			children = (
+				5AC0AC1229DF02AC008008AF /* DeepLink */,
+				5AC0AC0E29DF01AA008008AF /* AppEnvironment.swift */,
+				5AC0AC1029DF0279008008AF /* PushNotificationsHandler.swift */,
+			);
+			path = AppEnvironment;
+			sourceTree = "<group>";
+		};
+		5AC0AC1229DF02AC008008AF /* DeepLink */ = {
+			isa = PBXGroup;
+			children = (
+				5AC0AC1329DF02B7008008AF /* DeepLink.swift */,
+				5AC0AC1529DF02ED008008AF /* DeepLinksHandler.swift */,
+			);
+			path = DeepLink;
 			sourceTree = "<group>";
 		};
 		5AD358E629DACB000035E1D3 /* Helper */ = {
@@ -287,8 +316,10 @@
 		5ADA554729D6E910007FE8C4 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5AC0AC0D29DF0197008008AF /* AppEnvironment */,
 				5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */,
 				5ADA553729D6E8F2007FE8C4 /* ContentView.swift */,
+				5AC0AC0B29DF015B008008AF /* AppDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -512,6 +543,7 @@
 				5AD3591929DDB1F80035E1D3 /* AccountsListView.swift in Sources */,
 				5AD358E529DAC8A10035E1D3 /* Color.swift in Sources */,
 				5AD358EA29DAD3A30035E1D3 /* TagLayout.swift in Sources */,
+				5AC0AC1129DF0279008008AF /* PushNotificationsHandler.swift in Sources */,
 				5ADA557529D7176A007FE8C4 /* LineProgressView.swift in Sources */,
 				5ADA555229D6E995007FE8C4 /* CoreDataManager.swift in Sources */,
 				5ADA555A29D70598007FE8C4 /* AccountEntity+Ext.swift in Sources */,
@@ -520,6 +552,7 @@
 				5ADA556F29D710BA007FE8C4 /* Currency.swift in Sources */,
 				5ADA556629D70E51007FE8C4 /* Preview.swift in Sources */,
 				5ADA558A29D7361E007FE8C4 /* TransactionType.swift in Sources */,
+				5AC0AC0F29DF01AA008008AF /* AppEnvironment.swift in Sources */,
 				5ADA558329D72C31007FE8C4 /* CategoryEntity.swift in Sources */,
 				5AD3590829DC698B0035E1D3 /* CategoryGroupView.swift in Sources */,
 				5ADA555C29D70818007FE8C4 /* UserEntity.swift in Sources */,
@@ -530,6 +563,7 @@
 				5AD358ED29DADAB70035E1D3 /* UserService.swift in Sources */,
 				5ADA555829D6F5AC007FE8C4 /* Date+ext.swift in Sources */,
 				5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */,
+				5AC0AC1429DF02B7008008AF /* DeepLink.swift in Sources */,
 				5AD3590529DC5ADB0035E1D3 /* SheetDatePicker.swift in Sources */,
 				5ADA558C29D736EE007FE8C4 /* String.swift in Sources */,
 				5AD3591729DDAAC90035E1D3 /* SideMenuViewModel.swift in Sources */,
@@ -542,6 +576,7 @@
 				5AD358E829DACB0B0035E1D3 /* Helper.swift in Sources */,
 				5ADA555529D6F499007FE8C4 /* TransactionEntity.swift in Sources */,
 				5ADA556329D70E11007FE8C4 /* RootView.swift in Sources */,
+				5AC0AC1629DF02ED008008AF /* DeepLinksHandler.swift in Sources */,
 				5AD358F229DAF29A0035E1D3 /* CreateCategoryView.swift in Sources */,
 				5ADA557929D71A13007FE8C4 /* StatsView.swift in Sources */,
 				5AD358FB29DC33AD0035E1D3 /* TransactionNavigationTabView.swift in Sources */,
@@ -555,6 +590,7 @@
 				5ADA554C29D6E961007FE8C4 /* PersistenceController.swift in Sources */,
 				5AD358EF29DAE30C0035E1D3 /* CategoriesTagsView.swift in Sources */,
 				5AD3590E29DD80390035E1D3 /* CreateAccountView.swift in Sources */,
+				5AC0AC0C29DF015B008008AF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
