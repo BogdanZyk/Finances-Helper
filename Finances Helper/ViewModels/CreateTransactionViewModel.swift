@@ -12,7 +12,6 @@ import SwiftUI
 
 class CreateTransactionViewModel: ObservableObject{
     
-   
     @Published var transactionType: TransactionType = .expense
     @Published var note: String = ""
     @Published var amount: Double = 0

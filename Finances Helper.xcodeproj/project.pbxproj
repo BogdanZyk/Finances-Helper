@@ -16,6 +16,8 @@
 		5AC0AC1129DF0279008008AF /* PushNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1029DF0279008008AF /* PushNotificationsHandler.swift */; };
 		5AC0AC1429DF02B7008008AF /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1329DF02B7008008AF /* DeepLink.swift */; };
 		5AC0AC1629DF02ED008008AF /* DeepLinksHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1529DF02ED008008AF /* DeepLinksHandler.swift */; };
+		5AC0AC1A29DF09FA008008AF /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1929DF09FA008008AF /* CategoriesView.swift */; };
+		5AC0AC1C29DF0A02008008AF /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1B29DF0A02008008AF /* CategoriesViewModel.swift */; };
 		5AD358E129DAC00F0035E1D3 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E029DAC00F0035E1D3 /* DonutChart.swift */; };
 		5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E229DAC0520035E1D3 /* ChartData.swift */; };
 		5AD358E529DAC8A10035E1D3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E429DAC8A10035E1D3 /* Color.swift */; };
@@ -79,6 +81,8 @@
 		5AC0AC1029DF0279008008AF /* PushNotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsHandler.swift; sourceTree = "<group>"; };
 		5AC0AC1329DF02B7008008AF /* DeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		5AC0AC1529DF02ED008008AF /* DeepLinksHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinksHandler.swift; sourceTree = "<group>"; };
+		5AC0AC1929DF09FA008008AF /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		5AC0AC1B29DF0A02008008AF /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		5AD358E029DAC00F0035E1D3 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		5AD358E229DAC0520035E1D3 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		5AD358E429DAC8A10035E1D3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -171,6 +175,23 @@
 			path = DeepLink;
 			sourceTree = "<group>";
 		};
+		5AC0AC1729DF0923008008AF /* AccountList */ = {
+			isa = PBXGroup;
+			children = (
+				5AD3590D29DD80390035E1D3 /* CreateAccountView.swift */,
+				5AD3591829DDB1F80035E1D3 /* AccountsListView.swift */,
+			);
+			path = AccountList;
+			sourceTree = "<group>";
+		};
+		5AC0AC1829DF0943008008AF /* CategoriesView */ = {
+			isa = PBXGroup;
+			children = (
+				5AC0AC1929DF09FA008008AF /* CategoriesView.swift */,
+			);
+			path = CategoriesView;
+			sourceTree = "<group>";
+		};
 		5AD358E629DACB000035E1D3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,19 +234,12 @@
 			path = CategoryGroupView;
 			sourceTree = "<group>";
 		};
-		5AD3590C29DD80220035E1D3 /* CreateAccountView */ = {
-			isa = PBXGroup;
-			children = (
-				5AD3590D29DD80390035E1D3 /* CreateAccountView.swift */,
-			);
-			path = CreateAccountView;
-			sourceTree = "<group>";
-		};
 		5AD3591329DDAA9F0035E1D3 /* SideMenuView */ = {
 			isa = PBXGroup;
 			children = (
+				5AC0AC1829DF0943008008AF /* CategoriesView */,
+				5AC0AC1729DF0923008008AF /* AccountList */,
 				5AD3591429DDAAB60035E1D3 /* SideMenuView.swift */,
-				5AD3591829DDB1F80035E1D3 /* AccountsListView.swift */,
 			);
 			path = SideMenuView;
 			sourceTree = "<group>";
@@ -292,7 +306,6 @@
 			isa = PBXGroup;
 			children = (
 				5AD3591329DDAA9F0035E1D3 /* SideMenuView */,
-				5AD3590C29DD80220035E1D3 /* CreateAccountView */,
 				5ADA556729D7104F007FE8C4 /* ViewComponens */,
 				5AD3590629DC69690035E1D3 /* CategoryGroupView */,
 				5ADA558629D73575007FE8C4 /* CreateTransaction */,
@@ -309,6 +322,7 @@
 				5AD3590F29DD80B70035E1D3 /* CreateAccountViewModel.swift */,
 				5AD3591629DDAAC90035E1D3 /* SideMenuViewModel.swift */,
 				5AC0AC0229DEB50A008008AF /* AccountsListViewModel.swift */,
+				5AC0AC1B29DF0A02008008AF /* CategoriesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -550,6 +564,8 @@
 				5AD358FD29DC38B90035E1D3 /* TransactionStatData.swift in Sources */,
 				5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */,
 				5ADA556F29D710BA007FE8C4 /* Currency.swift in Sources */,
+				5AC0AC1A29DF09FA008008AF /* CategoriesView.swift in Sources */,
+				5AC0AC1C29DF0A02008008AF /* CategoriesViewModel.swift in Sources */,
 				5ADA556629D70E51007FE8C4 /* Preview.swift in Sources */,
 				5ADA558A29D7361E007FE8C4 /* TransactionType.swift in Sources */,
 				5AC0AC0F29DF01AA008008AF /* AppEnvironment.swift in Sources */,
