@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AccountsListView: View {
     @Environment(\.dismiss) private var dismiss
-    @StateObject var profileMV: ProfileViewModel
+    @StateObject var profileMV: AccountsListViewModel
     @ObservedObject var rootVM: RootViewModel
     @State var createType: ScreenType?
     init(rootVM: RootViewModel) {
-        self._profileMV = StateObject(wrappedValue: ProfileViewModel(context: rootVM.coreDataManager.mainContext))
+        self._profileMV = StateObject(wrappedValue: AccountsListViewModel(context: rootVM.coreDataManager.mainContext))
         self.rootVM = rootVM
     }
     var body: some View {

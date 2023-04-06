@@ -25,32 +25,40 @@ class CreateTransactionViewModel: ObservableObject{
     @Published var categoryColor: Color = .blue
     @Published var categoryTitle: String = ""
     
-    private let categoriesStore: CategoriesStore
-    private var cancellable = Set<AnyCancellable>()
+    private let categoriesStore: ResourceStore<CategoryEntity>
+    private var cancelBag = CancelBag()
     private let context: NSManagedObjectContext
     
     init(context: NSManagedObjectContext, transactionType: TransactionType){
         self.context = context
         self.transactionType = transactionType
-        categoriesStore = CategoriesStore(context: context)
+        categoriesStore = ResourceStore(context: context)
         
         startSubsCategories()
         
-        categoriesStore.fetch()
+        fetchCategories()
         
+    }
+    
+    deinit{
+        cancelBag.cancel()
     }
     
     var disabledSave: Bool{
         amount == 0 || selectedCategory == nil
     }
     
+    private func fetchCategories(){
+        let request = CategoryEntity.request()
+        categoriesStore.fetch(request)
+    }
     
     private func startSubsCategories(){
-        categoriesStore.categories
+        categoriesStore.resources
             .sink { categories in
                 self.categories = categories
             }
-            .store(in: &cancellable)
+            .store(in: cancelBag)
     }
     
     

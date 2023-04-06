@@ -24,19 +24,17 @@ final class RootViewModel: ObservableObject{
     @Published var showDatePicker: Bool = false
     
     let coreDataManager: CoreDataManager
-    let transactionStore: TransactionStore
-    let accountStore: AccountStore
     let userService: UserService
-    private var cancellable = Set<AnyCancellable>()
+    private let transactionStore: ResourceStore<TransactionEntity>
+    private let accountStore: ResourceStore<AccountEntity>
+    private var cancelBag = CancelBag()
     
     init(context: NSManagedObjectContext){
-        
         userService = UserService(context: context)
         coreDataManager = CoreDataManager(mainContext: context)
-        accountStore = AccountStore(context: context)
-        transactionStore = TransactionStore(context: context)
+        accountStore = ResourceStore(context: context)
+        transactionStore = ResourceStore(context: context)
     
-        
         startSubsAccount()
     
         fetchAccount()
@@ -84,17 +82,18 @@ final class RootViewModel: ObservableObject{
 extension RootViewModel{
     
     func fetchTransactions(){
-        guard let start = timeFilter.date.start, let end = timeFilter.date.end, let datePredicate = NSPredicate.transactionPredicate(startDate: start, endDate: end, accountId: activeAccountId) else { return }
-        transactionStore.fetch(for: datePredicate)
+        guard let start = timeFilter.date.start, let end = timeFilter.date.end, let predicate = NSPredicate.transactionPredicate(startDate: start, endDate: end, accountId: activeAccountId) else { return }
+        let request = TransactionEntity.fetchRequest(for: predicate)
+        transactionStore.fetch(request)
     }
     
     private func startSubsTransaction(){
-        transactionStore.transactions
+        transactionStore.resources
             .receive(on: DispatchQueue.main)
             .sink { transactions in
                 self.statsData = .init(transactions)
             }
-            .store(in: &cancellable)
+            .store(in: cancelBag)
     }
     
     private func startDateSubsTransaction(){
@@ -104,11 +103,7 @@ extension RootViewModel{
             .sink { filter in
                 self.fetchTransactions()
             }
-            .store(in: &cancellable)
-    }
-    
-    private func setTransactions(){
-        self.statsData = .init(transactionStore.transactions.value)
+            .store(in: cancelBag)
     }
 }
 
@@ -123,21 +118,12 @@ extension RootViewModel{
     }
     
     func fetchAccount(){
-       accountStore.fetch(id: activeAccountId)
+        let request = AccountEntity.request(for: activeAccountId)
+       accountStore.fetch(request)
     }
-    
-//    private func startOnChangeActiveAccount(){
-//        activeAccountId
-//
-//            .sink { _ in
-//                self.fetchAccount()
-//                self.fetchTransactions()
-//            }
-//            .store(in: &cancellable)
-//    }
-    
+        
     private func startSubsAccount(){
-        accountStore.accounts
+        accountStore.resources
             .dropFirst()
             .sink { accounts in
                 if let account = accounts.first{
@@ -147,6 +133,6 @@ extension RootViewModel{
                 }
                 
             }
-            .store(in: &cancellable)
+            .store(in: cancelBag)
     }
 }

@@ -20,26 +20,8 @@ struct ProfileView: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 16) {
-                    ForEach(profileMV.accounts) { account in
-                        NavigationLink {
-                            CreateAccountView(rootVM: rootVM, account: account)
-                        } label: {
-                            HStack {
-                                Circle()
-                                    .fill(account.wrappedColor)
-                                    .frame(width: 20, height: 20)
-                                Text(account.title ?? "")
-                                Spacer()
-                                Text(account.friedlyBalance)
-                                    .font(.headline)
-                            }
-                            .foregroundColor(.black)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(12)
-                            .shadow(color: .black.opacity(0.1), radius: 5)
-                        }
-                    }
+                  
+                  
                 }
                 .padding()
             }
