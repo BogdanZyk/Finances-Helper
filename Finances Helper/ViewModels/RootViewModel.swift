@@ -15,6 +15,7 @@ final class RootViewModel: ObservableObject{
     @AppStorage("activeAccountId") var activeAccountId: String = ""
     
     @Published private(set) var activeAccount: AccountEntity?
+    @Published var showSettingsView: Bool = false
     @Published var showCreateAccoutView: Bool = false
     @Published var statsData = TransactionStatData()
     @Published var selectedCategory: CategoryEntity?
@@ -74,6 +75,13 @@ final class RootViewModel: ObservableObject{
 //            .store(in: &cancellable)
 //    }
 
+    func generateCSV(){
+        if currentTab == .expense{
+            Helper.generateCSV(statsData.expenseTransactions)
+        }else{
+            Helper.generateCSV(statsData.incomeTransactions)
+        }
+    }
    
 }
 

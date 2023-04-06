@@ -30,8 +30,8 @@
 		5AD3590A29DD69200035E1D3 /* TransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3590929DD69200035E1D3 /* TransactionDetailsView.swift */; };
 		5AD3590E29DD80390035E1D3 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3590D29DD80390035E1D3 /* CreateAccountView.swift */; };
 		5AD3591029DD80B70035E1D3 /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3590F29DD80B70035E1D3 /* CreateAccountViewModel.swift */; };
-		5AD3591529DDAAB60035E1D3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3591429DDAAB60035E1D3 /* ProfileView.swift */; };
-		5AD3591729DDAAC90035E1D3 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3591629DDAAC90035E1D3 /* ProfileViewModel.swift */; };
+		5AD3591529DDAAB60035E1D3 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3591429DDAAB60035E1D3 /* SideMenuView.swift */; };
+		5AD3591729DDAAC90035E1D3 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3591629DDAAC90035E1D3 /* SideMenuViewModel.swift */; };
 		5AD3591929DDB1F80035E1D3 /* AccountsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3591829DDB1F80035E1D3 /* AccountsListView.swift */; };
 		5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */; };
 		5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA553729D6E8F2007FE8C4 /* ContentView.swift */; };
@@ -87,8 +87,8 @@
 		5AD3590929DD69200035E1D3 /* TransactionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsView.swift; sourceTree = "<group>"; };
 		5AD3590D29DD80390035E1D3 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		5AD3590F29DD80B70035E1D3 /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
-		5AD3591429DDAAB60035E1D3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		5AD3591629DDAAC90035E1D3 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		5AD3591429DDAAB60035E1D3 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		5AD3591629DDAAC90035E1D3 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		5AD3591829DDB1F80035E1D3 /* AccountsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsListView.swift; sourceTree = "<group>"; };
 		5ADA553229D6E8F2007FE8C4 /* Finances Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Finances Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ADA553529D6E8F2007FE8C4 /* Finances_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finances_HelperApp.swift; sourceTree = "<group>"; };
@@ -192,13 +192,13 @@
 			path = CreateAccountView;
 			sourceTree = "<group>";
 		};
-		5AD3591329DDAA9F0035E1D3 /* ProfileView */ = {
+		5AD3591329DDAA9F0035E1D3 /* SideMenuView */ = {
 			isa = PBXGroup;
 			children = (
-				5AD3591429DDAAB60035E1D3 /* ProfileView.swift */,
+				5AD3591429DDAAB60035E1D3 /* SideMenuView.swift */,
 				5AD3591829DDB1F80035E1D3 /* AccountsListView.swift */,
 			);
-			path = ProfileView;
+			path = SideMenuView;
 			sourceTree = "<group>";
 		};
 		5ADA552929D6E8F2007FE8C4 = {
@@ -262,7 +262,7 @@
 		5ADA554529D6E902007FE8C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5AD3591329DDAA9F0035E1D3 /* ProfileView */,
+				5AD3591329DDAA9F0035E1D3 /* SideMenuView */,
 				5AD3590C29DD80220035E1D3 /* CreateAccountView */,
 				5ADA556729D7104F007FE8C4 /* ViewComponens */,
 				5AD3590629DC69690035E1D3 /* CategoryGroupView */,
@@ -278,7 +278,7 @@
 				5ADA555F29D70C70007FE8C4 /* RootViewModel.swift */,
 				5ADA559029D737B8007FE8C4 /* CreateTransactionViewModel.swift */,
 				5AD3590F29DD80B70035E1D3 /* CreateAccountViewModel.swift */,
-				5AD3591629DDAAC90035E1D3 /* ProfileViewModel.swift */,
+				5AD3591629DDAAC90035E1D3 /* SideMenuViewModel.swift */,
 				5AC0AC0229DEB50A008008AF /* AccountsListViewModel.swift */,
 			);
 			path = ViewModels;
@@ -532,9 +532,9 @@
 				5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */,
 				5AD3590529DC5ADB0035E1D3 /* SheetDatePicker.swift in Sources */,
 				5ADA558C29D736EE007FE8C4 /* String.swift in Sources */,
-				5AD3591729DDAAC90035E1D3 /* ProfileViewModel.swift in Sources */,
+				5AD3591729DDAAC90035E1D3 /* SideMenuViewModel.swift in Sources */,
 				5ADA558529D72D0A007FE8C4 /* ResourceStore.swift in Sources */,
-				5AD3591529DDAAB60035E1D3 /* ProfileView.swift in Sources */,
+				5AD3591529DDAAB60035E1D3 /* SideMenuView.swift in Sources */,
 				5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */,
 				5AC0AC0A29DEDB11008008AF /* MainSectionView.swift in Sources */,
 				5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */,

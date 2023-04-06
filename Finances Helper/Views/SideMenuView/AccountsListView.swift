@@ -54,6 +54,7 @@ struct AccountsListView: View {
                 }
             }
             .padding()
+            .padding(.bottom, 40)
         }
         .overlay(alignment: .bottom) {
             addButton

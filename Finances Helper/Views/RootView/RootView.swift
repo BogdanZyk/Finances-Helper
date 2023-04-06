@@ -33,6 +33,9 @@ struct RootView: View {
             .fullScreenCover(item: $rootVM.transactionFullScreen) { type in
                 CreateTransactionView(type: type, rootVM: rootVM)
             }
+            .fullScreenCover(isPresented: $rootVM.showSettingsView) {
+                SideMenuView(rootVM: rootVM)
+            }
             .sheet(isPresented: $rootVM.showDatePicker) {
                 SheetDatePicker(rootVM: rootVM)
             }
@@ -74,12 +77,22 @@ extension RootView{
                 }
             }
             .hCenter()
-            .overlay(alignment: .trailing) {
-                Button {
-                    Helper.generateCSV(rootVM.statsData.expenseTransactions)
-                } label: {
-                    Image(systemName: "square.and.arrow.up")
+            .overlay {
+                HStack {
+                    Button {
+                        rootVM.showSettingsView.toggle()
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                            .imageScale(.large)
+                    }
+                    Spacer()
+                    Button {
+                        rootVM.generateCSV()
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
                 }
+                .foregroundColor(.black)
             }
             TransactionNavigationTabView(rootVM: rootVM)
         }

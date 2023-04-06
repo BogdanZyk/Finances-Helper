@@ -22,10 +22,10 @@ struct MainSectionView: View {
                 }
                 .padding()
                 .offset(coordinateSpace: .named("List")) { offset in
-                    if offset < -20 {
+                    if offset <= -1 {
                         isExpandStats = true
                     }
-                    if isExpandStats && offset > 20{
+                    if isExpandStats && offset > 1{
                         isExpandStats = false
                     }
                 }

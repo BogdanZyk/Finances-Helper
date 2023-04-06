@@ -1,5 +1,5 @@
 //
-//  ProfileViewModel.swift
+//  SideMenuViewModel.swift
 //  Finances Helper
 //
 //  Created by Bogdan Zykov on 05.04.2023.
@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import Combine
 
-final class ProfileViewModel: ObservableObject{
+final class SideMenuViewModel: ObservableObject{
     
     @Published var user: UserEntity?
     
