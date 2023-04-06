@@ -18,6 +18,14 @@
 		5AC0AC1629DF02ED008008AF /* DeepLinksHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1529DF02ED008008AF /* DeepLinksHandler.swift */; };
 		5AC0AC1A29DF09FA008008AF /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1929DF09FA008008AF /* CategoriesView.swift */; };
 		5AC0AC1C29DF0A02008008AF /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1B29DF0A02008008AF /* CategoriesViewModel.swift */; };
+		5AC0AC2629DF128C008008AF /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC1F29DF128C008008AF /* RKViewController.swift */; };
+		5AC0AC2729DF128C008008AF /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC2029DF128C008008AF /* RKManager.swift */; };
+		5AC0AC2829DF128C008008AF /* RKWeekdayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC2129DF128C008008AF /* RKWeekdayHeader.swift */; };
+		5AC0AC2929DF128C008008AF /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC2229DF128C008008AF /* RKMonth.swift */; };
+		5AC0AC2A29DF128C008008AF /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC2329DF128C008008AF /* RKCell.swift */; };
+		5AC0AC2B29DF128C008008AF /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC2429DF128C008008AF /* RKColorSettings.swift */; };
+		5AC0AC2C29DF128C008008AF /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC2529DF128C008008AF /* RKDate.swift */; };
+		5AC0AC2E29DF1317008008AF /* RKCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC2D29DF1317008008AF /* RKCalendar.swift */; };
 		5AD358E129DAC00F0035E1D3 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E029DAC00F0035E1D3 /* DonutChart.swift */; };
 		5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E229DAC0520035E1D3 /* ChartData.swift */; };
 		5AD358E529DAC8A10035E1D3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E429DAC8A10035E1D3 /* Color.swift */; };
@@ -83,6 +91,14 @@
 		5AC0AC1529DF02ED008008AF /* DeepLinksHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinksHandler.swift; sourceTree = "<group>"; };
 		5AC0AC1929DF09FA008008AF /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		5AC0AC1B29DF0A02008008AF /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		5AC0AC1F29DF128C008008AF /* RKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKViewController.swift; sourceTree = "<group>"; };
+		5AC0AC2029DF128C008008AF /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKManager.swift; sourceTree = "<group>"; };
+		5AC0AC2129DF128C008008AF /* RKWeekdayHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKWeekdayHeader.swift; sourceTree = "<group>"; };
+		5AC0AC2229DF128C008008AF /* RKMonth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKMonth.swift; sourceTree = "<group>"; };
+		5AC0AC2329DF128C008008AF /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKCell.swift; sourceTree = "<group>"; };
+		5AC0AC2429DF128C008008AF /* RKColorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKColorSettings.swift; sourceTree = "<group>"; };
+		5AC0AC2529DF128C008008AF /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKDate.swift; sourceTree = "<group>"; };
+		5AC0AC2D29DF1317008008AF /* RKCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RKCalendar.swift; sourceTree = "<group>"; };
 		5AD358E029DAC00F0035E1D3 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		5AD358E229DAC0520035E1D3 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		5AD358E429DAC8A10035E1D3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -192,6 +208,29 @@
 			path = CategoriesView;
 			sourceTree = "<group>";
 		};
+		5AC0AC1D29DF127B008008AF /* RKCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				5AC0AC1E29DF128C008008AF /* Manager */,
+				5AC0AC2D29DF1317008008AF /* RKCalendar.swift */,
+			);
+			path = RKCalendar;
+			sourceTree = "<group>";
+		};
+		5AC0AC1E29DF128C008008AF /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				5AC0AC1F29DF128C008008AF /* RKViewController.swift */,
+				5AC0AC2029DF128C008008AF /* RKManager.swift */,
+				5AC0AC2129DF128C008008AF /* RKWeekdayHeader.swift */,
+				5AC0AC2229DF128C008008AF /* RKMonth.swift */,
+				5AC0AC2329DF128C008008AF /* RKCell.swift */,
+				5AC0AC2429DF128C008008AF /* RKColorSettings.swift */,
+				5AC0AC2529DF128C008008AF /* RKDate.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		5AD358E629DACB000035E1D3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +259,7 @@
 		5AD3590029DC594F0035E1D3 /* Datepicker */ = {
 			isa = PBXGroup;
 			children = (
+				5AC0AC1D29DF127B008008AF /* RKCalendar */,
 				5AD3590129DC595B0035E1D3 /* CustomDatePickerView.swift */,
 			);
 			path = Datepicker;
@@ -549,8 +589,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AD3590A29DD69200035E1D3 /* TransactionDetailsView.swift in Sources */,
+				5AC0AC2629DF128C008008AF /* RKViewController.swift in Sources */,
 				5AC0AC0329DEB50A008008AF /* AccountsListViewModel.swift in Sources */,
 				5ADA557129D71137007FE8C4 /* Double.swift in Sources */,
+				5AC0AC2A29DF128C008008AF /* RKCell.swift in Sources */,
+				5AC0AC2E29DF1317008008AF /* RKCalendar.swift in Sources */,
 				5AD358E129DAC00F0035E1D3 /* DonutChart.swift in Sources */,
 				5AD358F629DB0CA00035E1D3 /* CategoryTagsView.swift in Sources */,
 				5AD3591029DD80B70035E1D3 /* CreateAccountViewModel.swift in Sources */,
@@ -559,6 +602,7 @@
 				5AD358EA29DAD3A30035E1D3 /* TagLayout.swift in Sources */,
 				5AC0AC1129DF0279008008AF /* PushNotificationsHandler.swift in Sources */,
 				5ADA557529D7176A007FE8C4 /* LineProgressView.swift in Sources */,
+				5AC0AC2B29DF128C008008AF /* RKColorSettings.swift in Sources */,
 				5ADA555229D6E995007FE8C4 /* CoreDataManager.swift in Sources */,
 				5ADA555A29D70598007FE8C4 /* AccountEntity+Ext.swift in Sources */,
 				5AD358FD29DC38B90035E1D3 /* TransactionStatData.swift in Sources */,
@@ -570,6 +614,7 @@
 				5ADA558A29D7361E007FE8C4 /* TransactionType.swift in Sources */,
 				5AC0AC0F29DF01AA008008AF /* AppEnvironment.swift in Sources */,
 				5ADA558329D72C31007FE8C4 /* CategoryEntity.swift in Sources */,
+				5AC0AC2929DF128C008008AF /* RKMonth.swift in Sources */,
 				5AD3590829DC698B0035E1D3 /* CategoryGroupView.swift in Sources */,
 				5ADA555C29D70818007FE8C4 /* UserEntity.swift in Sources */,
 				5ADA556929D7105C007FE8C4 /* CurrencyView.swift in Sources */,
@@ -580,14 +625,17 @@
 				5ADA555829D6F5AC007FE8C4 /* Date+ext.swift in Sources */,
 				5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */,
 				5AC0AC1429DF02B7008008AF /* DeepLink.swift in Sources */,
+				5AC0AC2729DF128C008008AF /* RKManager.swift in Sources */,
 				5AD3590529DC5ADB0035E1D3 /* SheetDatePicker.swift in Sources */,
 				5ADA558C29D736EE007FE8C4 /* String.swift in Sources */,
 				5AD3591729DDAAC90035E1D3 /* SideMenuViewModel.swift in Sources */,
+				5AC0AC2C29DF128C008008AF /* RKDate.swift in Sources */,
 				5ADA558529D72D0A007FE8C4 /* ResourceStore.swift in Sources */,
 				5AD3591529DDAAB60035E1D3 /* SideMenuView.swift in Sources */,
 				5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */,
 				5AC0AC0A29DEDB11008008AF /* MainSectionView.swift in Sources */,
 				5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */,
+				5AC0AC2829DF128C008008AF /* RKWeekdayHeader.swift in Sources */,
 				5AC0AC0829DEBE33008008AF /* HorizontalLineChart.swift in Sources */,
 				5AD358E829DACB0B0035E1D3 /* Helper.swift in Sources */,
 				5ADA555529D6F499007FE8C4 /* TransactionEntity.swift in Sources */,
