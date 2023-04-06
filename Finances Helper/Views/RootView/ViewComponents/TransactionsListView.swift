@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TransactionsListView: View {
-    @EnvironmentObject var rootVM: RootViewModel
+    @ObservedObject var rootVM: RootViewModel
     var chartData: [ChartData]
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 10) {
@@ -45,7 +45,7 @@ struct TransactionsListView: View {
 struct TarnsactionListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            TransactionsListView(chartData: ChartData.sample)
+            TransactionsListView(rootVM: RootViewModel(context: dev.viewContext), chartData: ChartData.sample)
         }
         .environmentObject(RootViewModel(context: dev.viewContext))
     }

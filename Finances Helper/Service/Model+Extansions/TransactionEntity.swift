@@ -35,14 +35,6 @@ extension TransactionEntity{
         return nil
     }
     
-    
-    var sliceValue: SliceValue?{
-        if wrappedType == .income, let id = category?.id{
-            return .init(categoryId: id, amount: amount)
-        }
-        return nil
-    }
-    
     static func fetchRequest(for predicate: NSPredicate) -> NSFetchRequest<TransactionEntity> {
         let request = NSFetchRequest<TransactionEntity>(entityName: "TransactionEntity")
         request.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: false),

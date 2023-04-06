@@ -59,6 +59,44 @@ extension View{
     var isSmallScreen: Bool{
         getRect().height < 700
     }
+    
+    
+    @ViewBuilder
+    func offset(coordinateSpace: CoordinateSpace, completion: @escaping (CGFloat) -> Void) -> some View{
+        self
+            .overlay{
+                GeometryReader { proxy in
+                    let minY = proxy.frame(in: coordinateSpace).minY
+                    Color.clear
+                        .preference(key: OffsetKey.self, value: minY)
+                        .onPreferenceChange(OffsetKey.self) { value in
+                            completion(value)
+                        }
+                }
+            }
+    }
 }
 
 
+
+struct OffsetKey: PreferenceKey{
+    static var defaultValue: CGFloat = 0
+    
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
+extension GeometryProxy {
+        var offset: CGFloat {
+        frame(in: .global).minY
+    }
+    var height: CGFloat {
+        
+        size.height + (offset > 0 ? offset : 0)
+        
+    }
+    var verticalOffset: CGFloat{
+        offset > 0 ? -offset : 0
+    }
+}

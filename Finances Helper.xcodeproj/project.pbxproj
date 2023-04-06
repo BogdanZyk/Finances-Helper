@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5AC0AC0329DEB50A008008AF /* AccountsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC0229DEB50A008008AF /* AccountsListViewModel.swift */; };
 		5AC0AC0529DEB57F008008AF /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC0429DEB57F008008AF /* CancelBag.swift */; };
+		5AC0AC0829DEBE33008008AF /* HorizontalLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC0729DEBE33008008AF /* HorizontalLineChart.swift */; };
+		5AC0AC0A29DEDB11008008AF /* MainSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0AC0929DEDB11008008AF /* MainSectionView.swift */; };
 		5AD358E129DAC00F0035E1D3 /* DonutChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E029DAC00F0035E1D3 /* DonutChart.swift */; };
 		5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E229DAC0520035E1D3 /* ChartData.swift */; };
 		5AD358E529DAC8A10035E1D3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD358E429DAC8A10035E1D3 /* Color.swift */; };
@@ -52,8 +54,6 @@
 		5ADA557529D7176A007FE8C4 /* LineProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557329D7176A007FE8C4 /* LineProgressView.swift */; };
 		5ADA557629D7176A007FE8C4 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557429D7176A007FE8C4 /* CircleProgressView.swift */; };
 		5ADA557929D71A13007FE8C4 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557829D71A13007FE8C4 /* StatsView.swift */; };
-		5ADA557C29D71BB9007FE8C4 /* PieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557B29D71BB9007FE8C4 /* PieChartsView.swift */; };
-		5ADA557F29D71BFE007FE8C4 /* PieSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */; };
 		5ADA558129D727D9007FE8C4 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558029D727D9007FE8C4 /* View+Ext.swift */; };
 		5ADA558329D72C31007FE8C4 /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558229D72C31007FE8C4 /* CategoryEntity.swift */; };
 		5ADA558529D72D0A007FE8C4 /* ResourceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558429D72D0A007FE8C4 /* ResourceStore.swift */; };
@@ -67,6 +67,8 @@
 /* Begin PBXFileReference section */
 		5AC0AC0229DEB50A008008AF /* AccountsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsListViewModel.swift; sourceTree = "<group>"; };
 		5AC0AC0429DEB57F008008AF /* CancelBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
+		5AC0AC0729DEBE33008008AF /* HorizontalLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLineChart.swift; sourceTree = "<group>"; };
+		5AC0AC0929DEDB11008008AF /* MainSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionView.swift; sourceTree = "<group>"; };
 		5AD358E029DAC00F0035E1D3 /* DonutChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutChart.swift; sourceTree = "<group>"; };
 		5AD358E229DAC0520035E1D3 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		5AD358E429DAC8A10035E1D3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -110,8 +112,6 @@
 		5ADA557329D7176A007FE8C4 /* LineProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineProgressView.swift; sourceTree = "<group>"; };
 		5ADA557429D7176A007FE8C4 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		5ADA557829D71A13007FE8C4 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
-		5ADA557B29D71BB9007FE8C4 /* PieChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartsView.swift; sourceTree = "<group>"; };
-		5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieSlice.swift; sourceTree = "<group>"; };
 		5ADA558029D727D9007FE8C4 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		5ADA558229D72C31007FE8C4 /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
 		5ADA558429D72D0A007FE8C4 /* ResourceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceStore.swift; sourceTree = "<group>"; };
@@ -134,6 +134,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AC0AC0629DEBE19008008AF /* LineChart */ = {
+			isa = PBXGroup;
+			children = (
+				5AC0AC0729DEBE33008008AF /* HorizontalLineChart.swift */,
+			);
+			path = LineChart;
+			sourceTree = "<group>";
+		};
 		5AD358E629DACB000035E1D3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +387,7 @@
 				5AD358FA29DC33AD0035E1D3 /* TransactionNavigationTabView.swift */,
 				5AD358FE29DC3E9C0035E1D3 /* TransactionsListView.swift */,
 				5AD3590429DC5ADB0035E1D3 /* SheetDatePicker.swift */,
+				5AC0AC0929DEDB11008008AF /* MainSectionView.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -386,6 +395,7 @@
 		5ADA557A29D71BAC007FE8C4 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				5AC0AC0629DEBE19008008AF /* LineChart */,
 				5ADA557D29D71BF0007FE8C4 /* PieChart */,
 			);
 			path = Charts;
@@ -394,8 +404,6 @@
 		5ADA557D29D71BF0007FE8C4 /* PieChart */ = {
 			isa = PBXGroup;
 			children = (
-				5ADA557B29D71BB9007FE8C4 /* PieChartsView.swift */,
-				5ADA557E29D71BFD007FE8C4 /* PieSlice.swift */,
 				5AD358E029DAC00F0035E1D3 /* DonutChart.swift */,
 			);
 			path = PieChart;
@@ -509,8 +517,6 @@
 				5ADA555A29D70598007FE8C4 /* AccountEntity+Ext.swift in Sources */,
 				5AD358FD29DC38B90035E1D3 /* TransactionStatData.swift in Sources */,
 				5ADA553829D6E8F2007FE8C4 /* ContentView.swift in Sources */,
-				5ADA557F29D71BFE007FE8C4 /* PieSlice.swift in Sources */,
-				5ADA557C29D71BB9007FE8C4 /* PieChartsView.swift in Sources */,
 				5ADA556F29D710BA007FE8C4 /* Currency.swift in Sources */,
 				5ADA556629D70E51007FE8C4 /* Preview.swift in Sources */,
 				5ADA558A29D7361E007FE8C4 /* TransactionType.swift in Sources */,
@@ -530,7 +536,9 @@
 				5ADA558529D72D0A007FE8C4 /* ResourceStore.swift in Sources */,
 				5AD3591529DDAAB60035E1D3 /* ProfileView.swift in Sources */,
 				5AD358E329DAC0520035E1D3 /* ChartData.swift in Sources */,
+				5AC0AC0A29DEDB11008008AF /* MainSectionView.swift in Sources */,
 				5ADA553629D6E8F2007FE8C4 /* Finances_HelperApp.swift in Sources */,
+				5AC0AC0829DEBE33008008AF /* HorizontalLineChart.swift in Sources */,
 				5AD358E829DACB0B0035E1D3 /* Helper.swift in Sources */,
 				5ADA555529D6F499007FE8C4 /* TransactionEntity.swift in Sources */,
 				5ADA556329D70E11007FE8C4 /* RootView.swift in Sources */,

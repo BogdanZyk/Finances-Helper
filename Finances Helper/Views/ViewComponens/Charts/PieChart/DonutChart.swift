@@ -11,7 +11,7 @@ struct DonutChart : View {
     var currencySymbol: String{
         chartData.first?.cyrrencySymbol ?? "$"
     }
-    @Binding var chartData: [ChartData]
+    var chartData: [ChartData]
     @State private var selectedSlice = -1
     
     var total: Double{
@@ -21,7 +21,7 @@ struct DonutChart : View {
         GeometryReader { proxy in
             ZStack {
                 Circle()
-                    .stroke(Color(.systemGray6), lineWidth: 45)
+                    .stroke(Color(.systemGray6), lineWidth: 40)
                 ForEach(chartData.indices, id:\.self) { index in
                     Circle()
                         .trim(from: index == 0 ? 0.0 : chartData[index-1].slicePercent,
@@ -49,9 +49,8 @@ struct DonutChart : View {
 }
 
 struct DonutChart_Previews: PreviewProvider {
-    @State static var data = ChartData.sample
     static var previews: some View {
-        DonutChart(chartData: $data)
+        DonutChart(chartData: ChartData.sample)
             .frame(width: 200, height: 200)
     }
 }

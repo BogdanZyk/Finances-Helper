@@ -8,18 +8,41 @@
 import SwiftUI
 
 struct StatsView: View {
+    @State private var showLine: Bool = false
+    @Binding var isExpand: Bool
     @Namespace var animation
     @ObservedObject var rootVM: RootViewModel
-    @Binding var chartData: [ChartData]
+    var chartData: [ChartData]
     var body: some View {
-        VStack(spacing: 10){
-            datePickerButtons
-            dateTitle
-            DonutChart(chartData: $chartData)
-                .frame(height: 200)
-                .padding(.vertical, 26)
+        ZStack(alignment: .top){
+            ZStack(alignment: .center){
+                if showLine{
+                    HorizontalLineChart(chartData: chartData)
+                        .frame(height: 60)
+                        .matchedGeometryEffect(id: "CHART", in: animation)
+                        .onTapGesture {
+                            isExpand.toggle()
+                        }
+                        .transition(.scale.combined(with: .opacity))
+                }else{
+                    DonutChart(chartData: chartData)
+                        .frame(height: 200)
+                        .padding(.vertical, 26)
+                        .matchedGeometryEffect(id: "CHART", in: animation)
+                        .transition(.scale.combined(with: .opacity))
+                }
+            }
+            .padding(.top, 90)
+            .padding([.bottom, .horizontal])
+            
+            VStack(spacing: 10) {
+                datePickerButtons
+                dateTitle
+            }
+            .hCenter()
+            .padding([.horizontal, .top])
+            .background(Color.white)
         }
-        .padding()
         .hCenter()
         .background(Color.white)
         .cornerRadius(12)
@@ -34,7 +57,14 @@ struct StatsView: View {
                     .padding()
                     .background(Color.blue, in: Circle())
             }
-            .padding()
+            
+            .scaleEffect(showLine ? 0.7 : 1)
+            .padding(showLine ? 5 : 16)
+        }
+        .onChange(of: isExpand) { expand in
+            withAnimation(.easeInOut(duration: 0.3)) {
+                showLine = expand
+            }
         }
     }
 }
@@ -43,7 +73,7 @@ struct StatsView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack{
             Color(.systemGray6)
-            StatsView(rootVM: RootViewModel(context: dev.viewContext), chartData: .constant(ChartData.sample))
+            StatsView(isExpand: .constant(false), rootVM: RootViewModel(context: dev.viewContext), chartData: ChartData.sample)
                 .padding()
         }
     }

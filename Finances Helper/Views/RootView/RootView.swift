@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RootView: View {
+    @State private var isExpandStats: Bool = false
     @State var showAccountsList: Bool = false
     @EnvironmentObject var rootVM: RootViewModel    
     var body: some View {
@@ -90,31 +91,11 @@ extension RootView{
 extension RootView{
     
     private var expenseSection: some View{
-        VStack(spacing: 0) {
-            StatsView(rootVM: rootVM, chartData: $rootVM.statsData.expenseChartData)
-                .padding(.horizontal)
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 32){
-                    TransactionsListView(chartData: rootVM.statsData.expenseChartData)
-                }
-                .padding()
-                .padding(.top)
-            }
-        }
+        MainSectionView(isExpandStats: $isExpandStats, rootVM: rootVM, chartData: rootVM.statsData.expenseChartData)
     }
     
     private var incomeSection: some View{
-        VStack(spacing: 0) {
-            StatsView(rootVM: rootVM, chartData: $rootVM.statsData.incomeChartData)
-                .padding(.horizontal)
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 32){
-                    TransactionsListView(chartData: rootVM.statsData.incomeChartData)
-                }
-                .padding()
-                .padding(.top)
-            }
-        }
+        MainSectionView(isExpandStats: $isExpandStats, rootVM: rootVM, chartData: rootVM.statsData.incomeChartData)
     }
     
 }
