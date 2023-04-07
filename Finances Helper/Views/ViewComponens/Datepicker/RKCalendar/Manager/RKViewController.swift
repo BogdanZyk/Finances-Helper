@@ -13,12 +13,22 @@ struct RKViewController: View {
     @ObservedObject var rkManager: RKManager
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(spacing: 32) {
-                ForEach(0..<numberOfMonths(), id: \.self) { index in
-                    RKMonth(rkManager: self.rkManager, monthOffset: index)
+        ScrollViewReader { proxy in
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVStack(spacing: 32) {
+                    ForEach(0..<numberOfMonths(), id: \.self) { index in
+                        RKMonth(rkManager: self.rkManager, monthOffset: index)
+                            .id(index)
+                    }
+                    .padding()
                 }
-                .padding()
+            }
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+                    if let date = rkManager.startDate{
+                        proxy.scrollTo(getMonthFromDate(date: date), anchor: .center)
+                    }
+                }
             }
         }
     }
@@ -34,6 +44,13 @@ struct RKViewController: View {
         
         return rkManager.calendar.date(from: components)!
     }
+    
+    func getMonthFromDate(date: Date) -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.month], from: date)
+        return components.month! - 1
+    }
+
 }
 
 #if DEBUG

@@ -34,7 +34,6 @@ struct RKMonth: View {
                     HStack(spacing: 0){
                         ForEach(row, id:  \.self) { column in
                             HStack(spacing: 0) {
-                                //Spacer()
                                 if self.isThisMonth(date: column) {
                                     RKCell(rkDate: RKDate(
                                         date: column,

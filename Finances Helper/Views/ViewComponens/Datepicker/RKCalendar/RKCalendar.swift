@@ -11,7 +11,7 @@ import SwiftUI
 struct RKCalendar : View {
     var dates: (start: Date?, end: Date?)
     @Environment(\.dismiss) private var dismiss
-    @StateObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().startOfYear!, maximumDate: Date().endOfYear!)
+    @StateObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().startOfYear!, maximumDate: Date().endOfYear!)    
     let onTapDone: (Date, Date) -> Void
     var body: some View {
         NavigationStack {
