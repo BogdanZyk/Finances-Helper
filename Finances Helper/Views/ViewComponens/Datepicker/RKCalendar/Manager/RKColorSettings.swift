@@ -2,7 +2,7 @@
 //  RKColorSettings.swift
 //  RKCalendar
 //
-//  Copyright © 2019 Raffi Kian. All rights reserved.
+//  Created by Bogdan Zykov on 05.04.2023.
 //
 
 import Foundation

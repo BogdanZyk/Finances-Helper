@@ -2,8 +2,7 @@
 //  RKMonth.swift
 //  RKCalendar
 //
-//  Created by Raffi Kian on 7/14/19.
-//  Copyright © 2019 Raffi Kian. All rights reserved.
+//  Created by Bogdan Zykov on 05.04.2023.
 //
 
 import SwiftUI
