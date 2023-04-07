@@ -11,7 +11,6 @@ import SwiftUI
 struct RKMonth: View {
 
     @State private var isStartDate: Bool = true
-    @Binding var isPresented: Bool
     
     @ObservedObject var rkManager: RKManager
     
@@ -39,11 +38,13 @@ struct RKMonth: View {
                                 if self.isThisMonth(date: column) {
                                     RKCell(rkDate: RKDate(
                                         date: column,
-                                        rkManager: self.rkManager,
-                                        isDisabled: !self.isEnabled(date: column),
-                                        isToday: self.isToday(date: column),
-                                        isSelected: self.isSpecialDate(date: column),
-                                        isBetweenStartAndEnd: self.isBetweenStartAndEnd(date: column)),
+                                        rkManager: rkManager,
+                                        isDisabled: !isEnabled(date: column),
+                                        isToday: isToday(date: column),
+                                        isSelected: isSpecialDate(date: column),
+                                        isBetweenStartAndEnd: isBetweenStartAndEnd(date: column),
+                                        endDate: rkManager.endDate,
+                                        startDate: rkManager.startDate),
                                         cellWidth: self.cellWidth)
                                         .onTapGesture { self.dateTapped(date: column) }
                                 } else {
@@ -217,7 +218,7 @@ struct RKMonth: View {
 #if DEBUG
 struct RKMonth_Previews : PreviewProvider {
     static var previews: some View {
-        RKMonth(isPresented: .constant(false),rkManager: RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365)), monthOffset: 0)
+        RKMonth(rkManager: RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365)), monthOffset: 0)
     }
 }
 #endif

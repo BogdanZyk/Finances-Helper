@@ -17,14 +17,26 @@ struct RKDate {
     var isToday: Bool = false
     var isSelected: Bool = false
     var isBetweenStartAndEnd: Bool = false
+    var endDate: Date?
+    var startDate: Date?
     
-    init(date: Date, rkManager: RKManager, isDisabled: Bool, isToday: Bool, isSelected: Bool, isBetweenStartAndEnd: Bool) {
+    init(date: Date, rkManager: RKManager, isDisabled: Bool, isToday: Bool, isSelected: Bool, isBetweenStartAndEnd: Bool, endDate: Date? = nil, startDate: Date? = nil) {
         self.date = date
+        self.endDate = endDate
+        self.startDate = startDate
         self.rkManager = rkManager
         self.isDisabled = isDisabled
         self.isToday = isToday
         self.isSelected = isSelected
         self.isBetweenStartAndEnd = isBetweenStartAndEnd
+    }
+    
+    var isEndDate: Bool{
+        date == endDate
+    }
+    
+    var isStartDate: Bool{
+        date == startDate
     }
     
     func getText() -> String {
@@ -50,9 +62,6 @@ struct RKDate {
         var backgroundColor = rkManager.colors.textBackColor
         if isBetweenStartAndEnd {
             backgroundColor = rkManager.colors.betweenStartAndEndBackColor
-        }
-        if isToday {
-            backgroundColor = rkManager.colors.todayBackColor
         }
         if isDisabled {
             backgroundColor = rkManager.colors.disabledBackColor

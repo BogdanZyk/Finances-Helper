@@ -26,10 +26,10 @@ struct SheetDatePicker: View {
             Spacer()
         }
         .padding()
-        .onChange(of: slectedDate) { newValue in
-            rootVM.timeFilter = .select(newValue)
-            dismiss()
-        }
+//        .onChange(of: slectedDate) { newValue in
+//            rootVM.timeFilter = .select(newValue)
+//            dismiss()
+//        }
     }
 }
 

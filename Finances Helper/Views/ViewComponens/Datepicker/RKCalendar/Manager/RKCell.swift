@@ -14,6 +14,20 @@ struct RKCell: View {
     
     var cellWidth: CGFloat
     
+    var corners: UIRectCorner{
+        if rkDate.isStartDate {
+            return [.topLeft, .bottomLeft]
+        }else if rkDate.isEndDate{
+            return [.topRight, .bottomRight]
+        }else {
+            return [.allCorners]
+        }
+    }
+    
+    var radius: CGFloat{
+        rkDate.isEndDate || rkDate.isStartDate ? cellWidth / 2 : 0
+    }
+    
     var body: some View {
         Text(rkDate.getText())
             .fontWeight(rkDate.getFontWeight())
@@ -22,9 +36,7 @@ struct RKCell: View {
             .hCenter()
             .font(.system(size: 20))
             .background(rkDate.getBackgroundColor())
-            .cornerRadius(rkDate.isToday ? cellWidth / 2 : 0)
-            .animation(.default, value: rkDate.isSelected)
-            .animation(.default, value: rkDate.isBetweenStartAndEnd)
+            .clipShape(CustomCorner(corners: corners, radius: radius))
     }
 }
 
@@ -51,3 +63,17 @@ struct RKCell_Previews : PreviewProvider {
 #endif
 
 
+import SwiftUI
+
+struct CustomCorner: Shape {
+    
+    var corners: UIRectCorner
+    var radius: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        
+        return Path(path.cgPath)
+    }
+}

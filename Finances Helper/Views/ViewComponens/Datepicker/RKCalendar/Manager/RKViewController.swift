@@ -10,26 +10,15 @@ import SwiftUI
 
 struct RKViewController: View {
     
-    @Binding var isPresented: Bool
-    
     @ObservedObject var rkManager: RKManager
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(spacing: 32, pinnedViews: .sectionHeaders) {
-                Section {
-                    ForEach(0..<numberOfMonths(), id: \.self) { index in
-                        RKMonth(isPresented: self.$isPresented, rkManager: self.rkManager, monthOffset: index)
-                    }
-                    .padding(.horizontal)
-                } header: {
-                    VStack(spacing: 0) {
-                        RKWeekdayHeader(rkManager: self.rkManager)
-                            .padding(.horizontal)
-                        Divider()
-                    }
-                    .background(Color.white)
+            LazyVStack(spacing: 32) {
+                ForEach(0..<numberOfMonths(), id: \.self) { index in
+                    RKMonth(rkManager: self.rkManager, monthOffset: index)
                 }
+                .padding()
             }
         }
     }
@@ -51,8 +40,8 @@ struct RKViewController: View {
 struct RKViewController_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            RKViewController(isPresented: .constant(false), rkManager: RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365)))
-            RKViewController(isPresented: .constant(false), rkManager: RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*32)))
+            RKViewController( rkManager: RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365)))
+            RKViewController( rkManager: RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*32)))
                 .environment(\.colorScheme, .dark)
                 .environment(\.layoutDirection, .rightToLeft)
         }

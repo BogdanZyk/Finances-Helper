@@ -94,7 +94,7 @@ extension StatsView{
                         rootVM.timeFilter = type
                     }
             }
-            labelView(TransactionTimeFilter.select(nil))
+            labelView(TransactionTimeFilter.select(.now, .now))
                 .onTapGesture {
                     rootVM.showDatePicker.toggle()
                 }

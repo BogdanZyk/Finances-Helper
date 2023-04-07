@@ -37,7 +37,9 @@ struct RootView: View {
                 SideMenuView(rootVM: rootVM)
             }
             .sheet(isPresented: $rootVM.showDatePicker) {
-                SheetDatePicker(rootVM: rootVM)
+                RKCalendar(dates: rootVM.timeFilter.date) { start, end in
+                    rootVM.timeFilter = .select(start, end)
+                }
             }
             .sheet(isPresented: $showAccountsList) {
                 NavigationStack{

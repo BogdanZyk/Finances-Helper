@@ -99,7 +99,7 @@ enum TransactionTimeFilter: CaseIterable, Identifiable, Equatable{
     var id: String{ title }
     
     case day, week, month, year
-    case select(Date?)
+    case select(Date, Date)
     
     var title: String{
         switch self {
@@ -117,7 +117,7 @@ enum TransactionTimeFilter: CaseIterable, Identifiable, Equatable{
         case .week: return (Date().startOfWeek, Date().endOfWeek)
         case .month: return (Date().startOfMonth, Date().endOfMonth)
         case .year: return (Date().startOfYear, Date().endOfYear)
-        case .select(let date): return (date?.noon, date?.dayAfter)
+        case .select(let start, let end): return (start.noon, end.noon)
         }
     }
     
@@ -132,8 +132,8 @@ enum TransactionTimeFilter: CaseIterable, Identifiable, Equatable{
             return dates.start?.toStrDate(format: "MMMM yyyy")
         case .year:
             return dates.start?.toStrDate(format: "yyyy")
-        case .select(let date):
-            return date?.toStrDate(format: "MMM d")
+        case .select(let start, let end):
+            return "\(start.toStrDate(format: "MMM d")) - \(end.toStrDate(format: "MMM d"))"
         }
     }
 }
