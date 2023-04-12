@@ -77,6 +77,7 @@
 		5ADA558C29D736EE007FE8C4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558B29D736EE007FE8C4 /* String.swift */; };
 		5ADA558F29D7378D007FE8C4 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA558E29D7378D007FE8C4 /* NumberTextField.swift */; };
 		5ADA559129D737B8007FE8C4 /* CreateTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA559029D737B8007FE8C4 /* CreateTransactionViewModel.swift */; };
+		5AF57F0929E556010034C80D /* RangeCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 5AF57F0829E556010034C80D /* RangeCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AF57F0929E556010034C80D /* RangeCalendar in Frameworks */,
 				5AD358F929DB19800035E1D3 /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -530,6 +532,7 @@
 			name = "Finances Helper";
 			packageProductDependencies = (
 				5AD358F829DB19800035E1D3 /* Algorithms */,
+				5AF57F0829E556010034C80D /* RangeCalendar */,
 			);
 			productName = "Finances Helper";
 			productReference = 5ADA553229D6E8F2007FE8C4 /* Finances Helper.app */;
@@ -561,6 +564,7 @@
 			mainGroup = 5ADA552929D6E8F2007FE8C4;
 			packageReferences = (
 				5AD358F729DB19800035E1D3 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				5AF57F0729E556010034C80D /* XCRemoteSwiftPackageReference "RangeCalendarSwiftUI" */,
 			);
 			productRefGroup = 5ADA553329D6E8F2007FE8C4 /* Products */;
 			projectDirPath = "";
@@ -873,6 +877,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		5AF57F0729E556010034C80D /* XCRemoteSwiftPackageReference "RangeCalendarSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BogdanZyk/RangeCalendarSwiftUI";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -880,6 +892,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5AD358F729DB19800035E1D3 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
+		};
+		5AF57F0829E556010034C80D /* RangeCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AF57F0729E556010034C80D /* XCRemoteSwiftPackageReference "RangeCalendarSwiftUI" */;
+			productName = RangeCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -62,7 +62,6 @@ struct RKCell_Previews : PreviewProvider {
 #endif
 
 
-import SwiftUI
 
 struct CustomCorner: Shape {
     
@@ -76,3 +75,4 @@ struct CustomCorner: Shape {
         return Path(path.cgPath)
     }
 }
+

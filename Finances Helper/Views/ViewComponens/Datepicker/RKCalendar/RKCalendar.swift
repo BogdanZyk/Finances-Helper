@@ -6,18 +6,18 @@
 //
 
 import SwiftUI
-
+import RangeCalendar
 
 struct RKCalendar : View {
     var dates: (start: Date?, end: Date?)
     @Environment(\.dismiss) private var dismiss
-    @StateObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().startOfYear!, maximumDate: Date().endOfYear!)    
+    @StateObject var manager = RCManager(calendar: Calendar.current, minimumDate: Date().startOfYear!, maximumDate: Date().endOfYear!)
     let onTapDone: (Date, Date) -> Void
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
                 headerSection
-                RKViewController( rkManager: self.rkManager)
+                RangeCalendar(manager: manager)
             }
             .onAppear(perform: startUp)
             .toolbar {
@@ -27,7 +27,7 @@ struct RKCalendar : View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        onTapDone(rkManager.startDate, rkManager.endDate)
+                        onTapDone(manager.startDate, manager.endDate)
                         dismiss()
                     } label: {
                         Text("Done")
@@ -47,16 +47,8 @@ struct RKCalendar : View {
     }
     
     func startUp() {
-        
-        rkManager.endDate = dates.end ?? Date().startOfWeek
-        rkManager.startDate = dates.start ?? Date.now
-        
-        rkManager.colors.weekdayHeaderColor = Color(.systemGray4)
-        rkManager.colors.monthHeaderColor = Color.secondary
-        rkManager.colors.textColor = Color.black
-        rkManager.colors.todayColor = .red
-        rkManager.colors.selectedBackColor = .blue
-        rkManager.colors.betweenStartAndEndBackColor = Color(.systemGray2)
+        manager.endDate = dates.end ?? Date().startOfWeek
+        manager.startDate = dates.start ?? Date.now
     }
 
 }
@@ -75,13 +67,10 @@ extension RKCalendar{
     private var headerSection: some View{
         VStack(spacing: 10) {
             HStack(spacing: 40){
-                dateLabel(title: "Start date", date: rkManager.startDate)
-                dateLabel(title: "End date", date: rkManager.endDate)
+                dateLabel(title: "Start date", date: manager.startDate)
+                dateLabel(title: "End date", date: manager.endDate)
             }
             .padding(.vertical, 5)
-            
-            RKWeekdayHeader(rkManager: self.rkManager)
-                .padding(.horizontal)
             Divider()
         }
     }
