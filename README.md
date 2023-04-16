@@ -11,6 +11,7 @@ SwiftUI, MVVM Architecture, iOS 15+
 - Show income/expense by date
 - Creating categories and subcategories
 - Total income/expense for selected date
+- Import CSV file
 
 ## Includes
 - SwiftUI
